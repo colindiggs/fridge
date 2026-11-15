@@ -89,6 +89,8 @@ def store_name(s):  # "Safeway 123" -> "Safeway"; never publish store numbers or
 # Canonical names, so "Signature Chicken Thighs" and "Chicken Thigh" are one item.
 # First match wins. (pattern, name, location, shelf-life days)
 ITEMS = [
+    (r"bread ?crumbs|panko", "Bread crumbs", "pantry", 180),
+    (r"chocolate chips|morsels", "Chocolate chips", "pantry", 180),
     (r"tortilla chips|tostitos", "Tortilla chips", "pantry", 30),
     (r"tortilla", "Flour tortillas", "pantry", 21),
     (r"almond milk vanilla|vanilla almond", "Vanilla almond milk", "fridge", 10),

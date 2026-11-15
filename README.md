@@ -21,7 +21,10 @@ One row per observation, newest wins. Anything without a recent row is estimated
 | 2026-11-22 | Eggs | fridge | low | photo | |
 | 2026-11-22 | Almond milk | fridge | out | colin | |
 
-- location: fridge, freezer, pantry (counter items like onions and bananas sort themselves)
+- location: fridge, freezer, pantry or counter, optionally with where after a colon, which the 3D view uses:
+  - fridge: top shelf, middle shelf, bottom shelf, left crisper, right crisper, drawer, left door top bin, right door middle bin, and so on
+  - pantry: top shelf, shelf 2, shelf 3, shelf 4, bottom shelf
+  - a bare "fridge" or "pantry" works too; the item then goes where map.json says
 - status: in, low, out
 - source: photo, colin, estimate
 
@@ -44,11 +47,11 @@ To change what counts as one item (for example, so "Signature Chicken Thighs" an
 
 ## 3D fridge, pantry and counter
 
-The page draws your fridge, pantry and counter as a low-poly 3D scene with three.js. If a browser can't do WebGL, or something fails to load, it keeps the plain tile view. Add `?flat` to the address to force the tiles.
+The page draws your fridge, pantry and counter as a low-poly 3D scene with three.js. If a browser can't do WebGL, or something fails to load, it keeps the plain tile view. Add `?flat` to the address to force the tiles. The layout follows the real kitchen: French doors with three bins each, three glass shelves, two crispers, a full-width drawer and a freezer drawer; a five-shelf pantry.
 
 - `site/` is copied next to `index.html` on every build.
 - `site/js/kitchen3d.js` builds the scenes, places items on shelves, prints labels and shows the tap tags.
-- `site/models/map.json` says which model each grocery item uses, at real size in inches. Lookup order: the exact item name, then the first matching rule, then the item's category, then where it's stored. Anything new falls back to a sensible model, never a blank. You can change an item's `tint`, `label`, `count`, `spot` (crisper, shelf or door) or size in this file without touching code.
+- `site/models/map.json` says which model each grocery item uses, at real size in inches. Lookup order: the exact item name, then the first matching rule, then the item's category, then where it's stored. Anything new falls back to a sensible model, never a blank. You can change an item's `tint`, `label`, `count`, `spot` (shelf, crisper, drawer, door, or an exact zone like door-right-2) or size in this file without touching code.
 - Models starting with `#` (`#box`, `#tub`, `#eggs`, `#butter`) are built in code in the same flat-shaded style.
 
 ### Adding a model

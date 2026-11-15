@@ -112,7 +112,13 @@ const built = {
 function resolve(MAP, it, loc) {
   const name = it.name, low = name.toLowerCase();
   const rule = (MAP.rules.find(([re]) => new RegExp(re, "i").test(low)) || [])[1];
-  const s = Object.assign({}, MAP.locations[loc] || MAP.locations.fridge, MAP.categories[it.cat] || {}, rule || {}, MAP.items[name] || {});
+  // later layers win; a layer that picks a model also drops the earlier layers' sizes and colors, which were for another shape
+  const s = {};
+  for (const L of [MAP.locations[loc] || MAP.locations.fridge, MAP.categories[it.cat], rule, MAP.items[name]]) {
+    if (!L) continue;
+    if (L.model) for (const k of ["w", "h", "d", "lie", "count", "tint", "color", "band", "lid"]) delete s[k];
+    Object.assign(s, L);
+  }
   if (s.label === true) s.label = name.toUpperCase().slice(0, 12);
   return s;
 }
@@ -135,6 +141,7 @@ async function makeItem(MAP, it, s, base) {
     const c = src.clone(true);
     c.traverse(n => { if (n.isMesh) { n.material = kitMaterial(n.material, s.tint, o.low, o.ghost); n.castShadow = !o.ghost; n.receiveShadow = true; } });
     if (s.lie) c.rotation.z = Math.PI / 2;
+    if (s.model === "bag") c.rotation.y = Math.PI / 2;   // the kit's bag is deep and narrow; show its wide face
     const w = new THREE.Group(); w.add(c);
     const b = new THREE.Box3().setFromObject(w), sz = b.getSize(new THREE.Vector3());
     const k = s.h ? s.h / sz.y : (s.w || 4) / Math.max(sz.x, sz.z);
@@ -284,6 +291,7 @@ function fridgeScene(v) {
   add(BOX(W + 3, 2.5, D), enamel, W / 2, -3, -D / 2 + .2);
   add(BOX(W, FH, .5), liner2, W / 2, -FH - 3, -D);                        // freezer cavity, seen behind the drawer
   add(BOX(W + 3, 2, D), enamel, W / 2, -FH - 5, -D / 2 + .2);
+  add(BOX(W + 40, .4, D + 50), flat("#d8ccb6"), W / 2, -FH - 5.4, 5).castShadow = false;   // kitchen floor
   const strip = add(BOX(W * .55, .5, 1.2), new THREE.MeshBasicMaterial({ color: 0xfffbea }), W / 2, H - .5, -D * .55);
   strip.castShadow = false;
 
@@ -296,7 +304,7 @@ function fridgeScene(v) {
     zones[`shelf-${i + 1}`] = [z([-15, -6], 1, W - 1, y + .35, top - y - 1.2)];
   });
   // two crispers under the bottom shelf, a full-width drawer under those
-  const clear = flat("#eef6f9", { opacity: .55 });
+  const clear = flat("#eef6f9", { opacity: .3 });
   add(BOX(W - 1, .5, D - 1), liner, W / 2, 7, -D / 2);
   for (const [x0, x1, side] of [[.8, W / 2 - .4, "left"], [W / 2 + .4, W - .8, "right"]]) {
     add(BOX(x1 - x0, 6.5, .35), clear, (x0 + x1) / 2, 7.5, -1.4);
@@ -318,7 +326,7 @@ function fridgeScene(v) {
     const pivot = new THREE.Group(); pivot.position.set(side === "left" ? -1.5 : W + 1.5, 0, .6); s.add(pivot);
     pivot.userData.sign = sgn;
     const mid = sgn * dw / 2;
-    const panel = add(BOX(dw - .15, H + 3.5, 2.4), enamel, mid, -1.5, 1.2, pivot); panel.userData.door = true;
+    const panel = add(BOX(dw - .15, H + 3.5, 2.4), enamel, mid, -1.5, 1.2, pivot); panel.userData.door = "fridge";
     add(BOX(dw - 3, H - 1, .5), liner, mid, 0, -.25, pivot);
     add(BOX(1, H * .4, 1.2), flat("#e8eef0"), sgn * (dw - 2), H * .35, 2.8, pivot);
     FR.bins.forEach(([by, bh], i) => {
@@ -334,10 +342,10 @@ function fridgeScene(v) {
   };
   mkDoor("left"); mkDoor("right");
 
-  // freezer drawer: slides out when the doors open
+  // freezer drawer: slides out on its own, with the camera looking down into it
   const drawer = new THREE.Group(); s.add(drawer);
   const fy = -FH - 2.5;
-  add(BOX(W + 3, FH, 2.4), enamel, W / 2, fy, 1.2, drawer).userData.door = true;
+  add(BOX(W + 3, FH, 2.4), enamel, W / 2, fy, 1.2, drawer).userData.door = "freezer";
   add(BOX(W * .6, 1, 1.2), flat("#e8eef0"), W / 2, fy + FH - 3, 2.9, drawer);
   const fbin = flat("#d5e6ef");
   add(BOX(W - 1, .4, 20), fbin, W / 2, fy + 1, -10, drawer);
@@ -365,7 +373,7 @@ function pantryScene(v) {
     add(BOX(W, .9, D), white, W / 2, y - .9, -D / 2 + .3);
     zones[`shelf-${i + 1}`] = [{ rows: [-10, -4.5], x0: .8, x1: W - .8, y, maxH: (i ? ys[i - 1] : top) - y - 1.3, scene: s }];
   });
-  zones.pantry = [3, 4, 2, 1].map(n => zones[`shelf-${n}`][0]);
+  zones.pantry = [5, 3, 4, 2, 1].map(n => zones[`shelf-${n}`][0]);
   const lamp = new THREE.PointLight(0xfff3d6, 160, 90, 1.5); lamp.position.set(W / 2, top - 2, -2); s.add(lamp);
   return { zones, W, top };
 }
@@ -433,7 +441,7 @@ export async function start(D, MAP, base = "./") {
     <div class="ov3d ov-freezer"></div><div class="ov3d ov-main"></div>
     <button class="close3d" hidden>close</button><div class="tag3d" hidden></div>`;
   const fread = document.createElement("p"); fread.className = "readout"; fread.setAttribute("aria-live", "polite");
-  const fv = viewer(fstage.querySelector("canvas"), { fov: 34, sun: [-25, 90, 80], sunTarget: [15, 25, -12] });
+  const fv = viewer(fstage.querySelector("canvas"), { alpha: true, fov: 34, sun: [-25, 90, 80], sunTarget: [15, 25, -12] });
   const { doors, drawer, zones } = fridgeScene(fv);
   const { W, H, FH } = FR;
   await loadAll("fridge", fv, zones);
@@ -446,13 +454,22 @@ export async function start(D, MAP, base = "./") {
   mags.classList.add("magnets");
   document.body.classList.add("has3d");
 
-  let open = 0, anim = null;
+  // three states: closed, fridge open (doors swing), freezer open (drawer slides out, camera looks down)
+  let state = "closed", anim = null, cur = null;
   const tag = fstage.querySelector(".tag3d"), closeBtn = fstage.querySelector(".close3d");
-  const poses = () => {
+  const rad = THREE.MathUtils.degToRad(108);
+  const target = st => {
     fv.size();
-    const closed = fv.fit([-4, W + 4, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2, 0]);
-    const opened = fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1]);
-    return { closed, opened };
+    const p = st === "fridge" ? fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1])
+      : st === "freezer" ? fv.fit([-3, W + 3, -10, 10], [W / 2, -13, 11], [0, 1.3, .8])
+      : fv.fit([-4, W + 4, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2, 0]);
+    return { pos: p.pos, look: p.look, k: st === "fridge" ? 1 : 0, dz: st === "freezer" ? 17 : 0 };
+  };
+  const apply = t => {
+    doors.forEach(d => d.rotation.y = -d.userData.sign * t.k * rad);
+    drawer.position.z = t.dz;
+    fv.camera.position.copy(t.pos); fv.camera.lookAt(t.look);
+    fv.render(); cur = t;
   };
   const placeOverlays = () => {
     // project the closed door faces onto the canvas to pin the magnets
@@ -461,33 +478,30 @@ export async function start(D, MAP, base = "./") {
     set(fstage.querySelector(".ov-main"), -1.5, -1.5, W + 1.5, H + 2);
     set(fstage.querySelector(".ov-freezer"), -1.5, -FH - 2.5, W + 1.5, -2.5);
   };
-  const frame = t => {
-    const { closed, opened } = poses();
-    const k = ease(t);
-    doors.forEach(d => d.rotation.y = -d.userData.sign * k * THREE.MathUtils.degToRad(108));
-    drawer.position.z = k * 13;
-    fv.camera.position.lerpVectors(closed.pos, opened.pos, k);
-    fv.camera.lookAt(new THREE.Vector3().lerpVectors(closed.look, opened.look, k));
-    fv.render();
-  };
+  const say = { closed: "", fridge: "Tap anything. See-through ones are usually here but aren't now. Tap the freezer drawer to pull it out.",
+    freezer: "Tap anything in the freezer. Tap the drawer front to push it back in." };
   const go = to => {
     if (anim) cancelAnimationFrame(anim);
     tag.hidden = true;
-    const from = open, t0 = performance.now(), dur = matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 900;
-    if (to) fstage.querySelectorAll(".ov3d").forEach(o => o.classList.add("off"));
+    const from = cur || target(state), end = target(to), t0 = performance.now();
+    const dur = matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 900;
+    state = to;
+    fstage.querySelectorAll(".ov3d").forEach(o => o.classList.add("off"));
     const stepf = now => {
-      open = from + (to - from) * Math.min(1, (now - t0) / dur);
-      frame(open);
-      if ((now - t0) < dur) anim = requestAnimationFrame(stepf);
-      else { anim = null; closeBtn.hidden = !to; if (!to) { placeOverlays(); fstage.querySelectorAll(".ov3d").forEach(o => o.classList.remove("off")); } }
+      const u = ease(Math.min(1, (now - t0) / dur));
+      apply({ pos: from.pos.clone().lerp(end.pos, u), look: from.look.clone().lerp(end.look, u), k: from.k + (end.k - from.k) * u, dz: from.dz + (end.dz - from.dz) * u });
+      if (now - t0 < dur) anim = requestAnimationFrame(stepf);
+      else { anim = null; closeBtn.hidden = to === "closed"; if (to === "closed") { placeOverlays(); fstage.querySelectorAll(".ov3d").forEach(o => o.classList.remove("off")); } }
     };
     anim = requestAnimationFrame(stepf);
-    fread.textContent = to ? "Tap anything. See-through ones are usually here but aren't now." : "";
+    fread.textContent = say[to];
   };
   onTap(fv.canvas, e => {
-    if (!open) return go(1);
     if (anim) return;
     const hit = fv.pick(e);
+    const door = hit && hit.userData.door;
+    if (state === "closed") return go(door === "freezer" ? "freezer" : "fridge");
+    if (door === "freezer") return go(state === "freezer" ? "closed" : "freezer");
     if (hit && hit.userData.item) {
       const it = hit.userData.item, p = fv.project(hit);
       tag.innerHTML = tagHTML(it); tag.hidden = false;
@@ -495,9 +509,10 @@ export async function start(D, MAP, base = "./") {
       fread.textContent = tagText(it);
     } else tag.hidden = true;
   });
-  fstage.querySelectorAll(".ov3d").forEach(o => o.addEventListener("click", () => go(1)));
-  closeBtn.addEventListener("click", () => go(0));
-  const redrawF = () => { frame(open); if (!open) placeOverlays(); tag.hidden = true; };
+  fstage.querySelector(".ov-main").addEventListener("click", () => go("fridge"));
+  fstage.querySelector(".ov-freezer").addEventListener("click", () => go("freezer"));
+  closeBtn.addEventListener("click", () => go("closed"));
+  const redrawF = () => { if (anim) return; apply(target(state)); if (state === "closed") placeOverlays(); tag.hidden = true; };
   new ResizeObserver(redrawF).observe(fstage);
   views.push(fv);
 
@@ -551,3 +566,6 @@ export async function start(D, MAP, base = "./") {
   setTimeout(() => { redrawF(); views.forEach(v => { v.size(); v.render(); }); }, 600);
   return true;
 }
+
+// for the offline preview script (tools/preview); the page doesn't use this
+export const _internals = { fridgeScene, pantryScene, counterScene, makeItem, resolve, pack, FR };

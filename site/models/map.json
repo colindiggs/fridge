@@ -47,11 +47,11 @@
    "count": 5
   },
   "Carrots": {
-   "model": "carrot",
-   "h": 8,
-   "lie": true,
+   "model": "bag",
+   "h": 7,
+   "tint": "#f08a2c",
    "spot": "crisper",
-   "count": 3
+   "label": "CARROTS"
   },
   "Cheese": {
    "model": "bag",
@@ -61,8 +61,8 @@
   },
   "Chicken thighs": {
    "model": "meat",
-   "w": 10,
-   "spot": "shelf"
+   "w": 8,
+   "spot": "drawer"
   },
   "Eggs": {
    "model": "#eggs",
@@ -91,13 +91,15 @@
   },
   "Salmon": {
    "model": "meat",
-   "w": 8,
-   "tint": "#f0875c"
+   "w": 7,
+   "tint": "#f0875c",
+   "spot": "drawer"
   },
   "Sausage": {
    "model": "sausage",
    "w": 6,
-   "count": 2
+   "count": 2,
+   "spot": "drawer"
   },
   "Beer": {
    "model": "soda-can",
@@ -127,7 +129,8 @@
   },
   "Bacon": {
    "model": "bacon",
-   "w": 9
+   "w": 6,
+   "spot": "drawer"
   },
   "Almond milk": {
    "model": "carton",
@@ -145,8 +148,9 @@
   },
   "Chicken breast": {
    "model": "meat",
-   "w": 10,
-   "tint": "#f2b0a0"
+   "w": 8,
+   "tint": "#f2b0a0",
+   "spot": "drawer"
   },
   "Creamer": {
    "model": "bottle",
@@ -165,8 +169,9 @@
   },
   "Ground turkey": {
    "model": "meat",
-   "w": 8,
-   "tint": "#e8a090"
+   "w": 7,
+   "tint": "#e8a090",
+   "spot": "drawer"
   },
   "Limes": {
    "model": "lemon",
@@ -608,7 +613,8 @@
    "bacon",
    {
     "model": "bacon",
-    "w": 9
+    "w": 9,
+    "spot": "drawer"
    }
   ],
   [
@@ -616,7 +622,8 @@
    {
     "model": "sausage",
     "w": 6,
-    "count": 2
+    "count": 2,
+    "spot": "drawer"
    }
   ],
   [
@@ -624,14 +631,16 @@
    {
     "model": "meat",
     "w": 8,
-    "tint": "#f0875c"
+    "tint": "#f0875c",
+    "spot": "drawer"
    }
   ],
   [
    "chicken|turkey|beef|pork|steak|lamb|meat",
    {
     "model": "meat",
-    "w": 9
+    "w": 9,
+    "spot": "drawer"
    }
   ],
   [
@@ -893,7 +902,7 @@
   "protein": {
    "model": "meat",
    "w": 9,
-   "spot": "shelf"
+   "spot": "drawer"
   },
   "dairy": {
    "model": "#tub",
