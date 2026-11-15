@@ -1,0 +1,697 @@
+{
+ "eaten": [
+  {
+   "date": "2026-11-14",
+   "meal": "Quesadillas"
+  },
+  {
+   "date": "2026-11-08",
+   "meal": "Greek chicken or turkey orzo bowls with feta"
+  },
+  {
+   "date": "2026-11-08",
+   "meal": "Southern collard greens"
+  },
+  {
+   "date": "2026-11-01",
+   "meal": "Chicken tikka masala"
+  },
+  {
+   "date": "2026-09-24",
+   "meal": "Turkey burgers with seared portobello caps and corn"
+  },
+  {
+   "date": "2026-09-22",
+   "meal": "Pork tenderloin with seared halloumi"
+  },
+  {
+   "date": "2026-07-31",
+   "meal": "Impossible burgers"
+  },
+  {
+   "date": "2026-07-23",
+   "meal": "Yogurt-marinated chicken over hummus with roasted vegetables"
+  }
+ ],
+ "plan": [
+  {
+   "meal": "Sheet-pan lemongrass chicken thighs with baby potatoes, carrots, broccoli, Brussels sprouts",
+   "slot": "batch main",
+   "status": "planned"
+  },
+  {
+   "meal": "BBQ chicken thighs with corn and slaw",
+   "slot": "dinner",
+   "status": "planned"
+  },
+  {
+   "meal": "Salmon with rice and broccoli",
+   "slot": "dinner",
+   "status": "planned"
+  },
+  {
+   "meal": "Red beans and rice with smoked turkey sausage",
+   "slot": "dinner",
+   "status": "proposed"
+  }
+ ],
+ "rewind": {
+  "last": "2026-05-31",
+  "meal": "Burgers or tacos",
+  "weeks_ago": 24
+ },
+ "shelves": {
+  "counter": [
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Onions",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "9 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Potatoes",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 0.5,
+    "ghost": false,
+    "name": "Apples",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Bananas",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "out",
+    "usual": "6 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Red onion",
+    "since": "2026-09-13",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   }
+  ],
+  "freezer": [
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Frozen pizza",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "6 of 15 trips"
+   },
+   {
+    "fresh": 0.71,
+    "ghost": false,
+    "name": "Frozen broccoli",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.18,
+    "ghost": false,
+    "name": "Frozen fries",
+    "since": "2026-08-09",
+    "source": "receipt",
+    "status": "low",
+    "usual": "1 of 15 trips"
+   }
+  ],
+  "fridge": [
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Broccoli",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Brussels sprouts",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Carrots",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Cheese",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "9 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Chicken thighs",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Eggs",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Fresh herbs",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Hummus",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Lemons",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "10 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Salmon",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Sausage",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "4 of 15 trips"
+   },
+   {
+    "fresh": 0.77,
+    "ghost": false,
+    "name": "Beer",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "12 of 15 trips"
+   },
+   {
+    "fresh": 0.67,
+    "ghost": false,
+    "name": "Sour cream",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.5,
+    "ghost": false,
+    "name": "Heavy cream",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.42,
+    "ghost": false,
+    "name": "Butter",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.3,
+    "ghost": false,
+    "name": "Bacon",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Almond milk",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "out",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Bell peppers",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "out",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Chicken breast",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "out",
+    "usual": "8 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Creamer",
+    "since": "2026-09-20",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Feta",
+    "since": "2026-09-13",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Ground turkey",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "out",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Limes",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Yogurt",
+    "since": "2026-10-18",
+    "source": "receipt",
+    "status": "out",
+    "usual": "4 of 15 trips"
+   }
+  ],
+  "pantry": [
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Apple cider vinegar",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "BBQ sauce",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Bread",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "6 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Cereal",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Chicken bouillon",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Chips and pretzels",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Couscous",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Diet Coke",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "fresh": 1.0,
+    "ghost": false,
+    "name": "Snack bars",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "status": "in",
+    "usual": "4 of 15 trips"
+   },
+   {
+    "fresh": 0.98,
+    "ghost": false,
+    "name": "Pasta",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "status": "in",
+    "usual": "10 of 15 trips"
+   },
+   {
+    "fresh": 0.9,
+    "ghost": false,
+    "name": "Crushed tomatoes",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 0.9,
+    "ghost": false,
+    "name": "Rice",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 0.88,
+    "ghost": false,
+    "name": "Canned beans",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 0.77,
+    "ghost": false,
+    "name": "Olives",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "in",
+    "usual": "6 of 15 trips"
+   },
+   {
+    "fresh": 0.65,
+    "ghost": false,
+    "name": "Salsa verde",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "in",
+    "usual": "4 of 15 trips"
+   },
+   {
+    "fresh": 0.6,
+    "ghost": false,
+    "name": "Soy sauce",
+    "since": "2026-06-21",
+    "source": "receipt",
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.3,
+    "ghost": false,
+    "name": "Olive oil",
+    "since": "2026-07-12",
+    "source": "receipt",
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 0.14,
+    "ghost": false,
+    "name": "Gnocchi",
+    "since": "2026-08-30",
+    "source": "receipt",
+    "status": "low",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "fresh": 0.07,
+    "ghost": false,
+    "name": "Baking soda",
+    "since": "2026-10-18",
+    "source": "receipt",
+    "status": "low",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.07,
+    "ghost": false,
+    "name": "Drizzilicious cinnamon",
+    "since": "2026-10-18",
+    "source": "receipt",
+    "status": "low",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Flour tortillas",
+    "since": "2026-10-18",
+    "source": "receipt",
+    "status": "out",
+    "usual": "7 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Naan",
+    "since": "2026-10-11",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Tortilla chips",
+    "since": "2026-10-04",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   },
+   {
+    "fresh": 0.0,
+    "ghost": true,
+    "name": "Triscuits",
+    "since": "2026-08-16",
+    "source": "receipt",
+    "status": "out",
+    "usual": "3 of 15 trips"
+   }
+  ]
+ },
+ "spend": {
+  "avg": 109.1,
+  "flowers_ytd": 157.36,
+  "this_week": 128.15,
+  "weeks": [
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-08-02"
+   },
+   {
+    "flowers": 27.97,
+    "groceries": 129.54,
+    "shopped": true,
+    "week": "2026-08-09"
+   },
+   {
+    "flowers": 0.0,
+    "groceries": 114.17,
+    "shopped": true,
+    "week": "2026-08-16"
+   },
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-08-23"
+   },
+   {
+    "flowers": 0.0,
+    "groceries": 64.04,
+    "shopped": true,
+    "week": "2026-08-30"
+   },
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-09-06"
+   },
+   {
+    "flowers": 19.99,
+    "groceries": 73.44,
+    "shopped": true,
+    "week": "2026-09-13"
+   },
+   {
+    "flowers": 3.47,
+    "groceries": 86.39,
+    "shopped": true,
+    "week": "2026-09-20"
+   },
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-09-27"
+   },
+   {
+    "flowers": 15.98,
+    "groceries": 91.34,
+    "shopped": true,
+    "week": "2026-10-04"
+   },
+   {
+    "flowers": 0.0,
+    "groceries": 124.02,
+    "shopped": true,
+    "week": "2026-10-11"
+   },
+   {
+    "flowers": 32.0,
+    "groceries": 73.72,
+    "shopped": true,
+    "week": "2026-10-18"
+   },
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-10-25"
+   },
+   {
+    "flowers": 0,
+    "groceries": 0,
+    "shopped": false,
+    "week": "2026-11-01"
+   },
+   {
+    "flowers": 17.99,
+    "groceries": 62.2,
+    "shopped": true,
+    "week": "2026-11-08"
+   },
+   {
+    "flowers": 0.0,
+    "groceries": 128.15,
+    "shopped": true,
+    "week": "2026-11-15"
+   }
+  ],
+  "ytd": 1546.46
+ },
+ "streak": {
+  "best": 3,
+  "current": 2,
+  "recent": [
+   false,
+   true,
+   true,
+   true,
+   false,
+   false,
+   true,
+   true
+  ],
+  "shopped_this_week": true
+ },
+ "today": "2026-11-15"
+}
