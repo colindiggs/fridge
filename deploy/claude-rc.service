@@ -1,0 +1,17 @@
+# systemd user unit: keeps a Claude Code Remote Control session running on this box.
+# The Claude Code docs only document tmux/screen for keeping it alive; this wraps that in systemd.
+# Install: cp to ~/.config/systemd/user/, then systemctl --user enable claude-rc (needs loginctl enable-linger once).
+[Unit]
+Description=Claude Code Remote Control (tmux)
+After=network-online.target
+
+[Service]
+Type=forking
+WorkingDirectory=%h/fridge
+ExecStart=/usr/bin/tmux new-session -d -s claude-rc -c %h/fridge %h/.local/bin/claude remote-control --name mini
+ExecStop=/usr/bin/tmux kill-session -t claude-rc
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

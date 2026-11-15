@@ -1,0 +1,5 @@
+fridge.env
+*.json
+public/
+sample/
+__pycache__/
