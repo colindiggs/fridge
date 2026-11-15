@@ -1,0 +1,978 @@
+{
+ "_how": "Each grocery item resolves to a model spec: an exact name in items wins, then the first matching rule, then its category, then its location. Specs merge in that order, so items only list what differs. Sizes are real inches: h is height, w is the widest side. tint recolors a kit model, label prints on the front face, count shows several, spot picks where it goes when the Inventory tab doesn't say (shelf, crisper, drawer, door, freezer, pantry, counter, or an exact zone like door-right-2 or shelf-1). Models starting with # are built in code; the rest are GLB files under models/.",
+ "models": {
+  "carton": "kenney-food/carton.glb",
+  "carton-small": "kenney-food/carton-small.glb",
+  "egg": "kenney-food/egg.glb",
+  "bag": "kenney-food/bag.glb",
+  "bag-flat": "kenney-food/bag-flat.glb",
+  "bottle": "kenney-food/bottle-oil.glb",
+  "squeeze": "kenney-food/bottle-ketchup.glb",
+  "can": "kenney-food/can.glb",
+  "can-small": "kenney-food/can-small.glb",
+  "soda-can": "kenney-food/soda-can.glb",
+  "beer": "kenney-food/soda-bottle.glb",
+  "broccoli": "kenney-food/broccoli.glb",
+  "lemon": "kenney-food/lemon.glb",
+  "loaf": "kenney-food/loaf.glb",
+  "flatbread": "kenney-food/bread.glb",
+  "meat": "kenney-food/meat-raw.glb",
+  "bacon": "kenney-food/bacon-raw.glb",
+  "sausage": "kenney-food/sausage.glb",
+  "carrot": "kenney-food/carrot.glb",
+  "jar": "kenney-food/peanut-butter.glb",
+  "honey": "kenney-food/honey.glb",
+  "cabbage": "kenney-food/cabbage.glb",
+  "pepper": "kenney-food/paprika.glb",
+  "onion": "kenney-food/onion.glb",
+  "apple": "kenney-food/apple.glb",
+  "banana": "kenney-food/banana.glb",
+  "leek": "kenney-food/leek.glb",
+  "tomato": "kenney-food/tomato.glb",
+  "orange": "kenney-food/orange.glb",
+  "cheese-wheel": "kenney-food/cheese.glb"
+ },
+ "items": {
+  "Broccoli": {
+   "model": "broccoli",
+   "h": 7,
+   "spot": "crisper",
+   "count": 2
+  },
+  "Brussels sprouts": {
+   "model": "cabbage",
+   "h": 1.8,
+   "tint": "#6f9e3e",
+   "spot": "crisper",
+   "count": 5
+  },
+  "Carrots": {
+   "model": "carrot",
+   "h": 8,
+   "lie": true,
+   "spot": "crisper",
+   "count": 3
+  },
+  "Cheese": {
+   "model": "bag",
+   "h": 7,
+   "tint": "#f2b33d",
+   "label": "SHREDDED"
+  },
+  "Chicken thighs": {
+   "model": "meat",
+   "w": 10,
+   "spot": "shelf"
+  },
+  "Eggs": {
+   "model": "#eggs",
+   "spot": "shelf"
+  },
+  "Fresh herbs": {
+   "model": "leek",
+   "h": 8,
+   "tint": "#4f9a4a",
+   "spot": "crisper"
+  },
+  "Hummus": {
+   "model": "#tub",
+   "w": 4.2,
+   "h": 2.4,
+   "color": "#efe2bf",
+   "lid": "#c4473a",
+   "label": "HUMMUS"
+  },
+  "Lemons": {
+   "model": "lemon",
+   "h": 3,
+   "tint": "#ffd84a",
+   "spot": "crisper",
+   "count": 3
+  },
+  "Salmon": {
+   "model": "meat",
+   "w": 8,
+   "tint": "#f0875c"
+  },
+  "Sausage": {
+   "model": "sausage",
+   "w": 6,
+   "count": 2
+  },
+  "Beer": {
+   "model": "soda-can",
+   "h": 6.2,
+   "tint": "#e6d84a",
+   "spot": "door",
+   "count": 3
+  },
+  "Sour cream": {
+   "model": "#tub",
+   "w": 4,
+   "h": 3.4,
+   "color": "#f6f4ee",
+   "lid": "#3f78c9",
+   "label": "SOUR CREAM"
+  },
+  "Heavy cream": {
+   "model": "carton-small",
+   "h": 6.5,
+   "tint": "#f2efe6",
+   "spot": "door",
+   "label": "CREAM"
+  },
+  "Butter": {
+   "model": "#butter",
+   "spot": "door"
+  },
+  "Bacon": {
+   "model": "bacon",
+   "w": 9
+  },
+  "Almond milk": {
+   "model": "carton",
+   "h": 9.6,
+   "tint": "#4f8fd6",
+   "spot": "door",
+   "label": "ALMOND"
+  },
+  "Bell peppers": {
+   "model": "pepper",
+   "h": 4,
+   "tint": "#d9483b",
+   "spot": "crisper",
+   "count": 2
+  },
+  "Chicken breast": {
+   "model": "meat",
+   "w": 10,
+   "tint": "#f2b0a0"
+  },
+  "Creamer": {
+   "model": "bottle",
+   "h": 8,
+   "tint": "#f2d2a8",
+   "spot": "door",
+   "label": "CREAMER"
+  },
+  "Feta": {
+   "model": "#tub",
+   "w": 4,
+   "h": 2.5,
+   "color": "#f6f4ee",
+   "lid": "#3b7bd0",
+   "label": "FETA"
+  },
+  "Ground turkey": {
+   "model": "meat",
+   "w": 8,
+   "tint": "#e8a090"
+  },
+  "Limes": {
+   "model": "lemon",
+   "h": 2.6,
+   "tint": "#8cc63f",
+   "spot": "crisper",
+   "count": 3
+  },
+  "Yogurt": {
+   "model": "#tub",
+   "w": 5,
+   "h": 4.4,
+   "color": "#f6f4ee",
+   "lid": "#2d5fcf",
+   "label": "GREEK"
+  },
+  "Frozen pizza": {
+   "model": "#box",
+   "w": 12,
+   "h": 2,
+   "d": 12,
+   "color": "#d9483b",
+   "label": "PIZZA"
+  },
+  "Frozen broccoli": {
+   "model": "bag",
+   "h": 8,
+   "tint": "#3f8d4f",
+   "label": "BROCCOLI"
+  },
+  "Frozen fries": {
+   "model": "bag",
+   "h": 9,
+   "tint": "#e7b234",
+   "label": "FRIES"
+  },
+  "Apple cider vinegar": {
+   "model": "bottle",
+   "h": 9,
+   "tint": "#d9963b"
+  },
+  "BBQ sauce": {
+   "model": "squeeze",
+   "h": 7.5,
+   "tint": "#6e2c1a"
+  },
+  "Bread": {
+   "model": "loaf",
+   "w": 10
+  },
+  "Cereal": {
+   "model": "#box",
+   "w": 7.5,
+   "h": 11,
+   "d": 2.6,
+   "color": "#e5803a",
+   "band": "#f8e9c8",
+   "label": "CEREAL",
+   "count": 2
+  },
+  "Chicken bouillon": {
+   "model": "jar",
+   "h": 4,
+   "tint": "#e0b44a",
+   "label": "BOUILLON"
+  },
+  "Chips and pretzels": {
+   "model": "bag",
+   "h": 9,
+   "tint": "#f2c53d",
+   "label": "PRETZELS"
+  },
+  "Couscous": {
+   "model": "#box",
+   "w": 5,
+   "h": 7,
+   "d": 2,
+   "color": "#f0dca0",
+   "label": "COUSCOUS"
+  },
+  "Diet Coke": {
+   "model": "#box",
+   "w": 8,
+   "h": 5,
+   "d": 10.5,
+   "color": "#e9ecef",
+   "band": "#d9483b",
+   "label": "DIET COKE"
+  },
+  "Snack bars": {
+   "model": "#box",
+   "w": 6,
+   "h": 3,
+   "d": 2.6,
+   "color": "#7bb04a",
+   "label": "BARS"
+  },
+  "Pasta": {
+   "model": "#box",
+   "w": 3,
+   "h": 9.5,
+   "d": 2,
+   "color": "#3f78c9",
+   "label": "PASTA"
+  },
+  "Crushed tomatoes": {
+   "model": "can",
+   "h": 4.7,
+   "label": "TOMATOES"
+  },
+  "Rice": {
+   "model": "bag",
+   "h": 8,
+   "tint": "#eee7d4",
+   "label": "RICE"
+  },
+  "Canned beans": {
+   "model": "can",
+   "h": 4.5,
+   "tint": "#4f8a5a",
+   "count": 2,
+   "label": "BEANS"
+  },
+  "Olives": {
+   "model": "jar",
+   "h": 4,
+   "tint": "#4b5a2a",
+   "label": "OLIVES"
+  },
+  "Salsa verde": {
+   "model": "jar",
+   "h": 4.5,
+   "tint": "#7fae4a",
+   "label": "SALSA"
+  },
+  "Soy sauce": {
+   "model": "bottle",
+   "h": 7,
+   "tint": "#3a2418",
+   "label": "SOY"
+  },
+  "Olive oil": {
+   "model": "bottle",
+   "h": 11
+  },
+  "Gnocchi": {
+   "model": "bag-flat",
+   "w": 8,
+   "tint": "#f1e6c8"
+  },
+  "Baking soda": {
+   "model": "#box",
+   "w": 3.5,
+   "h": 5,
+   "d": 2.5,
+   "color": "#e8a33a",
+   "label": "SODA"
+  },
+  "Drizzilicious cinnamon": {
+   "model": "bag",
+   "h": 7,
+   "tint": "#b26b3d",
+   "label": "BITES"
+  },
+  "Flour tortillas": {
+   "model": "bag-flat",
+   "w": 9,
+   "tint": "#f4ead8"
+  },
+  "Naan": {
+   "model": "flatbread",
+   "w": 8,
+   "tint": "#e2b067"
+  },
+  "Tortilla chips": {
+   "model": "bag",
+   "h": 10,
+   "tint": "#f2b33d",
+   "label": "CHIPS"
+  },
+  "Triscuits": {
+   "model": "#box",
+   "w": 6,
+   "h": 8,
+   "d": 2.5,
+   "color": "#b5453a",
+   "label": "TRISCUIT"
+  },
+  "Onions": {
+   "model": "onion",
+   "h": 3.5,
+   "count": 3
+  },
+  "Potatoes": {
+   "model": "bag",
+   "h": 9,
+   "tint": "#f0a33a",
+   "label": "POTATOES"
+  },
+  "Apples": {
+   "model": "apple",
+   "h": 3.2,
+   "count": 3
+  },
+  "Bananas": {
+   "model": "banana",
+   "w": 7
+  },
+  "Red onion": {
+   "model": "onion",
+   "h": 3.2,
+   "tint": "#8b3f6b",
+   "count": 2
+  },
+  "NA beer": {
+   "model": "soda-can",
+   "h": 6.2,
+   "tint": "#f08a2c",
+   "spot": "door"
+  },
+  "Sparkling drinks": {
+   "model": "soda-can",
+   "h": 5.8,
+   "tint": "#e0507a",
+   "spot": "door",
+   "count": 3
+  },
+  "Canned cocktails": {
+   "model": "#box",
+   "w": 5.5,
+   "h": 6.5,
+   "d": 4,
+   "color": "#cfe8f2",
+   "band": "#f2d36b",
+   "label": "LEMONADE"
+  },
+  "Leftovers": {
+   "model": "#prep",
+   "w": 7,
+   "h": 3.4,
+   "d": 5,
+   "color": "#f1e2a8",
+   "count": 2
+  },
+  "Cream cheese": {
+   "model": "#tub",
+   "w": 4.2,
+   "h": 2.8,
+   "color": "#ffffff",
+   "lid": "#efe6c4",
+   "label": "SCHMEAR"
+  },
+  "Cold brew": {
+   "model": "#box",
+   "w": 6.5,
+   "h": 10.5,
+   "d": 6.5,
+   "color": "#c4cad0",
+   "band": "#5a3a22",
+   "label": "COLD BREW"
+  },
+  "Half-and-half": {
+   "model": "carton-small",
+   "h": 6.5,
+   "tint": "#f39a4a",
+   "spot": "door",
+   "label": "HALF+HALF"
+  },
+  "Gatorade": {
+   "model": "beer",
+   "h": 9,
+   "tint": "#b5e04a",
+   "count": 2
+  },
+  "Olipop": {
+   "model": "#box",
+   "w": 5.5,
+   "h": 5.2,
+   "d": 5.5,
+   "color": "#f2e2a0",
+   "band": "#d9483b",
+   "label": "OLIPOP"
+  },
+  "Oat milk": {
+   "model": "carton",
+   "h": 8,
+   "tint": "#e8e2d6",
+   "spot": "door",
+   "label": "OAT"
+  },
+  "Coconut water": {
+   "model": "carton-small",
+   "h": 7,
+   "tint": "#7ec3e8",
+   "spot": "door",
+   "label": "COCONUT"
+  },
+  "Pickles": {
+   "model": "jar",
+   "h": 6,
+   "tint": "#9fb04a",
+   "spot": "door",
+   "label": "PICKLES"
+  },
+  "Cherry peppers": {
+   "model": "jar",
+   "h": 4.6,
+   "tint": "#d9483b",
+   "spot": "door"
+  },
+  "Citrus juice": {
+   "model": "squeeze",
+   "h": 6.5,
+   "tint": "#8cc63f",
+   "spot": "door",
+   "label": "LIME"
+  },
+  "Hot sauce": {
+   "model": "bottle",
+   "h": 6,
+   "tint": "#e0532f",
+   "spot": "door"
+  },
+  "Ranch": {
+   "model": "squeeze",
+   "h": 8,
+   "tint": "#f4f1e6",
+   "spot": "door",
+   "label": "RANCH"
+  },
+  "Marinade": {
+   "model": "bottle",
+   "h": 6.5,
+   "tint": "#d98b3a",
+   "spot": "door"
+  },
+  "Kombucha": {
+   "model": "beer",
+   "h": 10,
+   "tint": "#c97a2b",
+   "spot": "door",
+   "label": "KOMBUCHA"
+  },
+  "Sriracha": {
+   "model": "squeeze",
+   "h": 7,
+   "tint": "#d9332a",
+   "spot": "door"
+  },
+  "Sesame oil": {
+   "model": "bottle",
+   "h": 6,
+   "tint": "#8a5a2a",
+   "spot": "door"
+  },
+  "Spices": {
+   "model": "jar",
+   "h": 4,
+   "tint": "#b5652e",
+   "count": 6
+  },
+  "Crackers": {
+   "model": "#box",
+   "w": 7,
+   "h": 4.5,
+   "d": 3,
+   "color": "#3f9a55",
+   "label": "CRACKERS"
+  },
+  "Chocolate chips": {
+   "model": "bag",
+   "h": 7,
+   "tint": "#f2c53d",
+   "label": "CHOC CHIPS"
+  },
+  "Bread crumbs": {
+   "model": "#tub",
+   "w": 4.5,
+   "h": 7,
+   "color": "#f6f4ee",
+   "lid": "#d9483b",
+   "label": "CRUMBS"
+  },
+  "Flour": {
+   "model": "bag",
+   "h": 10,
+   "tint": "#f4f1e6",
+   "label": "FLOUR"
+  },
+  "Peanut butter": {
+   "model": "jar",
+   "h": 5.5,
+   "tint": "#c98a3a",
+   "label": "PB"
+  }
+ },
+ "rules": [
+  [
+   "almond milk|oat milk|\\bmilk\\b|juice",
+   {
+    "model": "carton",
+    "h": 9.6,
+    "spot": "door"
+   }
+  ],
+  [
+   "cream|creamer|half",
+   {
+    "model": "carton-small",
+    "h": 6.5,
+    "spot": "door"
+   }
+  ],
+  [
+   "yogurt|sour cream|hummus|dip|cottage|ricotta|feta|tzatziki",
+   {
+    "model": "#tub",
+    "w": 4,
+    "h": 3,
+    "color": "#f6f4ee",
+    "lid": "#3f78c9"
+   }
+  ],
+  [
+   "\\beggs?\\b",
+   {
+    "model": "#eggs",
+    "spot": "shelf"
+   }
+  ],
+  [
+   "butter",
+   {
+    "model": "#butter",
+    "spot": "door"
+   }
+  ],
+  [
+   "bacon",
+   {
+    "model": "bacon",
+    "w": 9
+   }
+  ],
+  [
+   "sausage|hot dog|bratwurst",
+   {
+    "model": "sausage",
+    "w": 6,
+    "count": 2
+   }
+  ],
+  [
+   "salmon|fish|tilapia|cod|shrimp",
+   {
+    "model": "meat",
+    "w": 8,
+    "tint": "#f0875c"
+   }
+  ],
+  [
+   "chicken|turkey|beef|pork|steak|lamb|meat",
+   {
+    "model": "meat",
+    "w": 9
+   }
+  ],
+  [
+   "cheese|parmesan|mozzarella|cheddar",
+   {
+    "model": "#box",
+    "w": 5,
+    "h": 2,
+    "d": 2.6,
+    "color": "#f4c95c"
+   }
+  ],
+  [
+   "beer|cider|kombucha|wine|prosecco",
+   {
+    "model": "soda-can",
+    "h": 6.2,
+    "tint": "#e6d84a",
+    "spot": "door"
+   }
+  ],
+  [
+   "coke|soda|seltzer|sparkling|la croix",
+   {
+    "model": "soda-can",
+    "h": 4.8,
+    "count": 2
+   }
+  ],
+  [
+   "lemon",
+   {
+    "model": "lemon",
+    "h": 3,
+    "tint": "#ffd84a",
+    "spot": "crisper",
+    "count": 2
+   }
+  ],
+  [
+   "lime",
+   {
+    "model": "lemon",
+    "h": 2.6,
+    "tint": "#8cc63f",
+    "spot": "crisper",
+    "count": 2
+   }
+  ],
+  [
+   "orange|clementine|mandarin",
+   {
+    "model": "orange",
+    "h": 3,
+    "count": 2
+   }
+  ],
+  [
+   "apple|pear",
+   {
+    "model": "apple",
+    "h": 3.2,
+    "count": 2
+   }
+  ],
+  [
+   "banana",
+   {
+    "model": "banana",
+    "w": 7
+   }
+  ],
+  [
+   "onion|shallot|garlic",
+   {
+    "model": "onion",
+    "h": 3.2,
+    "count": 2
+   }
+  ],
+  [
+   "potato|yam",
+   {
+    "model": "egg",
+    "h": 3,
+    "tint": "#b98a52",
+    "lie": true,
+    "count": 3
+   }
+  ],
+  [
+   "pepper|jalape",
+   {
+    "model": "pepper",
+    "h": 4,
+    "tint": "#d9483b",
+    "spot": "crisper"
+   }
+  ],
+  [
+   "tomato(?!es)|tomatoes on the vine|cherry tomato",
+   {
+    "model": "tomato",
+    "h": 3,
+    "spot": "crisper",
+    "count": 2
+   }
+  ],
+  [
+   "carrot",
+   {
+    "model": "carrot",
+    "h": 8,
+    "lie": true,
+    "spot": "crisper",
+    "count": 2
+   }
+  ],
+  [
+   "broccoli|cauliflower",
+   {
+    "model": "broccoli",
+    "h": 6,
+    "spot": "crisper"
+   }
+  ],
+  [
+   "herb|cilantro|parsley|basil|dill|mint|scallion|green onion|leek|celery",
+   {
+    "model": "leek",
+    "h": 8,
+    "tint": "#4f9a4a",
+    "spot": "crisper"
+   }
+  ],
+  [
+   "lettuce|spinach|salad|kale|greens|arugula|cabbage|sprout",
+   {
+    "model": "cabbage",
+    "h": 4,
+    "tint": "#6f9e3e",
+    "spot": "crisper"
+   }
+  ],
+  [
+   "bread|bagel|bun|roll|brioche|sourdough",
+   {
+    "model": "loaf",
+    "w": 9
+   }
+  ],
+  [
+   "tortilla(?! chip)|naan|pita|wrap|flatbread",
+   {
+    "model": "bag-flat",
+    "w": 8,
+    "tint": "#f4ead8"
+   }
+  ],
+  [
+   "chip|pretzel|popcorn|cracker|crisps|snack",
+   {
+    "model": "bag",
+    "h": 9,
+    "tint": "#f2c53d"
+   }
+  ],
+  [
+   "pasta|spaghetti|penne|rigatoni|noodle|macaroni|orzo",
+   {
+    "model": "#box",
+    "w": 3,
+    "h": 9.5,
+    "d": 2,
+    "color": "#3f78c9",
+    "label": "PASTA"
+   }
+  ],
+  [
+   "rice|quinoa|lentil|flour|sugar|oats",
+   {
+    "model": "bag",
+    "h": 8,
+    "tint": "#eee7d4"
+   }
+  ],
+  [
+   "cereal|granola|cracker box",
+   {
+    "model": "#box",
+    "w": 7.5,
+    "h": 10.5,
+    "d": 2.6,
+    "color": "#e5803a"
+   }
+  ],
+  [
+   "ketchup|mustard|mayo|bbq|hot sauce|sriracha",
+   {
+    "model": "squeeze",
+    "h": 7.5
+   }
+  ],
+  [
+   "vinegar|oil|soy|dressing|syrup|sauce",
+   {
+    "model": "bottle",
+    "h": 9
+   }
+  ],
+  [
+   "beans|soup|broth|stock|tomatoes|tuna|chickpea|coconut milk|canned",
+   {
+    "model": "can",
+    "h": 4.6
+   }
+  ],
+  [
+   "salsa|olive|pickle|jam|jelly|peanut|nut butter|pesto|bouillon|jar",
+   {
+    "model": "jar",
+    "h": 4.2
+   }
+  ],
+  [
+   "honey",
+   {
+    "model": "honey",
+    "h": 4
+   }
+  ],
+  [
+   "pizza",
+   {
+    "model": "#box",
+    "w": 12,
+    "h": 2,
+    "d": 12,
+    "color": "#d9483b",
+    "label": "PIZZA"
+   }
+  ],
+  [
+   "frozen|fries|ice cream",
+   {
+    "model": "bag",
+    "h": 8,
+    "tint": "#7fb0d9"
+   }
+  ]
+ ],
+ "categories": {
+  "produce": {
+   "model": "cabbage",
+   "h": 4,
+   "tint": "#6f9e3e",
+   "spot": "crisper"
+  },
+  "protein": {
+   "model": "meat",
+   "w": 9,
+   "spot": "shelf"
+  },
+  "dairy": {
+   "model": "#tub",
+   "w": 4,
+   "h": 3,
+   "color": "#f6f4ee",
+   "lid": "#3f78c9",
+   "spot": "shelf"
+  },
+  "deli": {
+   "model": "#tub",
+   "w": 4,
+   "h": 2.6,
+   "color": "#efe2bf",
+   "lid": "#c4473a",
+   "spot": "shelf"
+  },
+  "alcohol": {
+   "model": "soda-can",
+   "h": 6.2,
+   "tint": "#e6d84a",
+   "spot": "door"
+  },
+  "dairy/frozen": {
+   "model": "#box",
+   "w": 7,
+   "h": 2,
+   "d": 9,
+   "color": "#7fb0d9"
+  },
+  "bakery": {
+   "model": "loaf",
+   "w": 9
+  },
+  "beverage": {
+   "model": "soda-can",
+   "h": 4.8,
+   "count": 2
+  },
+  "pantry": {
+   "model": "#box",
+   "w": 5,
+   "h": 7,
+   "d": 2.5,
+   "color": "#c9a06a"
+  }
+ },
+ "locations": {
+  "fridge": {
+   "model": "#tub",
+   "w": 4,
+   "h": 3,
+   "color": "#f6f4ee",
+   "lid": "#7d8f89",
+   "spot": "shelf",
+   "label": true
+  },
+  "freezer": {
+   "model": "#box",
+   "w": 7,
+   "h": 2,
+   "d": 9,
+   "color": "#7fb0d9",
+   "spot": "freezer",
+   "label": true
+  },
+  "pantry": {
+   "model": "#box",
+   "w": 5,
+   "h": 7,
+   "d": 2.5,
+   "color": "#c9a06a",
+   "spot": "pantry",
+   "label": true
+  },
+  "counter": {
+   "model": "apple",
+   "h": 3.2,
+   "spot": "counter"
+  }
+ }
+}

@@ -81,6 +81,13 @@ const built = {
     g.add(mesh(body, flat(s.color || "#f6f4ee", o)), mesh(lid, flat(s.lid || "#3f78c9", o)));
     return g;
   },
+  prep(s, o) {
+    const g = new THREE.Group(), w = s.w || 7, h = s.h || 3.4, d = s.d || 5;
+    g.add(mesh(BOX(w, h, d), flat("#e6f1f3", { ...o, opacity: o.ghost ? 0 : .5 })));
+    const food = mesh(BOX(w - .5, h * .62, d - .5), flat(s.color || "#f1e2a8", o)); food.position.y = .2; g.add(food);
+    const lid = mesh(BOX(w + .2, .55, d + .2), flat(s.lid || "#d9483b", o)); lid.position.y = h; g.add(lid);
+    return g;
+  },
   butter(s, o) {
     const g = new THREE.Group();
     g.add(mesh(BOX(5, 2.6, 2.6), flat("#f6e08a", o)));
@@ -107,7 +114,6 @@ function resolve(MAP, it, loc) {
   const rule = (MAP.rules.find(([re]) => new RegExp(re, "i").test(low)) || [])[1];
   const s = Object.assign({}, MAP.locations[loc] || MAP.locations.fridge, MAP.categories[it.cat] || {}, rule || {}, MAP.items[name] || {});
   if (s.label === true) s.label = name.toUpperCase().slice(0, 12);
-  s.spot = loc === "fridge" ? (["crisper", "shelf", "door"].includes(s.spot) ? s.spot : "shelf") : loc;
   return s;
 }
 
@@ -251,84 +257,117 @@ function tagHTML(it) {
   else if (it.status === "low") lines.push("Probably running low.");
   if (it.last) lines.push(`Bought ${day(it.last)}${it.cost != null ? ` · $${Number(it.cost).toFixed(2)}` : ""}`);
   else lines.push(`${how} ${day(it.since)}`);
-  if (!it.ghost) lines.push(`On ${esc(it.usual)}`);
+  if (!it.ghost && !/^0 /.test(it.usual || "")) lines.push(`On ${esc(it.usual)}`);
   return `<b>${esc(it.name)}</b>${lines.map(l => `<span>${l}</span>`).join("")}`;
 }
 function tagText(it) { return tagHTML(it).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); }
 
 // ---------- scenes ----------
+// Colin's fridge: LG French doors over a freezer drawer. Inside, three glass shelves, two crispers and a
+// full-width drawer; three bins in each door. His pantry is a closet with five shelves.
 const C = { enamel: "#b9d9c8", enamel2: "#a5ccb8", liner: "#eef3f5", liner2: "#e2eaee", glass: "#cfe7ee", trim: "#d7e0e5", bin: "#d6ecf2" };
+const FR = { W: 32, D: 24, H: 52, FH: 16, shelves: [40, 28.5, 17], doorW: 17.5, bins: [[40, 5], [22, 5], [2.5, 6]] };
 
 function fridgeScene(v) {
-  const s = v.scene, W = 30, H = 44, D = 24, FY = 47, FH = 14;
-  const add = (geo, mat, x, y, z) => { const m = mesh(geo, mat); m.position.set(x, y, z); s.add(m); return m; };
-  const liner = flat(C.liner), liner2 = flat(C.liner2), enamel = flat(C.enamel);
-  // interiors are boxes carved by drawing the liner walls inside the shell
-  for (const [y0, h] of [[0, H], [FY, FH]]) {
-    add(BOX(W, h, .5), liner2, W / 2, y0, -D);                    // back
-    add(BOX(.5, h, D), liner, .25, y0, -D / 2);                   // left
-    add(BOX(.5, h, D), liner, W - .25, y0, -D / 2);               // right
-    add(BOX(W, .5, D), liner, W / 2, y0 - .5, -D / 2);            // floor
-    add(BOX(W, .5, D), liner, W / 2, y0 + h, -D / 2);             // ceiling
-  }
-  // fill the space between and around interiors with enamel so the front reads as one cabinet
-  add(BOX(W + 3, FY - H, D), enamel, W / 2, H, -D / 2 + .2);
-  add(BOX(W + 3, 1.6, D), enamel, W / 2, FY + FH + .5, -D / 2 + .2);
-  add(BOX(W + 3, 4, D), enamel, W / 2, -4.5, -D / 2 + .2);
-  add(BOX(1.5, FY + FH + 2.5, D), enamel, -.75, -4, -D / 2 + .2);
-  add(BOX(1.5, FY + FH + 2.5, D), enamel, W + .75, -4, -D / 2 + .2);
-  // glass shelves and the crisper
-  const glass = flat(C.glass, { opacity: .7 });
-  const shelves = [11, 24, 35];
-  for (const y of shelves) { add(BOX(W - 1, .35, D - 1), glass, W / 2, y, -D / 2).receiveShadow = true; add(BOX(W - 1, .6, .4), flat(C.trim), W / 2, y - .15, -.7); }
-  add(BOX(W - 1.6, 3.4, .35), flat("#eef6f9", { opacity: .6 }), W / 2, 0, -1.2);
-  add(BOX(W - 1.6, .45, .5), flat(C.trim), W / 2, 3.2, -1.2);
-  // interior lamp
-  const lamp = new THREE.PointLight(0xfff3d6, 260, 70, 1.6); lamp.position.set(W / 2, H - 2, -4); s.add(lamp);
-  const fl = new THREE.PointLight(0xe6f2ff, 90, 30, 1.6); fl.position.set(W / 2, FY + FH - 2, -4); s.add(fl);
+  const s = v.scene, { W, D, H, FH } = FR;
+  const add = (geo, mat, x, y, z, parent = s) => { const m = mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m; };
+  const liner = flat(C.liner), liner2 = flat(C.liner2), enamel = flat(C.enamel), trim = flat(C.trim);
+  const z = (rows, x0, x1, y, maxH, parent) => ({ rows, x0, x1, y, maxH, scene: s, parent });
+  const zones = {};
 
-  // doors: hinge on the right
+  // cabinet: liner walls inside an enamel frame
+  add(BOX(W, H, .5), liner2, W / 2, 0, -D);
+  add(BOX(.5, H, D), liner, .25, 0, -D / 2); add(BOX(.5, H, D), liner, W - .25, 0, -D / 2);
+  add(BOX(W, .5, D), liner, W / 2, -.5, -D / 2); add(BOX(W, .5, D), liner, W / 2, H, -D / 2);
+  add(BOX(1.5, H + FH + 6, D), enamel, -.75, -FH - 3, -D / 2 + .2); add(BOX(1.5, H + FH + 6, D), enamel, W + .75, -FH - 3, -D / 2 + .2);
+  add(BOX(W + 3, 2.5, D), enamel, W / 2, H + .5, -D / 2 + .2);
+  add(BOX(W + 3, 2.5, D), enamel, W / 2, -3, -D / 2 + .2);
+  add(BOX(W, FH, .5), liner2, W / 2, -FH - 3, -D);                        // freezer cavity, seen behind the drawer
+  add(BOX(W + 3, 2, D), enamel, W / 2, -FH - 5, -D / 2 + .2);
+  const strip = add(BOX(W * .55, .5, 1.2), new THREE.MeshBasicMaterial({ color: 0xfffbea }), W / 2, H - .5, -D * .55);
+  strip.castShadow = false;
+
+  // glass shelves (top, middle, bottom) and the zones on them
+  const glass = flat(C.glass, { opacity: .7 });
+  FR.shelves.forEach((y, i) => {
+    add(BOX(W - 1, .35, D - 1), glass, W / 2, y, -D / 2).receiveShadow = true;
+    add(BOX(W - 1, .6, .4), trim, W / 2, y - .15, -.7);
+    const top = i ? FR.shelves[i - 1] : H;
+    zones[`shelf-${i + 1}`] = [z([-15, -6], 1, W - 1, y + .35, top - y - 1.2)];
+  });
+  // two crispers under the bottom shelf, a full-width drawer under those
+  const clear = flat("#eef6f9", { opacity: .55 });
+  add(BOX(W - 1, .5, D - 1), liner, W / 2, 7, -D / 2);
+  for (const [x0, x1, side] of [[.8, W / 2 - .4, "left"], [W / 2 + .4, W - .8, "right"]]) {
+    add(BOX(x1 - x0, 6.5, .35), clear, (x0 + x1) / 2, 7.5, -1.4);
+    add(BOX(x1 - x0, .5, .5), trim, (x0 + x1) / 2, 13.6, -1.4);
+    zones[`crisper-${side}`] = [z([-14, -6], x0 + .5, x1 - .5, 7.5, 9)];
+  }
+  add(BOX(.5, 9.5, D - 2), clear, W / 2, 7.5, -D / 2 - .5);
+  add(BOX(W - 1.6, 4.6, .35), clear, W / 2, 0, -1.2);
+  add(BOX(W - 1.6, .5, .5), trim, W / 2, 4.3, -1.2);
+  zones.drawer = [z([-13, -5.5], 1, W - 1, 0, 6.2)];
+
+  const lamp = new THREE.PointLight(0xfff3d6, 300, 80, 1.5); lamp.position.set(W / 2, H - 3, -6); s.add(lamp);
+  const low = new THREE.PointLight(0xfff3d6, 70, 40, 1.6); low.position.set(W / 2, 13, -3); s.add(low);
+
+  // French doors, hinged at the outer edges. Door space: x runs from the hinge toward the middle, the inner face is at z=0 facing -z.
   const doors = [];
-  const mkDoor = (y0, h, bins) => {
-    const pivot = new THREE.Group(); pivot.position.set(W + 1.5, 0, .6); s.add(pivot);
-    const inner = new THREE.Group(); pivot.add(inner);          // door local: x runs from hinge (0) to -W-3, inner face at z=0 facing -z
-    const panel = mesh(BOX(W + 3, h, 2.4), enamel); panel.position.set(-(W + 3) / 2, y0, 1.2); panel.userData.door = true; inner.add(panel);
-    const lin = mesh(BOX(W, h - 3, .5), flat(C.liner)); lin.position.set(-(W + 3) / 2, y0 + 1.5, -.25); inner.add(lin);
-    const handle = mesh(BOX(1, h * .45, 1.2), flat("#e8eef0")); handle.position.set(-(W + 3) + 2.2, y0 + h * .28, 2.8); inner.add(handle);
-    const binZones = [];
-    for (const [by, bh] of bins) {
-      const fl0 = mesh(BOX(W - 2, .45, 4.6), flat(C.bin)); fl0.position.set(-(W + 3) / 2, by, -2.7); inner.add(fl0);
-      const fr = mesh(BOX(W - 2, bh, .3), flat(C.bin, { opacity: .5 })); fr.position.set(-(W + 3) / 2, by, -5); inner.add(fr);
-      const lip = mesh(BOX(W - 2, .5, .5), flat("#bcdde6")); lip.position.set(-(W + 3) / 2, by + bh - .4, -5); inner.add(lip);
-      // bin contents face out of the door, i.e. along -z in door space; we flip them to face the viewer when open
-      const holder = new THREE.Group(); holder.rotation.y = Math.PI; holder.position.set(0, 0, -2.7); inner.add(holder);
-      binZones.push({ rows: [0], x0: 1.5, x1: W + 1, y: by + .45, maxH: bh + 8, parent: holder });
-    }
+  const mkDoor = (side) => {
+    const sgn = side === "left" ? 1 : -1, dw = FR.doorW;
+    const pivot = new THREE.Group(); pivot.position.set(side === "left" ? -1.5 : W + 1.5, 0, .6); s.add(pivot);
+    pivot.userData.sign = sgn;
+    const mid = sgn * dw / 2;
+    const panel = add(BOX(dw - .15, H + 3.5, 2.4), enamel, mid, -1.5, 1.2, pivot); panel.userData.door = true;
+    add(BOX(dw - 3, H - 1, .5), liner, mid, 0, -.25, pivot);
+    add(BOX(1, H * .4, 1.2), flat("#e8eef0"), sgn * (dw - 2), H * .35, 2.8, pivot);
+    FR.bins.forEach(([by, bh], i) => {
+      add(BOX(dw - 3, .45, 4.6), flat(C.bin), mid, by, -2.7, pivot);
+      add(BOX(dw - 3, bh, .3), flat(C.bin, { opacity: .5 }), mid, by, -5, pivot);
+      add(BOX(dw - 3, .5, .5), flat("#bcdde6"), mid, by + bh - .4, -5, pivot);
+      // contents face out of the door (-z in door space): a holder turned half a turn, so its +x runs the other way
+      const holder = new THREE.Group(); holder.rotation.y = Math.PI; holder.position.set(0, 0, -2.7); pivot.add(holder);
+      const [a, b] = side === "left" ? [-(dw - 2), -1.8] : [1.8, dw - 2];
+      zones[`door-${side}-${i + 1}`] = [{ rows: [0], x0: a, x1: b, y: by + .45, maxH: i ? 13 : 11, parent: holder }];
+    });
     doors.push(pivot);
-    return binZones;
   };
-  const doorZones = mkDoor(-3.5, H + 5.5, [[3, 5.5], [19, 4.5], [33, 4]]);
-  mkDoor(FY - 1, FH + 3, [[FY + 1.5, 3]]);
-  const z = (rows, x0, x1, y, maxH) => ({ rows, x0, x1, y, maxH, scene: s });
-  const zones = {
-    crisper: [z([-15, -6.5], 1.2, W - 1.2, 0, 10.4)],
-    shelf: [z([-14, -5.5], 1, W - 1, 24.35, 10.3), z([-14, -5.5], 1, W - 1, 11.35, 12.3), z([-14, -5.5], 1, W - 1, 35.35, 8.3)],
-    door: doorZones,
-    freezer: [z([-14, -5.5], 1, W - 1, FY, 13.4)],
-  };
-  return { doors, zones };
+  mkDoor("left"); mkDoor("right");
+
+  // freezer drawer: slides out when the doors open
+  const drawer = new THREE.Group(); s.add(drawer);
+  const fy = -FH - 2.5;
+  add(BOX(W + 3, FH, 2.4), enamel, W / 2, fy, 1.2, drawer).userData.door = true;
+  add(BOX(W * .6, 1, 1.2), flat("#e8eef0"), W / 2, fy + FH - 3, 2.9, drawer);
+  const fbin = flat("#d5e6ef");
+  add(BOX(W - 1, .4, 20), fbin, W / 2, fy + 1, -10, drawer);
+  add(BOX(.4, 11, 20), fbin, 1, fy + 1, -10, drawer); add(BOX(.4, 11, 20), fbin, W - 1, fy + 1, -10, drawer);
+  add(BOX(W - 1, 11, .4), fbin, W / 2, fy + 1, -20, drawer);
+  zones.freezer = [z([-16, -9, -3], 1.6, W - 1.6, fy + 1.4, 10, drawer)];
+
+  // shorthand spots for items the Inventory tab hasn't placed yet
+  zones.shelf = [zones["shelf-2"][0], zones["shelf-3"][0], zones["shelf-1"][0]];
+  zones.crisper = [zones["crisper-left"][0], zones["crisper-right"][0]];
+  zones.door = ["right-2", "left-3", "right-3", "right-1", "left-1", "left-2"].map(k => zones["door-" + k][0]);
+  return { doors, drawer, zones };
 }
 
 function pantryScene(v) {
-  const s = v.scene, W = 34, H = 33, D = 12;
-  const back = flat("#7a4c2c"), wood = flat("#c48a58"), wood2 = flat("#9c6740");
+  const s = v.scene, W = 30, D = 14, ys = [53, 40, 27, 14, 0], top = 66;
+  const wall = flat("#cfd8dd"), white = flat("#f3efe6"), frame = flat("#e9e4da");
   const add = (geo, mat, x, y, z) => { const m = mesh(geo, mat); m.position.set(x, y, z); s.add(m); return m; };
-  add(BOX(W + 6, H + 6, .5), back, W / 2, -3, -D);
-  add(BOX(1, H + 6, D), wood2, -.5, -3, -D / 2); add(BOX(1, H + 6, D), wood2, W + .5, -3, -D / 2);
-  const ys = [0, 11.3, 22.6];
-  for (const y of ys) add(BOX(W, .9, D), wood, W / 2, y - .9, -D / 2 + .3);
-  const z = y => ({ rows: [-8.5, -3.6], x0: .8, x1: W - .8, y, maxH: 10.2, scene: s });
-  return { zones: { pantry: ys.map(z) } };
+  add(BOX(W + 8, top + 8, .5), wall, W / 2, -4, -D);
+  add(BOX(1, top + 8, D), wall, -.5, -4, -D / 2); add(BOX(1, top + 8, D), wall, W + .5, -4, -D / 2);
+  add(BOX(3, top + 8, 1.5), frame, -2, -4, .6); add(BOX(3, top + 8, 1.5), frame, W + 2, -4, .6);
+  add(BOX(W + 7, 3, 1.5), frame, W / 2, top, .6);
+  const zones = {};
+  ys.forEach((y, i) => {
+    add(BOX(W, .9, D), white, W / 2, y - .9, -D / 2 + .3);
+    zones[`shelf-${i + 1}`] = [{ rows: [-10, -4.5], x0: .8, x1: W - .8, y, maxH: (i ? ys[i - 1] : top) - y - 1.3, scene: s }];
+  });
+  zones.pantry = [3, 4, 2, 1].map(n => zones[`shelf-${n}`][0]);
+  const lamp = new THREE.PointLight(0xfff3d6, 160, 90, 1.5); lamp.position.set(W / 2, top - 2, -2); s.add(lamp);
+  return { zones, W, top };
 }
 
 function counterScene(v) {
@@ -352,7 +391,8 @@ export async function start(D, MAP, base = "./") {
     .has3d .shelf, .has3d .empty { display: none !important; }
     .stage3d { position: relative; width: 100%; touch-action: manipulation; }
     .stage3d canvas { display: block; width: 100%; height: 100%; }
-    .fridge3d { aspect-ratio: 4 / 5; }
+    .fridge3d { aspect-ratio: 3 / 4; }
+    .has3d .cab-inside { aspect-ratio: 3 / 5; min-height: 0; padding: 0; }
     .ov3d { position: absolute; transition: opacity .25s; }
     .ov3d.off { opacity: 0; pointer-events: none; }
     .ov3d .magnets { inset: 6% 16% 6% 5%; }
@@ -375,14 +415,14 @@ export async function start(D, MAP, base = "./") {
     const groups = await Promise.all(items.map(async it => {
       const s = resolve(MAP, it, loc);
       const g = await makeItem(MAP, it, s, base);
-      g.userData.spot = s.spot; g.userData.h = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3()).y;
+      g.userData.spot = [it.spot, s.spot, loc].find(k => k && zones[k]) || Object.keys(zones)[0]; g.userData.h = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3()).y;
       return g;
     }));
     const bySpot = {};
     groups.forEach(g => (bySpot[g.userData.spot] ||= []).push(g));
     let spill = [];
     for (const [spot, gs] of Object.entries(bySpot)) spill = spill.concat(pack(gs, zones[spot] || []));
-    if (spill.length && zones.shelf) spill = pack(spill, zones.shelf);
+    if (spill.length) spill = pack(spill, zones.shelf || zones[loc] || []);
     if (spill.length) console.info("fridge3d: no room for", spill.map(g => g.userData.item.name));
   };
 
@@ -394,9 +434,10 @@ export async function start(D, MAP, base = "./") {
     <button class="close3d" hidden>close</button><div class="tag3d" hidden></div>`;
   const fread = document.createElement("p"); fread.className = "readout"; fread.setAttribute("aria-live", "polite");
   const fv = viewer(fstage.querySelector("canvas"), { fov: 34, sun: [-25, 90, 80], sunTarget: [15, 25, -12] });
-  const { doors, zones } = fridgeScene(fv);
+  const { doors, drawer, zones } = fridgeScene(fv);
+  const { W, H, FH } = FR;
   await loadAll("fridge", fv, zones);
-  await loadAll("freezer", fv, { freezer: zones.freezer, shelf: zones.freezer });
+  await loadAll("freezer", fv, { freezer: zones.freezer });
   // all loaded: swap the CSS fridge for the 3D one
   const mags = document.getElementById("magnets"), letters = document.getElementById("letters");
   sec.replaceChildren(fstage, fread);
@@ -409,21 +450,22 @@ export async function start(D, MAP, base = "./") {
   const tag = fstage.querySelector(".tag3d"), closeBtn = fstage.querySelector(".close3d");
   const poses = () => {
     fv.size();
-    const closed = fv.fit([-3, 34, -6, 66], [15, 30, 0]);
-    const opened = fv.fit([-3, 47, -6, 66], [22, 29, 0], [-.18, .1, 1]);
+    const closed = fv.fit([-4, W + 4, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2, 0]);
+    const opened = fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1]);
     return { closed, opened };
   };
   const placeOverlays = () => {
     // project the closed door faces onto the canvas to pin the magnets
     const P = (x, y) => { const p = new THREE.Vector3(x, y, 3.2).project(fv.camera); return [(p.x + 1) / 2 * fstage.clientWidth, (1 - p.y) / 2 * fstage.clientHeight]; };
     const set = (el, x0, y0, x1, y1) => { const [a, b] = P(x0, y1), [c, d] = P(x1, y0); Object.assign(el.style, { left: a + "px", top: b + "px", width: (c - a) + "px", height: (d - b) + "px" }); };
-    set(fstage.querySelector(".ov-main"), -1.5, -3.5, 31.5, 46);
-    set(fstage.querySelector(".ov-freezer"), -1.5, 46, 31.5, 63);
+    set(fstage.querySelector(".ov-main"), -1.5, -1.5, W + 1.5, H + 2);
+    set(fstage.querySelector(".ov-freezer"), -1.5, -FH - 2.5, W + 1.5, -2.5);
   };
   const frame = t => {
     const { closed, opened } = poses();
     const k = ease(t);
-    doors.forEach((d, i) => d.rotation.y = -k * THREE.MathUtils.degToRad(i ? 112 : 116));
+    doors.forEach(d => d.rotation.y = -d.userData.sign * k * THREE.MathUtils.degToRad(108));
+    drawer.position.z = k * 13;
     fv.camera.position.lerpVectors(closed.pos, opened.pos, k);
     fv.camera.lookAt(new THREE.Vector3().lerpVectors(closed.look, opened.look, k));
     fv.render();
@@ -464,12 +506,12 @@ export async function start(D, MAP, base = "./") {
   if (cab) {
     const ps = document.createElement("div"); ps.className = "stage3d";
     ps.innerHTML = `<canvas aria-label="Pantry shelves. Tap anything."></canvas><div class="tag3d" hidden></div>`;
-    const pv = viewer(ps.querySelector("canvas"), { bg: "#7a4c2c", fov: 30, sun: [-10, 60, 70], sunTarget: [17, 10, -6] });
-    const { zones: pz } = pantryScene(pv);
+    const pv = viewer(ps.querySelector("canvas"), { bg: "#cfd8dd", fov: 30, sun: [-10, 90, 80], sunTarget: [15, 30, -6] });
+    const { zones: pz, W: PW, top: PT } = pantryScene(pv);
     await loadAll("pantry", pv, pz);
     cab.prepend(ps);
     const ptag = ps.querySelector(".tag3d"), pread = cab.querySelector(".readout");
-    const draw = () => { if (!pv.size()) return; pv.setPose(pv.fit([-1, 35, -1.5, 34], [17, 16.3, 0], [0, .12, 1])); pv.render(); ptag.hidden = true; };
+    const draw = () => { if (!pv.size()) return; pv.setPose(pv.fit([-1, PW + 1, -2, PT + 2], [PW / 2, PT / 2 - 1, 0], [0, .08, 1])); pv.render(); ptag.hidden = true; };
     new ResizeObserver(draw).observe(ps);
     onTap(pv.canvas, e => {
       const hit = pv.pick(e);

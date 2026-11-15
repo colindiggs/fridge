@@ -118,6 +118,7 @@ ITEMS = [
     (r"carrot", "Carrots", "fridge", 21),
     (r"bell pepper", "Bell peppers", "fridge", 10),
     (r"spinach", "Spinach", "fridge", 6),
+    (r"(lemon|lime) juice", "Citrus juice", "fridge", 180),
     (r"lemon", "Lemons", "fridge", 21),
     (r"lime", "Limes", "fridge", 21),
     (r"green onion", "Green onions", "fridge", 7),
@@ -169,6 +170,23 @@ def canon(item, category):
     loc = LOC_BY_CAT.get(category.lower(), "pantry")
     name = re.sub(BRANDS, "", item, flags=re.I).strip()
     return name[:1].upper() + name[1:].lower(), loc, LIFE_BY_CAT.get(category.lower(), 14)
+
+def place(where, default):
+    """'fridge: left door, top bin' -> ('fridge', 'door-left-1'). A bare 'fridge' has no spot."""
+    loc, _, w = (where or default).partition(":")
+    loc, w = loc.strip().lower() or default, w.lower()
+    lvl = 1 if "top" in w else 3 if "bottom" in w else 2 if "middle" in w else None
+    side = "right" if "right" in w else "left"
+    spot = None
+    if loc == "fridge":
+        if "door" in w: spot = f"door-{side}-{lvl or 2}"
+        elif "crisper" in w: spot = f"crisper-{side}"
+        elif "drawer" in w: spot = "drawer"
+        elif "shelf" in w: spot = f"shelf-{lvl or 2}"
+    elif loc == "pantry" and w.strip():
+        n = re.search(r"\d", w)
+        spot = f"shelf-{n.group() if n else 1 if lvl == 1 else 5 if lvl == 3 else 3}"
+    return loc, spot
 
 # --- the model ---------------------------------------------------------------
 
@@ -258,11 +276,11 @@ def build(data, today):
         if not d or not o.get("item", "").strip():
             continue
         name, loc, life = canon(o["item"], "")
-        loc = (o.get("location") or loc).strip().lower() or loc
+        loc, spot = place(o.get("location", ""), loc)
         it = items.setdefault(name, {"name": name, "loc": loc, "life": life, "dates": set()})
         if "obs" not in it or d >= it["obs"][0]:
             it["obs"] = (d, (o.get("status") or "in").strip().lower(), (o.get("source") or "photo").strip().lower())
-            it["loc"] = loc
+            it["loc"], it["spot"] = loc, spot
     trips = len({p["_d"] for p in purchases}) or 1
     shelves = defaultdict(list)
     for it in items.values():
@@ -282,7 +300,7 @@ def build(data, today):
             continue
         shelves[it["loc"]].append({"name": it["name"], "status": status, "fresh": round(fresh, 2),
                                    "since": since.isoformat(), "source": src, "ghost": ghost,
-                                   "usual": f"{times} of {trips} trips", "cat": it.get("cat", ""),
+                                   "usual": f"{times} of {trips} trips", "cat": it.get("cat", ""), "spot": it.get("spot"),
                                    "last": bought.isoformat() if bought else None,
                                    "cost": round(it["paid"][bought], 2) if bought else None})
     for loc in shelves:

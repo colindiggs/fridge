@@ -4,3 +4,5 @@ public/
 sample/
 __pycache__/
 !data/snapshot.json
+
+!site/models/map.json
