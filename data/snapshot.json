@@ -63,8 +63,11 @@
  "shelves": {
   "counter": [
    {
+    "cat": "produce",
+    "cost": 1.45,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Onions",
     "since": "2026-11-15",
     "source": "receipt",
@@ -72,8 +75,11 @@
     "usual": "9 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 6.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Potatoes",
     "since": "2026-11-15",
     "source": "receipt",
@@ -81,8 +87,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 2.9,
     "fresh": 0.5,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Apples",
     "since": "2026-11-08",
     "source": "receipt",
@@ -90,8 +99,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 0.49,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-11-08",
     "name": "Bananas",
     "since": "2026-11-08",
     "source": "receipt",
@@ -99,8 +111,11 @@
     "usual": "6 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 1.37,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-09-13",
     "name": "Red onion",
     "since": "2026-09-13",
     "source": "receipt",
@@ -110,8 +125,11 @@
   ],
   "freezer": [
    {
+    "cat": "dairy/frozen",
+    "cost": 9.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Frozen pizza",
     "since": "2026-11-15",
     "source": "receipt",
@@ -119,8 +137,11 @@
     "usual": "6 of 15 trips"
    },
    {
+    "cat": "dairy/frozen",
+    "cost": 3.49,
     "fresh": 0.71,
     "ghost": false,
+    "last": "2026-10-11",
     "name": "Frozen broccoli",
     "since": "2026-10-11",
     "source": "receipt",
@@ -128,8 +149,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "dairy/frozen",
+    "cost": 3.79,
     "fresh": 0.18,
     "ghost": false,
+    "last": "2026-08-09",
     "name": "Frozen fries",
     "since": "2026-08-09",
     "source": "receipt",
@@ -139,8 +163,11 @@
   ],
   "fridge": [
    {
+    "cat": "produce",
+    "cost": 3.62,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Broccoli",
     "since": "2026-11-15",
     "source": "receipt",
@@ -148,8 +175,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 5.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Brussels sprouts",
     "since": "2026-11-15",
     "source": "receipt",
@@ -157,8 +187,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 1.79,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Carrots",
     "since": "2026-11-15",
     "source": "receipt",
@@ -166,8 +199,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 2.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Cheese",
     "since": "2026-11-15",
     "source": "receipt",
@@ -175,8 +211,11 @@
     "usual": "9 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 14.52,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Chicken thighs",
     "since": "2026-11-15",
     "source": "receipt",
@@ -184,8 +223,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 5.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Eggs",
     "since": "2026-11-15",
     "source": "receipt",
@@ -193,8 +235,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 2.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Fresh herbs",
     "since": "2026-11-15",
     "source": "receipt",
@@ -202,8 +247,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "deli",
+    "cost": 4.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Hummus",
     "since": "2026-11-15",
     "source": "receipt",
@@ -211,8 +259,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 0.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Lemons",
     "since": "2026-11-15",
     "source": "receipt",
@@ -220,8 +271,11 @@
     "usual": "10 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 8.15,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Salmon",
     "since": "2026-11-15",
     "source": "receipt",
@@ -229,8 +283,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 3.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Sausage",
     "since": "2026-11-15",
     "source": "receipt",
@@ -238,8 +295,11 @@
     "usual": "4 of 15 trips"
    },
    {
+    "cat": "alcohol",
+    "cost": 13.99,
     "fresh": 0.77,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Beer",
     "since": "2026-11-08",
     "source": "receipt",
@@ -247,8 +307,11 @@
     "usual": "12 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 3.79,
     "fresh": 0.67,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Sour cream",
     "since": "2026-11-08",
     "source": "receipt",
@@ -256,8 +319,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 3.99,
     "fresh": 0.5,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Heavy cream",
     "since": "2026-11-08",
     "source": "receipt",
@@ -265,8 +331,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 3.49,
     "fresh": 0.42,
     "ghost": false,
+    "last": "2026-10-11",
     "name": "Butter",
     "since": "2026-10-11",
     "source": "receipt",
@@ -274,8 +343,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 10.99,
     "fresh": 0.3,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Bacon",
     "since": "2026-11-08",
     "source": "receipt",
@@ -283,8 +355,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 4.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-11",
     "name": "Almond milk",
     "since": "2026-10-11",
     "source": "receipt",
@@ -292,8 +367,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 5.97,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-04",
     "name": "Bell peppers",
     "since": "2026-10-04",
     "source": "receipt",
@@ -301,8 +379,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 6.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-11-08",
     "name": "Chicken breast",
     "since": "2026-11-08",
     "source": "receipt",
@@ -310,8 +391,11 @@
     "usual": "8 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 1.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-09-20",
     "name": "Creamer",
     "since": "2026-09-20",
     "source": "receipt",
@@ -319,8 +403,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "deli",
+    "cost": 10.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-09-13",
     "name": "Feta",
     "since": "2026-09-13",
     "source": "receipt",
@@ -328,8 +415,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "protein",
+    "cost": 8.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-11-08",
     "name": "Ground turkey",
     "since": "2026-11-08",
     "source": "receipt",
@@ -337,8 +427,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 0.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-04",
     "name": "Limes",
     "since": "2026-10-04",
     "source": "receipt",
@@ -346,8 +439,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 10.08,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-18",
     "name": "Yogurt",
     "since": "2026-10-18",
     "source": "receipt",
@@ -357,8 +453,11 @@
   ],
   "pantry": [
    {
+    "cat": "pantry",
+    "cost": 2.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Apple cider vinegar",
     "since": "2026-11-15",
     "source": "receipt",
@@ -366,8 +465,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 4.29,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "BBQ sauce",
     "since": "2026-11-15",
     "source": "receipt",
@@ -375,8 +477,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "bakery",
+    "cost": 5.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Bread",
     "since": "2026-11-15",
     "source": "receipt",
@@ -384,8 +489,11 @@
     "usual": "6 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 5.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Cereal",
     "since": "2026-11-15",
     "source": "receipt",
@@ -393,8 +501,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 8.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Chicken bouillon",
     "since": "2026-11-15",
     "source": "receipt",
@@ -402,8 +513,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "deli",
+    "cost": 5.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Chips and pretzels",
     "since": "2026-11-15",
     "source": "receipt",
@@ -411,8 +525,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 2.99,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Couscous",
     "since": "2026-11-15",
     "source": "receipt",
@@ -420,8 +537,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "beverage",
+    "cost": 11.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Diet Coke",
     "since": "2026-11-15",
     "source": "receipt",
@@ -429,8 +549,11 @@
     "usual": "5 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 7.49,
     "fresh": 1.0,
     "ghost": false,
+    "last": "2026-11-15",
     "name": "Snack bars",
     "since": "2026-11-15",
     "source": "receipt",
@@ -438,8 +561,11 @@
     "usual": "4 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 1.29,
     "fresh": 0.98,
     "ghost": false,
+    "last": "2026-11-08",
     "name": "Pasta",
     "since": "2026-11-08",
     "source": "receipt",
@@ -447,8 +573,11 @@
     "usual": "10 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 1.99,
     "fresh": 0.9,
     "ghost": false,
+    "last": "2026-10-11",
     "name": "Crushed tomatoes",
     "since": "2026-10-11",
     "source": "receipt",
@@ -456,8 +585,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 4.99,
     "fresh": 0.9,
     "ghost": false,
+    "last": "2026-10-11",
     "name": "Rice",
     "since": "2026-10-11",
     "source": "receipt",
@@ -465,8 +597,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 5.58,
     "fresh": 0.88,
     "ghost": false,
+    "last": "2026-10-04",
     "name": "Canned beans",
     "since": "2026-10-04",
     "source": "receipt",
@@ -474,8 +609,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 2.79,
     "fresh": 0.77,
     "ghost": false,
+    "last": "2026-10-04",
     "name": "Olives",
     "since": "2026-10-04",
     "source": "receipt",
@@ -483,8 +621,11 @@
     "usual": "6 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 2.99,
     "fresh": 0.65,
     "ghost": false,
+    "last": "2026-10-04",
     "name": "Salsa verde",
     "since": "2026-10-04",
     "source": "receipt",
@@ -492,8 +633,11 @@
     "usual": "4 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 4.49,
     "fresh": 0.6,
     "ghost": false,
+    "last": "2026-06-21",
     "name": "Soy sauce",
     "since": "2026-06-21",
     "source": "receipt",
@@ -501,8 +645,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 7.58,
     "fresh": 0.3,
     "ghost": false,
+    "last": "2026-07-12",
     "name": "Olive oil",
     "since": "2026-07-12",
     "source": "receipt",
@@ -510,8 +657,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 3.49,
     "fresh": 0.14,
     "ghost": false,
+    "last": "2026-08-30",
     "name": "Gnocchi",
     "since": "2026-08-30",
     "source": "receipt",
@@ -519,8 +669,11 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 1.49,
     "fresh": 0.07,
     "ghost": false,
+    "last": "2026-10-18",
     "name": "Baking soda",
     "since": "2026-10-18",
     "source": "receipt",
@@ -528,8 +681,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 3.79,
     "fresh": 0.07,
     "ghost": false,
+    "last": "2026-10-18",
     "name": "Drizzilicious cinnamon",
     "since": "2026-10-18",
     "source": "receipt",
@@ -537,8 +693,11 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 3.99,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-18",
     "name": "Flour tortillas",
     "since": "2026-10-18",
     "source": "receipt",
@@ -546,8 +705,11 @@
     "usual": "7 of 15 trips"
    },
    {
+    "cat": "bakery",
+    "cost": 7.98,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-11",
     "name": "Naan",
     "since": "2026-10-11",
     "source": "receipt",
@@ -555,8 +717,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 5.49,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-10-04",
     "name": "Tortilla chips",
     "since": "2026-10-04",
     "source": "receipt",
@@ -564,8 +729,11 @@
     "usual": "3 of 15 trips"
    },
    {
+    "cat": "pantry",
+    "cost": 5.49,
     "fresh": 0.0,
     "ghost": true,
+    "last": "2026-08-16",
     "name": "Triscuits",
     "since": "2026-08-16",
     "source": "receipt",
