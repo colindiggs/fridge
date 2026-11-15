@@ -818,9 +818,22 @@
     "name": "Bread",
     "since": "2026-11-15",
     "source": "photo",
-    "spot": "shelf-4",
+    "spot": "shelf-3",
     "status": "in",
     "usual": "6 of 15 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Bread crumbs",
+    "since": "2026-11-15",
+    "source": "photo",
+    "spot": "shelf-4",
+    "status": "in",
+    "usual": "0 of 15 trips"
    },
    {
     "cat": "produce",
@@ -870,9 +883,22 @@
     "name": "Chips and pretzels",
     "since": "2026-11-15",
     "source": "photo",
-    "spot": "shelf-3",
+    "spot": "shelf-1",
     "status": "in",
     "usual": "5 of 15 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Chocolate chips",
+    "since": "2026-11-15",
+    "source": "photo",
+    "spot": "shelf-3",
+    "status": "in",
+    "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
