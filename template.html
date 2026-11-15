@@ -350,7 +350,11 @@ cbs.forEach(b => b.addEventListener("click", () => hinge(cab, cbs)));
 if (/[?&]3d\b/.test(location.search) && !/[?&]flat\b/.test(location.search)) {
   try {
     const [{ start }, map] = await Promise.all([import("./js/kitchen3d.js"), fetch("./models/map.json").then(r => r.json())]);
-    await start(window.FRIDGE_DATA, map);
-  } catch (e) { console.warn("3D view unavailable, showing tiles", e); }
+    const ok = await start(window.FRIDGE_DATA, map);
+    if (!ok) throw new Error("no WebGL");
+  } catch (e) {
+    console.warn("3D view unavailable, showing tiles", e);
+    if (/[?&]debug\b/.test(location.search)) document.getElementById("foot").textContent = "3D off: " + (e && (e.stack || e.message) || e);
+  }
 }
 </script>
