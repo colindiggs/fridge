@@ -41,3 +41,23 @@ To change what counts as one item (for example, so "Signature Chicken Thighs" an
 ## GitHub Pages
 
 `.github/workflows/pages.yml` builds the page hourly (and on every push to main) and deploys it to GitHub Pages. It needs two repository secrets: `GCP_SA_KEY` (the full service-account JSON) and `SHEET_ID`. Each run checks the output with `.github/guard.sh`, which fails the build on a store number or street address, and commits `data/snapshot.json` (the page's data, no store names or notes) only when it changed, so the hourly schedule never goes dormant.
+
+## 3D fridge, pantry and counter
+
+The page draws your fridge, pantry and counter as a low-poly 3D scene with three.js. If a browser can't do WebGL, or something fails to load, it keeps the plain tile view. Add `?flat` to the address to force the tiles.
+
+- `site/` is copied next to `index.html` on every build.
+- `site/js/kitchen3d.js` builds the scenes, places items on shelves, prints labels and shows the tap tags.
+- `site/models/map.json` says which model each grocery item uses, at real size in inches. Lookup order: the exact item name, then the first matching rule, then the item's category, then where it's stored. Anything new falls back to a sensible model, never a blank. You can change an item's `tint`, `label`, `count`, `spot` (crisper, shelf or door) or size in this file without touching code.
+- Models starting with `#` (`#box`, `#tub`, `#eggs`, `#butter`) are built in code in the same flat-shaded style.
+
+### Adding a model
+
+1. Get a GLB file, either from another CC0 kit (Kenney, Quaternius, Poly Pizza CC0 entries) or exported from Blender (File > Export > glTF 2.0, format "glTF Binary"). Keep it low-poly and flat-shaded so it matches.
+2. Put it under `site/models/<kit>/` with that kit's license file next to it.
+3. Add a short name for it under `models` in `map.json`, then point an item or a rule at that name.
+
+## Credits
+
+- Food models: [Food Kit](https://kenney.nl/assets/food-kit) by Kenney, CC0. See `site/models/kenney-food/LICENSE.txt`.
+- [three.js](https://threejs.org) r169, MIT. See `site/vendor/THREE-LICENSE.txt`.

@@ -10,7 +10,7 @@
 Config comes from the environment, then fridge.env next to this file, then the defaults below:
   SHEET_ID, GOOGLE_CREDENTIALS (service-account JSON key path), OUT_DIR
 """
-import argparse, csv, datetime as dt, json, os, re, sys
+import argparse, csv, datetime as dt, json, os, re, shutil, sys
 from collections import defaultdict
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -250,6 +250,9 @@ def build(data, today):
         name, loc, life = canon(p.get("item", ""), p.get("category", ""))
         it = items.setdefault(name, {"name": name, "loc": loc, "life": life, "dates": set()})
         it["dates"].add(p["_d"])
+        it.setdefault("paid", defaultdict(float))[p["_d"]] += money(p.get("paid"))
+        if p["_d"] >= it.get("cat_d", p["_d"]):
+            it["cat"], it["cat_d"] = p.get("category", "").strip().lower(), p["_d"]
     for o in data["inventory"]:
         d = day(o.get("date", ""))
         if not d or not o.get("item", "").strip():
@@ -279,7 +282,9 @@ def build(data, today):
             continue
         shelves[it["loc"]].append({"name": it["name"], "status": status, "fresh": round(fresh, 2),
                                    "since": since.isoformat(), "source": src, "ghost": ghost,
-                                   "usual": f"{times} of {trips} trips"})
+                                   "usual": f"{times} of {trips} trips", "cat": it.get("cat", ""),
+                                   "last": bought.isoformat() if bought else None,
+                                   "cost": round(it["paid"][bought], 2) if bought else None})
     for loc in shelves:
         shelves[loc].sort(key=lambda x: (x["ghost"], -x["fresh"], x["name"]))
         ghosts = [x for x in shelves[loc] if x["ghost"]]
@@ -336,6 +341,8 @@ def main():
         sp.write_text(json.dumps(snap, indent=1, sort_keys=True, ensure_ascii=False) + "\n")
     out = Path(a.out or conf("OUT_DIR"))
     out.mkdir(parents=True, exist_ok=True)
+    if (HERE / "site").is_dir():  # 3D models, three.js, the item-to-model map
+        shutil.copytree(HERE / "site", out, dirs_exist_ok=True)
     tmp = out / "index.html.tmp"
     tmp.write_text(html)
     tmp.replace(out / "index.html")

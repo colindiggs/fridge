@@ -239,6 +239,7 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
 </div>
 <script>
 const D = /*__DATA__*/null;
+window.FRIDGE_DATA = D;
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const dd = s => new Date(s + "T12:00:00");
@@ -342,4 +343,14 @@ const cab = $("#pantry"), cbs = [...cab.querySelectorAll(".cab-door")];
 cbs.forEach(b => b.addEventListener("click", () => hinge(cab, cbs)));
 { const c = document.createElement("button"); c.className = "close"; c.textContent = "close";
   c.addEventListener("click", () => hinge(cab, cbs)); cab.querySelector(".inside").prepend(c); }
+</script>
+<script type="importmap">{"imports": {"three": "./vendor/three.module.min.js"}}</script>
+<script type="module">
+// 3D fridge, pantry and counter. Add ?flat to the address to keep the plain tiles.
+if (/[?&]3d\b/.test(location.search) && !/[?&]flat\b/.test(location.search)) {
+  try {
+    const [{ start }, map] = await Promise.all([import("./js/kitchen3d.js"), fetch("./models/map.json").then(r => r.json())]);
+    await start(window.FRIDGE_DATA, map);
+  } catch (e) { console.warn("3D view unavailable, showing tiles", e); }
+}
 </script>
