@@ -3,3 +3,4 @@ fridge.env
 public/
 sample/
 __pycache__/
+!data/snapshot.json

@@ -37,3 +37,7 @@ python3 fridge.py --sample sample/   # from local CSVs: purchases.csv, meal_log.
 Needs Python 3.11+ and, for the Sheet, `python3-google-auth` and `python3-requests` (Debian packages).
 
 To change what counts as one item (for example, so "Signature Chicken Thighs" and "Chicken Thigh" match), edit the `ITEMS` table in `fridge.py`.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` builds the page hourly (and on every push to main) and deploys it to GitHub Pages. It needs two repository secrets: `GCP_SA_KEY` (the full service-account JSON) and `SHEET_ID`. Each run checks the output with `.github/guard.sh`, which fails the build on a store number or street address, and commits `data/snapshot.json` (the page's data, no store names or notes) only when it changed, so the hourly schedule never goes dormant.

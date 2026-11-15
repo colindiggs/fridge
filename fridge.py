@@ -5,7 +5,9 @@
   python3 fridge.py --sample DIR    # read CSVs from DIR instead (purchases, meal_log, inventory)
   python3 fridge.py --fragment      # write the page without <html>/<head> wrapping (for previews)
 
-Config comes from the environment or from fridge.env next to this file:
+  python3 fridge.py --snapshot data/snapshot.json   # also write the sanitized data model
+
+Config comes from the environment, then fridge.env next to this file, then the defaults below:
   SHEET_ID, GOOGLE_CREDENTIALS (service-account JSON key path), OUT_DIR
 """
 import argparse, csv, datetime as dt, json, os, re, sys
@@ -17,6 +19,14 @@ HERE = Path(__file__).resolve().parent
 TZ = ZoneInfo("America/New_York")
 RANGES = {"purchases": "Purchases!A:K", "meal_log": "'Meal Log'!A:G", "inventory": "Inventory!A:F"}
 SKIP_TYPES = {"household", "floral", "fee_tax"}
+DEFAULTS = {
+    "SHEET_ID": "1NjsdyNfR9uFRwIDuz7BoBgvIMszcWcgeDAT2xcWHW-c",
+    "GOOGLE_CREDENTIALS": str(Path.home() / ".config/fridge/service-account.json"),
+    "OUT_DIR": "/var/www/fridge",
+}
+
+def conf(key):  # environment (incl. fridge.env) wins; empty counts as unset
+    return os.environ.get(key) or DEFAULTS[key]
 
 # --- loading -----------------------------------------------------------------
 
@@ -38,9 +48,9 @@ def fetch_sheet():
     from google.oauth2 import service_account
     from google.auth.transport.requests import AuthorizedSession
     creds = service_account.Credentials.from_service_account_file(
-        os.environ["GOOGLE_CREDENTIALS"],
+        conf("GOOGLE_CREDENTIALS"),
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"])
-    url = f"https://sheets.googleapis.com/v4/spreadsheets/{os.environ['SHEET_ID']}/values:batchGet"
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{conf('SHEET_ID')}/values:batchGet"
     r = AuthorizedSession(creds).get(url, params=[("ranges", v) for v in RANGES.values()], timeout=30)
     r.raise_for_status()
     vals = r.json()["valueRanges"]
@@ -311,12 +321,20 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--fragment", action="store_true")
     ap.add_argument("--today", help="YYYY-MM-DD, for testing")
+    ap.add_argument("--snapshot", help="also write the page's data model (no store names, no notes) as JSON here")
     a = ap.parse_args()
     load_env()
     data = load_sample(a.sample) if a.sample else fetch_sheet()
     today = dt.date.fromisoformat(a.today) if a.today else dt.datetime.now(TZ).date()
-    html = render(build(data, today), a.fragment)
-    out = Path(a.out or os.environ.get("OUT_DIR", HERE / "public"))
+    model = build(data, today)
+    html = render(model, a.fragment)
+    if a.snapshot:
+        # Leave out the build timestamp so the file only changes when the data does.
+        snap = {k: v for k, v in model.items() if k != "generated"}
+        sp = Path(a.snapshot)
+        sp.parent.mkdir(parents=True, exist_ok=True)
+        sp.write_text(json.dumps(snap, indent=1, sort_keys=True, ensure_ascii=False) + "\n")
+    out = Path(a.out or conf("OUT_DIR"))
     out.mkdir(parents=True, exist_ok=True)
     tmp = out / "index.html.tmp"
     tmp.write_text(html)
