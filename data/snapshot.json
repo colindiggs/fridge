@@ -210,6 +210,19 @@
     "usual": "2 of 15 trips"
    },
    {
+    "cat": "dairy",
+    "cost": 3.49,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-10-11",
+    "name": "Butter",
+    "since": "2026-11-15",
+    "source": "photo",
+    "spot": "door-right-2",
+    "status": "in",
+    "usual": "3 of 15 trips"
+   },
+   {
     "cat": "",
     "cost": null,
     "fresh": 1.0,
@@ -488,7 +501,7 @@
     "fresh": 1.0,
     "ghost": false,
     "last": null,
-    "name": "Na beer",
+    "name": "NA beer",
     "since": "2026-11-15",
     "source": "photo",
     "spot": "door-left-1",
@@ -810,19 +823,6 @@
     "usual": "6 of 15 trips"
    },
    {
-    "cat": "dairy",
-    "cost": 3.49,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-10-11",
-    "name": "Butter",
-    "since": "2026-11-15",
-    "source": "photo",
-    "spot": "shelf-4",
-    "status": "in",
-    "usual": "3 of 15 trips"
-   },
-   {
     "cat": "produce",
     "cost": 5.58,
     "fresh": 1.0,
@@ -951,6 +951,19 @@
     "spot": "shelf-3",
     "status": "in",
     "usual": "10 of 15 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 14.99,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-06-28",
+    "name": "Peanut butter",
+    "since": "2026-11-15",
+    "source": "photo",
+    "spot": "shelf-4",
+    "status": "in",
+    "usual": "1 of 15 trips"
    },
    {
     "cat": "produce",
