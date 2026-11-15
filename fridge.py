@@ -101,7 +101,7 @@ ITEMS = [
     (r"mozzarella", "Mozzarella", "fridge", 10),
     (r"yogurt", "Yogurt", "fridge", 14),
     (r"egg", "Eggs", "fridge", 28),
-    (r"butter(?!.*maple)", "Butter", "fridge", 60),
+    (r"(?<!peanut )butter(?!.*maple)", "Butter", "fridge", 60),
     (r"hummus", "Hummus", "fridge", 10),
     (r"chicken thigh", "Chicken thighs", "fridge", 5),
     (r"chicken breast|^chicken$", "Chicken breast", "fridge", 5),
@@ -150,6 +150,7 @@ ITEMS = [
     (r"beans", "Canned beans", "pantry", 365),
     (r"crushed tomato", "Crushed tomatoes", "pantry", 365),
     (r"prosecco", "Prosecco", "fridge", 60),
+    (r"\bna beer|non-?alcoholic", "NA beer", "fridge", 60),
     (r"pretzel|popcorn|popcorners|chips", "Chips and pretzels", "pantry", 30),
 ]
 LOC_BY_CAT = {"produce": "fridge", "protein": "fridge", "dairy": "fridge", "deli": "fridge",
