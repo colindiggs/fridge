@@ -57,7 +57,7 @@
  ],
  "rewind": {
   "last": "2026-05-31",
-  "meal": "Burgers or tacos",
+  "meal": "Stir-fry",
   "weeks_ago": 24
  },
  "shelves": {
@@ -65,7 +65,7 @@
    {
     "cat": "produce",
     "cost": 1.45,
-    "fresh": 1.0,
+    "fresh": 0.97,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Onions",
@@ -78,7 +78,7 @@
    {
     "cat": "produce",
     "cost": 2.9,
-    "fresh": 0.5,
+    "fresh": 0.43,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Apples",
@@ -119,7 +119,7 @@
    {
     "cat": "dairy/frozen",
     "cost": 9.99,
-    "fresh": 1.0,
+    "fresh": 0.99,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Frozen pizza",
@@ -132,7 +132,7 @@
    {
     "cat": "dairy/frozen",
     "cost": 3.49,
-    "fresh": 0.71,
+    "fresh": 0.7,
     "ghost": false,
     "last": "2026-10-11",
     "name": "Frozen broccoli",
@@ -182,32 +182,6 @@
     "spot": "door-left-1",
     "status": "in",
     "usual": "12 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 3.62,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Broccoli",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "5 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 5.99,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Brussels sprouts",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "2 of 15 trips"
    },
    {
     "cat": "dairy",
@@ -273,19 +247,6 @@
     "spot": "door-right-1",
     "status": "in",
     "usual": "0 of 15 trips"
-   },
-   {
-    "cat": "protein",
-    "cost": 14.52,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Chicken thighs",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "5 of 15 trips"
    },
    {
     "cat": "",
@@ -379,19 +340,6 @@
     "usual": "2 of 15 trips"
    },
    {
-    "cat": "produce",
-    "cost": 2.99,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Fresh herbs",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "5 of 15 trips"
-   },
-   {
     "cat": "",
     "cost": null,
     "fresh": 1.0,
@@ -468,19 +416,6 @@
     "spot": "shelf-1",
     "status": "in",
     "usual": "0 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 0.99,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Lemons",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "10 of 15 trips"
    },
    {
     "cat": "",
@@ -561,19 +496,6 @@
     "usual": "0 of 15 trips"
    },
    {
-    "cat": "protein",
-    "cost": 8.15,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Salmon",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "5 of 15 trips"
-   },
-   {
     "cat": "pantry",
     "cost": 2.99,
     "fresh": 1.0,
@@ -583,19 +505,6 @@
     "since": "2026-11-15",
     "source": "photo",
     "spot": "shelf-2",
-    "status": "in",
-    "usual": "4 of 15 trips"
-   },
-   {
-    "cat": "protein",
-    "cost": 3.99,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Sausage",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
     "status": "in",
     "usual": "4 of 15 trips"
    },
@@ -665,9 +574,100 @@
     "usual": "4 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 0.99,
+    "fresh": 0.95,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Lemons",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "10 of 15 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 3.62,
+    "fresh": 0.86,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Broccoli",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 5.99,
+    "fresh": 0.86,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Brussels sprouts",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "2 of 15 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 2.99,
+    "fresh": 0.86,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Fresh herbs",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 3.99,
+    "fresh": 0.86,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Sausage",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "4 of 15 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 14.52,
+    "fresh": 0.8,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Chicken thighs",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 8.15,
+    "fresh": 0.67,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Salmon",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "5 of 15 trips"
+   },
+   {
     "cat": "dairy",
     "cost": 3.79,
-    "fresh": 0.67,
+    "fresh": 0.62,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Sour cream",
@@ -680,7 +680,7 @@
    {
     "cat": "dairy",
     "cost": 3.99,
-    "fresh": 0.5,
+    "fresh": 0.43,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Heavy cream",
@@ -693,14 +693,14 @@
    {
     "cat": "protein",
     "cost": 10.99,
-    "fresh": 0.3,
+    "fresh": 0.2,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Bacon",
     "since": "2026-11-08",
     "source": "receipt",
     "spot": null,
-    "status": "in",
+    "status": "low",
     "usual": "1 of 15 trips"
    },
    {
@@ -784,32 +784,6 @@
   ],
   "pantry": [
    {
-    "cat": "pantry",
-    "cost": 2.49,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Apple cider vinegar",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "1 of 15 trips"
-   },
-   {
-    "cat": "pantry",
-    "cost": 4.29,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "BBQ sauce",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "1 of 15 trips"
-   },
-   {
     "cat": "bakery",
     "cost": 5.49,
     "fresh": 1.0,
@@ -860,19 +834,6 @@
     "spot": "shelf-1",
     "status": "in",
     "usual": "5 of 15 trips"
-   },
-   {
-    "cat": "pantry",
-    "cost": 8.49,
-    "fresh": 1.0,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Chicken bouillon",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "usual": "1 of 15 trips"
    },
    {
     "cat": "deli",
@@ -1045,8 +1006,47 @@
    },
    {
     "cat": "pantry",
+    "cost": 4.29,
+    "fresh": 0.99,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "BBQ sauce",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 2.49,
+    "fresh": 0.97,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Apple cider vinegar",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 8.49,
+    "fresh": 0.97,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Chicken bouillon",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "usual": "1 of 15 trips"
+   },
+   {
+    "cat": "pantry",
     "cost": 2.79,
-    "fresh": 0.77,
+    "fresh": 0.76,
     "ghost": false,
     "last": "2026-10-04",
     "name": "Olives",
@@ -1059,7 +1059,7 @@
    {
     "cat": "pantry",
     "cost": 3.49,
-    "fresh": 0.14,
+    "fresh": 0.13,
     "ghost": false,
     "last": "2026-08-30",
     "name": "Gnocchi",
@@ -1072,7 +1072,7 @@
    {
     "cat": "pantry",
     "cost": 1.49,
-    "fresh": 0.07,
+    "fresh": 0.03,
     "ghost": false,
     "last": "2026-10-18",
     "name": "Baking soda",
@@ -1085,7 +1085,7 @@
    {
     "cat": "pantry",
     "cost": 3.79,
-    "fresh": 0.07,
+    "fresh": 0.03,
     "ghost": false,
     "last": "2026-10-18",
     "name": "Drizzilicious cinnamon",
@@ -1268,5 +1268,5 @@
   ],
   "shopped_this_week": true
  },
- "today": "2026-11-15"
+ "today": "2026-11-16"
 }
