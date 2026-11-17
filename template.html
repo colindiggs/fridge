@@ -105,12 +105,13 @@ button { font: inherit; color: inherit; }
 .pad li { border-bottom: 1px solid #c2d6e8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pad li.maybe { color: #7d8aa8; }
 .pad li.done { text-decoration: line-through; text-decoration-thickness: 1.5px; color: #7d8aa8; }
-/* index card */
-.idx .paper { background: #fffefa repeating-linear-gradient(transparent 0 calc(var(--in) * .5 - 1px), #cfe0ee calc(var(--in) * .5 - 1px) calc(var(--in) * .5)) 0 calc(var(--in) * 1.25) / 100% calc(100% - var(--in) * 1.25) no-repeat;
-  padding: calc(var(--in) * .32) calc(var(--in) * .4) calc(var(--in) * .4); color: #2a2a2a; }
-.idx .paper::before { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--in) * 1.18); height: 1.5px; background: #e59a9a; }
-.idx .t { display: block; font-size: max(12px, calc(var(--in) * .95)); line-height: 1.15; height: calc(var(--in) * .9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.idx .s { display: block; margin-top: calc(var(--in) * .25); font-size: max(9.5px, calc(var(--in) * .58)); line-height: calc(var(--in) * .5); color: #444; }
+/* index card: a red rule under the title, blue lines under that */
+.idx { --lh: max(13px, calc(var(--in) * .64)); --th: max(17px, calc(var(--in) * 1.05)); --pt: calc(var(--in) * .25); }
+.idx .paper { padding: var(--pt) calc(var(--in) * .4) calc(var(--in) * .3); color: #2a2a2a;
+  background: #fffefa repeating-linear-gradient(transparent 0 calc(var(--lh) - 1px), #cfe0ee calc(var(--lh) - 1px) var(--lh)) 0 calc(var(--pt) + var(--th)) / 100% calc(100% - var(--pt) - var(--th)) no-repeat; }
+.idx .paper::before { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--pt) + var(--th) - 1.5px); height: 1.5px; background: #e59a9a; }
+.idx .t { display: block; font-size: max(13px, calc(var(--in) * .9)); line-height: var(--th); height: var(--th); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.idx .s { display: block; font-size: max(10px, calc(var(--in) * .55)); line-height: var(--lh); color: #444; padding-bottom: var(--lh); }
 /* sticky note */
 .sticky .paper { background: linear-gradient(#efd665, #f7e27c 18%, #f9e68a); color: #2b2a1c; aspect-ratio: 1; padding: calc(var(--in) * .45) calc(var(--in) * .4); }
 .sticky .paper::after { content: ""; position: absolute; right: 0; bottom: 0; width: 38%; height: 18%; background: linear-gradient(160deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.07)); }
@@ -140,7 +141,8 @@ button { font: inherit; color: inherit; }
 .tape-strip { display: block; background: rgba(233,222,186,.92); padding: calc(var(--in) * .12) calc(var(--in) * .3); color: #2c2a24; font-size: max(10px, calc(var(--in) * .58)); line-height: 1.15; white-space: nowrap;
   clip-path: polygon(0 8%, 4% 0, 10% 6%, 18% 0, 30% 5%, 45% 0, 60% 6%, 75% 0, 88% 5%, 100% 0, 97% 50%, 100% 100%, 85% 94%, 70% 100%, 52% 95%, 35% 100%, 20% 94%, 8% 100%, 0 92%, 3% 50%); }
 .flower svg { display: block; width: 100%; height: auto; }
-.flower .tape-strip { margin: calc(var(--in) * -.25) calc(var(--in) * -.2) 0; rotate: -3deg; text-align: center; }
+.flower { text-align: center; }
+.flower .tape-strip { display: inline-block; margin-top: calc(var(--in) * -.3); rotate: -3deg; }
 .tally .tape-strip { font-size: max(10px, calc(var(--in) * .6)); padding: calc(var(--in) * .16) calc(var(--in) * .35); }
 .tally svg { display: inline-block; height: 1em; width: auto; vertical-align: -.15em; margin-left: .3em; }
 /* receipt held by a binder clip */
@@ -151,6 +153,7 @@ button { font: inherit; color: inherit; }
   -webkit-mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x;
           mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x; }
 .clip .paper b { display: block; font-weight: 600; }
+.clip .nw { white-space: nowrap; }
 .clip .paper .tot { display: flex; justify-content: space-between; border-top: 1px dashed #888; margin-top: calc(var(--in) * .15); padding-top: calc(var(--in) * .1); font-weight: 600; }
 .clip .paper .tot span:last-child { font-size: 1.25em; }
 /* stamp card for the shopping streak */
@@ -493,21 +496,21 @@ function tallyChart(x, { W = 640, H = 200, small = false } = {}) {
 // y up from the fridge floor to its top edge (the freezer drawer is below 0), w its width, r its tilt.
 // The handles run up the inner edges from about 13 to 43 inches, so nothing sits there.
 const MAGS = {
-  plan:      { x: 1.6,  y: 51.6, w: 7.4, r: -1.5 },
-  rewind:    { x: 8.3,  y: 49.4, w: 5.9, r: 3.5 },
-  need:      { x: 2.2,  y: 40.6, w: 4.9, r: 2 },
-  saved:     { x: 8.0,  y: 38.6, w: 6.1, r: -3 },
-  week:      { x: 21.0, y: 51.8, w: 6.6, r: 0 },
-  beer:      { x: 28.7, y: 52.0, w: 2.7, r: 8 },
-  flowers:   { x: 29.0, y: 48.2, w: 3.5, r: -6 },
-  groceries: { x: 21.6, y: 46.0, w: 3.9, r: 2 },
-  streak:    { x: 26.3, y: 42.0, w: 6.4, r: -1.5 },
-  coke:      { x: 26.6, y: 37.4, w: 5.6, r: 2.5 },
+  plan:      { x: 1.4,  y: 51.8, w: 8.6, r: -1.5 },
+  rewind:    { x: 7.6,  y: 43.4, w: 6.2, r: 3 },
+  need:      { x: 1.6,  y: 41.8, w: 5.6, r: 1.5 },
+  saved:     { x: 7.8,  y: 37.2, w: 6.3, r: -2.5 },
+  week:      { x: 20.8, y: 51.8, w: 6.8, r: 0 },
+  beer:      { x: 28.6, y: 52.2, w: 2.9, r: 8 },
+  flowers:   { x: 29.0, y: 48.2, w: 3.6, r: -6 },
+  groceries: { x: 21.2, y: 45.6, w: 4.7, r: 2 },
+  streak:    { x: 26.4, y: 42.4, w: 6.6, r: -1.5 },
+  coke:      { x: 26.6, y: 38.0, w: 5.6, r: 2.5 },
   pizza:     { x: 3.8,  y: -6.8, w: 3.6, r: -12 },
 };
 window.MAGS = MAGS;
 const magAttrs = (id, label) => { const m = MAGS[id]; return `data-m="${id}" style="--w:${m.w};--r:${m.r}deg" aria-label="${esc(label)}"`; };
-const lc = s => s.charAt(0).toLowerCase() + s.slice(1);
+const lc = s => /^.[A-Z]/.test(s) ? s : s.charAt(0).toLowerCase() + s.slice(1);   // keeps BBQ as BBQ
 const outNow = () => ["fridge", "freezer", "pantry"].flatMap(l => (D.shelves[l] || []).filter(it => it.ghost).map(it => it.name));
 // cooked since this week's plan started (the Sunday of this week)
 const cookedThisWeek = () => {
@@ -542,14 +545,14 @@ function magnets() {
   const G = T.groceries, B = T.beer, F = T.flowers, S = T.saved, C = T.coke, P = T.pizza;
   host.innerHTML = `
     <button class="mag pad" ${magAttrs("plan", "This week's plan")}><span class="paper hand"><span class="hd">this week</span><ul>${plan || "<li>nothing planned yet</li>"}</ul></span><i class="pin" style="--pc:#c9463d;--px:52%"></i></button>
-    ${r ? `<button class="mag idx" ${magAttrs("rewind", `Not made in a while: ${r.meal}`)}><span class="paper hand"><span class="t">${esc(lc(short(r.meal)))}</span><span class="s">haven't made it since ${fmt(r.last)}</span></span><i class="pin" style="--pc:#3c6fc4;--px:82%"></i></button>` : ""}
+    ${r ? `<button class="mag idx" ${magAttrs("rewind", `Not made in a while: ${r.meal}`)}><span class="paper hand"><span class="t">${esc(lc(short(r.meal)))}</span><span class="s">last made ${fmt(r.last)}</span></span><i class="pin" style="--pc:#3c6fc4;--px:82%"></i></button>` : ""}
     <button class="mag sticky" ${magAttrs("need", `Restock list, ${need.length} items`)}><span class="paper hand"><span class="hd">need</span><ul>${list.join("") || "<li>nothing</li>"}</ul></span></button>
     ${S.total ? `<button class="mag coupon" ${magAttrs("saved", `Saved with deals: ${usd(S.total)}`)}><span class="paper"><span class="v">${usd0(S.total)} off</span><span class="s">saved with deals since ${fmt(DAYS[0])}</span></span><i class="pin" style="--pc:#2f8a4c;--px:14%"></i></button>` : ""}
     <button class="mag wb" ${magAttrs("week", `This week's groceries ${usd(sp.this_week)}`)}><span class="paper hand"><span class="s">groceries this week</span><span class="v">${sp.this_week ? usd0(sp.this_week) : "$0"}</span>
       <span class="d${pct <= 0 ? " ok" : ""}">${sp.this_week ? `${pct >= 0 ? "+" : "−"}${Math.abs(pct)}% vs usual` : `usual is ${usd0(sp.avg)}`}</span></span></button>
     ${B.total ? `<button class="mag cap" ${magAttrs("beer", `Beer: ${usd(B.total)} since ${SINCE}`)}><span class="paper"><span class="v">${usd0(B.total)}</span><span class="s hand">beer</span></span></button>` : ""}
     ${F.total ? `<button class="mag flower" ${magAttrs("flowers", `Flowers: ${usd(F.total)} since ${SINCE}`)}>${FLOWER}<span class="tape-strip hand">flowers ${usd0(F.total)}</span></button>` : ""}
-    <button class="mag clip" ${magAttrs("groceries", `Groceries: ${usd(G.total)} since ${SINCE}`)}><span class="bind"></span><span class="paper"><b>groceries</b>since ${fmt(DAYS[0])}<br>${G.trips} trips<span class="tot"><span>total</span><span>${usdk(G.total)}</span></span></span></button>
+    <button class="mag clip" ${magAttrs("groceries", `Groceries: ${usd(G.total)} since ${SINCE}`)}><span class="bind"></span><span class="paper"><b>groceries</b><span class="nw">since ${fmt(DAYS[0])}</span><br>${G.trips} trips<span class="tot"><span>total</span><span>${usdk(G.total)}</span></span></span></button>
     <button class="mag punch" ${magAttrs("streak", `Shopping streak: ${st.current} weeks, best ${st.best}`)}><span class="paper hand"><span class="hd">${st.current} ${st.current === 1 ? "week" : "weeks"} in a row</span>
       <span class="row">${st.recent.map((x, i) => `<i class="${x ? "on" : ""}" style="--sr:${(hash("s" + i) % 50) - 25}deg"></i>`).join("")}</span></span></button>
     ${C.count ? `<button class="mag tally" ${magAttrs("coke", `Diet Coke: ${plural(C.count, C.t.unit)}, ${usd(C.total)}`)}><span class="tape-strip hand">diet coke${tallies(C.count)}</span></button>` : ""}
