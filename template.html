@@ -102,7 +102,7 @@ button { font: inherit; color: inherit; }
 .pad .paper::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--in) * .78); width: 1px; background: #eba3a3; }
 .pad .hd { display: block; font-size: max(11px, calc(var(--in) * .82)); line-height: 1.1; color: #b6362e; margin-bottom: calc(var(--in) * .1); }
 .pad ul { list-style: none; margin: 0; padding: 0; font-size: max(10px, calc(var(--in) * .66)); line-height: 1.5; }
-.pad li { border-bottom: 1px solid #c2d6e8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pad li { border-bottom: 1px solid #c2d6e8; line-height: 1.2; padding: .15em 0; }
 .pad li.maybe { color: #7d8aa8; }
 .pad li.done { text-decoration: line-through; text-decoration-thickness: 1.5px; color: #7d8aa8; }
 /* index card: a red rule under the title, blue lines under that */
@@ -117,7 +117,7 @@ button { font: inherit; color: inherit; }
 .sticky .paper::after { content: ""; position: absolute; right: 0; bottom: 0; width: 38%; height: 18%; background: linear-gradient(160deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.07)); }
 .sticky .hd { display: block; font-size: max(11px, calc(var(--in) * .8)); line-height: 1; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .sticky ul { list-style: none; margin: calc(var(--in) * .2) 0 0; padding: 0; font-size: max(10px, calc(var(--in) * .62)); line-height: 1.32; }
-.sticky li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky li { padding-left: 1em; text-indent: -1em; line-height: 1.15; margin-bottom: .18em; }
 .sticky li::before { content: ""; display: inline-block; width: .62em; height: .62em; border: 1.3px solid currentColor; border-radius: 1px; margin-right: .35em; vertical-align: -.02em; rotate: -4deg; }
 .sticky li.pencil { color: #6f6a4c; }
 .sticky li.pencil::before { border-style: dotted; }
@@ -153,8 +153,8 @@ button { font: inherit; color: inherit; }
   -webkit-mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x;
           mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x; }
 .clip .paper b { display: block; font-weight: 600; }
-.clip .nw { white-space: nowrap; }
-.clip .paper .tot { display: flex; justify-content: space-between; border-top: 1px dashed #888; margin-top: calc(var(--in) * .15); padding-top: calc(var(--in) * .1); font-weight: 600; }
+.clip .nw, .idx .nw { white-space: nowrap; }
+.clip .paper .tot { display: flex; justify-content: space-between; align-items: baseline; gap: .5em; border-top: 1px dashed #888; margin-top: calc(var(--in) * .15); padding-top: calc(var(--in) * .1); font-weight: 600; }
 .clip .paper .tot span:last-child { font-size: 1.25em; }
 /* stamp card for the shopping streak */
 .punch .paper { background: #fbf6ee; color: #3a2d22; padding: calc(var(--in) * .3) calc(var(--in) * .38) calc(var(--in) * .32); border-radius: calc(var(--in) * .1); }
@@ -545,7 +545,7 @@ function magnets() {
   const G = T.groceries, B = T.beer, F = T.flowers, S = T.saved, C = T.coke, P = T.pizza;
   host.innerHTML = `
     <button class="mag pad" ${magAttrs("plan", "This week's plan")}><span class="paper hand"><span class="hd">this week</span><ul>${plan || "<li>nothing planned yet</li>"}</ul></span><i class="pin" style="--pc:#c9463d;--px:52%"></i></button>
-    ${r ? `<button class="mag idx" ${magAttrs("rewind", `Not made in a while: ${r.meal}`)}><span class="paper hand"><span class="t">${esc(lc(short(r.meal)))}</span><span class="s">last made ${fmt(r.last)}</span></span><i class="pin" style="--pc:#3c6fc4;--px:82%"></i></button>` : ""}
+    ${r ? `<button class="mag idx" ${magAttrs("rewind", `Not made in a while: ${r.meal}`)}><span class="paper hand"><span class="t">${esc(lc(short(r.meal)))}</span><span class="s">last made <span class="nw">${fmt(r.last)}</span></span></span><i class="pin" style="--pc:#3c6fc4;--px:82%"></i></button>` : ""}
     <button class="mag sticky" ${magAttrs("need", `Restock list, ${need.length} items`)}><span class="paper hand"><span class="hd">need</span><ul>${list.join("") || "<li>nothing</li>"}</ul></span></button>
     ${S.total ? `<button class="mag coupon" ${magAttrs("saved", `Saved with deals: ${usd(S.total)}`)}><span class="paper"><span class="v">${usd0(S.total)} off</span><span class="s">saved with deals since ${fmt(DAYS[0])}</span></span><i class="pin" style="--pc:#2f8a4c;--px:14%"></i></button>` : ""}
     <button class="mag wb" ${magAttrs("week", `This week's groceries ${usd(sp.this_week)}`)}><span class="paper hand"><span class="s">groceries this week</span><span class="v">${sp.this_week ? usd0(sp.this_week) : "$0"}</span>
