@@ -485,7 +485,7 @@ function fridgePose(fv, st) {
   const { W, H, FH } = FR, down = [0, 1.25, .9];
   const t = { k: 0, "crisper-left": 0, "crisper-right": 0, drawer: 0, freezer: 0 };
   let p;
-  if (st === "closed") p = fv.fit([-2.5, W + 2.5, -FH - 6.5, H + 3], [W / 2, (H + 3 - FH - 6.5) / 2, 0]);
+  if (st === "closed") p = fv.fit([-3, W + 3, -FH - 8, H + 5.5], [W / 2, (H + 5.5 - FH - 8) / 2, 0]);
   else if (st === "fridge") { t.k = 1; p = fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1]); }
   else if (st === "crisper-left" || st === "crisper-right") {
     t.k = 1; t[st] = PULL[st];
