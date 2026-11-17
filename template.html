@@ -1,43 +1,45 @@
 <title>The Fridge</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: a kitchen wall. Fridge (freezer over fridge) beside a pantry cabinet; receipt tape and a meal log pinned below. */
+/* A kitchen wall: a stainless French-door fridge beside a pantry, receipt tape and a meal log below,
+   then the data explorer, styled as a grocery aisle. */
 :root {
-  --wall: #e6ecef; --tile: #d7dfe3; --floor: #b9c4c9;
-  --enamel: #b9d9c8; --enamel-edge: #93bba6; --enamel-shade: #a5ccb8;
+  --wall: #e8ebe9; --tile: #dde2df;
+  --steel-1: #e6e9eb; --steel-2: #c3c9cd; --steel-3: #9ba3a9;
   --inside: #f4fafb; --inside-glow: #ffffff; --glass: rgba(120,160,175,.35);
   --wood: #c48a58; --wood-dark: #9c6740; --shelf-wood: #e7c9a5;
-  --ink: #1d2b27; --ink-soft: #4f625b; --muted: #7d8f89;
-  --paper: #fbf7ea; --sticky: #f7e27a; --card: #ffffff;
-  --tomato: #e0533a; --mustard: #e9ac2b; --cobalt: #2d5fcf; --plum: #8a4fb3; --leaf: #3e9b5f;
-  --chrome-1: #f4f6f7; --chrome-2: #a7b1b5;
+  --ink: #1d2521; --ink-soft: #4b5a54; --muted: #75857f;
+  --paper: #fbf8ef; --card: #ffffff; --line: #e1e5e2;
+  --aisle: #1d4f3e; --shelf-edge: #c9ced1;
+  --s-blue: #2a78d6; --s-yellow: #eda100; --s-magenta: #e87ba4; --s-green: #008300; --s-violet: #6250d6; --s-aqua: #1baf7a;
   --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
-  --font-hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 18px 30px -18px rgba(30,50,45,.45);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --wall: #151b27; --tile: #1b2331; --floor: #0f141d;
-  --enamel: #6e9584; --enamel-edge: #557a69; --enamel-shade: #628a78;
+  --wall: #151a20; --tile: #1a2028;
+  --steel-1: #c9cfd3; --steel-2: #9aa2a8; --steel-3: #6f787e;
   --inside: #fff7df; --inside-glow: #fffbef; --glass: rgba(170,140,90,.35);
   --wood: #7f5434; --wood-dark: #5f3c24; --shelf-wood: #b48a60;
-  --ink: #e7eef0; --ink-soft: #b5c3c6; --muted: #8494a0;
-  --paper: #232c3a; --sticky: #e6cf5d; --card: #2a3442;
-  --chrome-1: #c8d0d4; --chrome-2: #6c7880;
-  --shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 18px 34px -16px rgba(0,0,0,.7);
+  --ink: #e8eeec; --ink-soft: #b7c4c0; --muted: #8796a0;
+  --paper: #232b35; --card: #1f262e; --line: #313a43;
+  --aisle: #21664f; --shelf-edge: #3b444c;
+  --s-blue: #3987e5; --s-yellow: #c98500; --s-magenta: #d55181; --s-green: #0ca30c; --s-violet: #9085e9; --s-aqua: #199e70;
+  --shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 18px 34px -16px rgba(0,0,0,.7);
   color-scheme: dark;
 }}
 :root[data-theme="dark"] {
-  --wall: #151b27; --tile: #1b2331; --floor: #0f141d;
-  --enamel: #6e9584; --enamel-edge: #557a69; --enamel-shade: #628a78;
+  --wall: #151a20; --tile: #1a2028;
+  --steel-1: #c9cfd3; --steel-2: #9aa2a8; --steel-3: #6f787e;
   --inside: #fff7df; --inside-glow: #fffbef; --glass: rgba(170,140,90,.35);
   --wood: #7f5434; --wood-dark: #5f3c24; --shelf-wood: #b48a60;
-  --ink: #e7eef0; --ink-soft: #b5c3c6; --muted: #8494a0;
-  --paper: #232c3a; --sticky: #e6cf5d; --card: #2a3442;
-  --chrome-1: #c8d0d4; --chrome-2: #6c7880;
-  --shadow: 0 1px 0 rgba(255,255,255,.12) inset, 0 18px 34px -16px rgba(0,0,0,.7);
+  --ink: #e8eeec; --ink-soft: #b7c4c0; --muted: #8796a0;
+  --paper: #232b35; --card: #1f262e; --line: #313a43;
+  --aisle: #21664f; --shelf-edge: #3b444c;
+  --s-blue: #3987e5; --s-yellow: #c98500; --s-magenta: #d55181; --s-green: #0ca30c; --s-violet: #9085e9; --s-aqua: #199e70;
+  --shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 18px 34px -16px rgba(0,0,0,.7);
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -49,7 +51,7 @@ body {
   background-size: 44px 44px;
   overflow-x: hidden;
 }
-.wrap { max-width: 920px; margin: 0 auto; padding-block: 20px 40px;
+.wrap { max-width: 960px; margin: 0 auto; padding-block: 20px 40px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 header.top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
 h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
@@ -57,84 +59,95 @@ h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .kitchen { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: start; overflow-x: clip; }
 @media (max-width: 720px) { .kitchen { grid-template-columns: minmax(0, 1fr); gap: 34px; } }
 .label { font: 600 11px var(--font-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0 0 8px; }
+button { font: inherit; color: inherit; }
 
-/* Fridge body */
-.fridge { position: relative; background: var(--enamel); border-radius: 26px 26px 14px 14px; padding: 10px;
-  box-shadow: var(--shadow), inset -10px 0 0 var(--enamel-shade); border: 1px solid var(--enamel-edge); }
-.fridge::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: -14px; height: 14px; background: var(--floor); border-radius: 0 0 8px 8px; z-index: -1; }
-.comp { position: relative; border-radius: 18px 18px 10px 10px; perspective: 1400px; }
-.comp + .comp { margin-top: 10px; border-radius: 10px 10px 12px 12px; }
+/* Plain fridge (shown with ?flat, or when 3D can't run) */
+.fridge { position: relative; background: linear-gradient(90deg, var(--steel-2), var(--steel-1) 45%, var(--steel-2)); border-radius: 12px; padding: 8px;
+  box-shadow: var(--shadow); border: 1px solid var(--steel-3); }
+.comp { position: relative; border-radius: 8px; perspective: 1400px; }
+.comp + .comp { margin-top: 8px; }
 .interior { background: radial-gradient(120% 70% at 50% 0%, var(--inside-glow), var(--inside)); border-radius: inherit;
-  padding: 14px 12px 12px; box-shadow: inset 0 0 0 6px var(--enamel-shade), inset 0 10px 24px rgba(0,0,0,.12); }
+  padding: 14px 12px 12px; box-shadow: inset 0 0 0 5px #d9dfe2, inset 0 10px 24px rgba(0,0,0,.12); }
 .freezer .interior { min-height: 150px; }
-.main .interior { min-height: 520px; }
-.door { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(100deg, var(--enamel) 0 82%, var(--enamel-shade));
-  border: 1px solid var(--enamel-edge); transform-origin: left center; transition: transform .7s cubic-bezier(.3,.7,.2,1), box-shadow .7s;
-  cursor: pointer; box-shadow: 0 2px 0 rgba(255,255,255,.35) inset; z-index: 2; }
+.main .interior { min-height: 560px; }
+.door { position: absolute; inset: 0; border-radius: inherit; border: 1px solid var(--steel-3); cursor: pointer; z-index: 2;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, rgba(0,0,0,.025) 1px 3px), linear-gradient(100deg, var(--steel-1), var(--steel-2) 70%, var(--steel-3));
+  transform-origin: left center; transition: transform .7s cubic-bezier(.3,.7,.2,1), box-shadow .7s; box-shadow: 0 1px 0 rgba(255,255,255,.4) inset; }
 .comp.open .door { transform: rotateY(-102deg); box-shadow: 12px 0 30px rgba(0,0,0,.25); }
-.handle { position: absolute; right: 14px; top: 50%; width: 16px; height: 46%; max-height: 210px; translate: 0 -50%;
-  border: 0; border-radius: 10px; background: linear-gradient(90deg, var(--chrome-2), var(--chrome-1) 45%, var(--chrome-2));
-  box-shadow: 0 4px 8px rgba(0,0,0,.25); cursor: pointer; }
-.freezer .handle { height: 60%; }
-.handle:focus-visible, .item:focus-visible, .cab-door:focus-visible { outline: 3px solid var(--cobalt); outline-offset: 3px; }
-.badge { position: absolute; left: 50%; bottom: 10px; translate: -50% 0; font: 600 10px var(--font-mono); letter-spacing: .3em; color: var(--enamel-edge); }
-
-/* Magnets */
-.magnets { position: absolute; inset: 18px 44px 30px 16px; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: min-content; gap: 14px 12px; align-content: start; }
-.mag { position: relative; color: #1d2b27; }
-.mag::before { content: ""; position: absolute; top: -7px; left: 50%; width: 16px; height: 16px; translate: -50% 0; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.7), transparent 45%), var(--pin, var(--tomato)); box-shadow: 0 2px 3px rgba(0,0,0,.35); z-index: 1; }
-.sticky { grid-column: 1 / -1; background: var(--sticky); padding: 14px 14px 12px; rotate: -1.2deg; box-shadow: 0 8px 14px -8px rgba(0,0,0,.4); --pin: var(--cobalt); }
-.sticky h3 { font: 700 22px/1 var(--font-hand); margin: 0 0 6px; }
-.sticky ul { margin: 0; padding: 0; list-style: none; font: 500 19px/1.15 var(--font-hand); display: grid; gap: 5px; }
-.sticky li span { font: 600 10px var(--font-mono); text-transform: uppercase; letter-spacing: .08em; opacity: .6; margin-right: 6px; }
-.sticky li.maybe { opacity: .7; }
-.streak { background: var(--tomato); color: #fff; border-radius: 50%; aspect-ratio: 1; max-width: 100%; display: grid; place-content: center; text-align: center;
-  padding: 10px; box-shadow: 0 6px 10px -4px rgba(0,0,0,.4), inset 0 -6px 0 rgba(0,0,0,.12); rotate: 4deg; --pin: transparent; }
-.streak::before { display: none; }
-.streak b { font: 800 44px/0.9 var(--font-display); }
-.streak small { font: 600 11px/1.2 var(--font-display); display: block; margin-top: 3px; }
-.dots { display: flex; gap: 3px; justify-content: center; margin-top: 6px; }
-.dots i { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.35); }
-.dots i.on { background: #fff; }
-.ticket { background: #fffdf6; font-family: var(--font-mono); padding: 12px 10px 10px; rotate: -2deg; align-self: center;
-  --pin: var(--mustard); box-shadow: 0 8px 12px -8px rgba(0,0,0,.45);
-  -webkit-mask: radial-gradient(circle 5px at 0 50%, transparent 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 5px at 100% 50%, transparent 98%, #000) right/51% 100% no-repeat;
-          mask: radial-gradient(circle 5px at 0 50%, transparent 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 5px at 100% 50%, transparent 98%, #000) right/51% 100% no-repeat; }
-.ticket .k { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #6a6a62; }
-.ticket .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.ticket .delta { font-size: 11px; margin-top: 2px; }
-.recipe { grid-column: 1 / -1; background: #ffffff; padding: 12px 14px 10px; rotate: .8deg; --pin: var(--leaf);
-  background-image: linear-gradient(transparent 27px, #e25a4a 27px 28px, transparent 28px), repeating-linear-gradient(transparent 0 22px, #cfe0ef 22px 23px);
-  background-position: 0 0, 0 6px; box-shadow: 0 8px 14px -8px rgba(0,0,0,.4); }
-.recipe .k { font: 600 10px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: #8b5a52; height: 26px; }
-.recipe .v { font: 700 23px/1.05 var(--font-hand); margin-top: 4px; }
-.recipe .when { font: 11px var(--font-mono); color: #5f6c68; margin-top: 4px; }
-.flower { display: flex; gap: 8px; align-items: center; background: transparent; --pin: transparent; color: #14241f; font-weight: 600; grid-column: 1 / -1; font-size: 12px; }
-.flower::before { display: none; }
-.flower svg { width: 34px; height: 34px; flex: none; filter: drop-shadow(0 2px 2px rgba(0,0,0,.3)); }
-.letters { position: absolute; left: 16px; top: 50%; translate: 0 -50%; display: flex; gap: 2px; }
-.letters span { font: 800 30px/1 var(--font-display); color: var(--c); text-shadow: 0 2px 0 rgba(0,0,0,.25); display: inline-block; rotate: var(--r); }
-.hint { position: absolute; right: 38px; bottom: 12px; font: 600 16px var(--font-hand); color: #2c443b; }
+.handle { position: absolute; right: 14px; top: 50%; width: 12px; height: 46%; max-height: 220px; translate: 0 -50%;
+  border: 0; border-radius: 8px; background: linear-gradient(90deg, #8d969c, #f2f4f5 45%, #8d969c); box-shadow: 0 4px 8px rgba(0,0,0,.3); cursor: pointer; }
+.freezer .handle { right: auto; left: 15%; top: 14px; translate: 0 0; width: 70%; height: 12px; background: linear-gradient(#f2f4f5, #8d969c); }
+.handle:focus-visible, .item:focus-visible, .cab-door:focus-visible, .mag:focus-visible, .stag:focus-visible { outline: 3px solid var(--s-blue); outline-offset: 3px; }
 .interior, .cab-inside { --muted: #66756f; --ink-soft: #34443e; color: #22302b; position: relative; }
 .close { position: absolute; top: 8px; right: 10px; z-index: 1; border: 0; background: rgba(0,0,0,.07); color: #22302b; border-radius: 999px;
   font: 600 11px var(--font-mono); padding: 4px 10px; cursor: pointer; }
 
-/* Shelves and items */
+/* Magnets. Sizes are in inches (--in is pixels per inch) so they stay true to the fridge.
+   The 3D view pins each one to its spot on the doors; the plain view flows them. */
+.magnets { --in: 15px; position: absolute; inset: 22px 46px 22px 18px; display: flex; flex-wrap: wrap; gap: 14px; align-content: flex-start; pointer-events: none; }
+.mag { position: relative; pointer-events: auto; cursor: pointer; width: calc(var(--in) * var(--w)); border: 0; padding: 0; text-align: left;
+  rotate: var(--r, 0deg); background: none; display: block; -webkit-tap-highlight-color: transparent; }
+.mag3d .mag { position: absolute; transform-origin: 0 0; }
+.mag .k { display: block; font: 600 max(7px, calc(var(--in) * .5)) / 1.15 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+.mag .v { display: block; font: 800 max(12px, calc(var(--in) * 1.35)) / 1 var(--font-display); letter-spacing: -.02em; margin: calc(var(--in) * .12) 0; font-variant-numeric: tabular-nums; }
+.mag .s { display: block; font: 500 max(7px, calc(var(--in) * .48)) / 1.2 var(--font-mono); opacity: .85; }
+.tile { background: var(--c) linear-gradient(155deg, rgba(255,255,255,.28), rgba(255,255,255,0) 42%, rgba(0,0,0,.08));
+  color: var(--fg, #fff); padding: calc(var(--in) * .42) calc(var(--in) * .45) calc(var(--in) * .4); border-radius: calc(var(--in) * .32);
+  box-shadow: 0 calc(var(--in) * .18) calc(var(--in) * .35) rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(0,0,0,.14); }
+.round { aspect-ratio: 1; border-radius: 50%; background: #f4f0e6 radial-gradient(circle at 32% 26%, rgba(255,255,255,.9), transparent 40%); color: #1d2521;
+  display: grid; place-content: center; text-align: center; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .4) rgba(0,0,0,.3), inset 0 -2px 0 rgba(0,0,0,.1); }
+.round .v { margin: 0; }
+.round .dots { display: flex; gap: max(1.5px, calc(var(--in) * .12)); justify-content: center; margin-top: calc(var(--in) * .2); }
+.round .dots i { width: max(3px, calc(var(--in) * .28)); aspect-ratio: 1; border-radius: 50%; background: #cfc8b8; }
+.round .dots i.on { background: #1d2521; }
+.pad { background: #fdfdfb; color: #1d2521; padding: 0 0 calc(var(--in) * .5); border-radius: 2px;
+  box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
+.pad .k { background: #2a78d6; color: #fff; padding: calc(var(--in) * .35) calc(var(--in) * .5); }
+.pad ul { list-style: none; margin: 0; padding: calc(var(--in) * .3) calc(var(--in) * .5) 0; display: grid; gap: calc(var(--in) * .18);
+  font: 600 max(8.5px, calc(var(--in) * .62)) / 1.2 var(--font-display); }
+.pad li { border-bottom: 1px solid #dbe6ef; padding-bottom: calc(var(--in) * .14); }
+.pad li small { display: block; font: 500 max(6.5px, calc(var(--in) * .4)) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: #75857f; }
+.pad li.maybe { color: #75857f; }
+.card { background: #fffdf6; color: #1d2521; padding: calc(var(--in) * .4) calc(var(--in) * .5) calc(var(--in) * .5); border-radius: 2px;
+  border-top: max(2px, calc(var(--in) * .18)) solid #d9564a; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
+.card .k { color: #8b5a52; }
+.card .t { display: block; margin: calc(var(--in) * .15) 0; font: 700 max(9px, calc(var(--in) * .8)) / 1.1 var(--font-display); }
+.need { background: #f6e8a8; color: #2a2510; padding: calc(var(--in) * .4) calc(var(--in) * .5); border-radius: 2px; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
+.need ul { list-style: none; margin: calc(var(--in) * .2) 0 0; padding: 0; font: 600 max(8.5px, calc(var(--in) * .62)) / 1.3 var(--font-display); }
+.need li::before { content: ""; display: inline-block; width: .7em; height: .7em; border: 1.5px solid currentColor; border-radius: 2px; margin-right: .4em; vertical-align: -.05em; }
+.mag:hover { filter: brightness(1.04); }
+
+/* A magnet up close */
+.magcard { position: absolute; z-index: 6; left: 50%; bottom: 14px; translate: -50% 0; width: min(330px, calc(100% - 24px)); background: var(--card); color: var(--ink);
+  border-radius: 14px; box-shadow: 0 24px 50px -18px rgba(0,0,0,.55), 0 0 0 1px var(--line); overflow: hidden; animation: pop .22s ease-out; }
+@keyframes pop { from { opacity: 0; translate: -50% 12px; } }
+.magcard header { padding: 12px 14px 10px; border-top: 6px solid var(--c, var(--s-blue)); }
+.magcard .k { font: 600 11px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.magcard .v { font: 800 34px/1.05 var(--font-display); letter-spacing: -.02em; margin-top: 2px; }
+.magcard p { margin: 4px 0 0; font-size: 14px; color: var(--ink-soft); }
+.magcard .body { padding: 0 14px 12px; }
+.magcard .body .viz { margin-top: 4px; }
+.magcard ul { margin: 8px 0 0; padding-left: 18px; font-size: 14px; }
+.magcard .row { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
+.btn { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 12px; font: 600 13px var(--font-display); cursor: pointer; color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.magcard .x { position: absolute; top: 10px; right: 10px; border: 0; background: none; font: 600 12px var(--font-mono); color: var(--muted); cursor: pointer; padding: 4px; }
+
+/* Shelves and items (plain view) */
 .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); grid-auto-rows: 66px; gap: 0 6px;
   background: repeating-linear-gradient(transparent 0 62px, var(--glass) 62px 66px); }
-.item { position: relative; height: 58px; border: 0; padding: 5px 5px 0; border-radius: 9px 9px 5px 5px; text-align: left;
+.item { position: relative; height: 58px; border: 0; padding: 9px 5px 0; border-radius: 9px 9px 5px 5px; text-align: left;
   font: 600 11px/1.12 var(--font-display); color: #22302b; background: var(--tub, #e8eef0); cursor: pointer; align-self: end;
-  box-shadow: inset 0 5px 0 var(--lid, #9fb3bd), 0 3px 4px -2px rgba(0,0,0,.3); padding-top: 9px; overflow: hidden; }
+  box-shadow: inset 0 5px 0 var(--lid, #9fb3bd), 0 3px 4px -2px rgba(0,0,0,.3); overflow: hidden; }
 .item .n { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .item .bar { position: absolute; left: 5px; right: 5px; bottom: 5px; height: 4px; border-radius: 2px; background: rgba(0,0,0,.1); }
-.item .bar i { display: block; height: 100%; border-radius: 2px; background: var(--leaf); width: calc(var(--f) * 100%); }
-.item.low .bar i { background: var(--mustard); }
-.item.ghost { background: transparent; color: var(--muted); box-shadow: none; outline: 1.5px dashed var(--muted); outline-offset: -2px; opacity: .75; }
+.item .bar i { display: block; height: 100%; border-radius: 2px; background: #3e9b5f; width: calc(var(--f) * 100%); }
+.item.low .bar i { background: #e9ac2b; }
+.item.ghost { background: transparent; color: var(--muted); box-shadow: none; outline: 1.5px dashed var(--muted); outline-offset: -2px; opacity: .8; }
 .item.ghost .bar { display: none; }
-.item.ghost::after { content: "usually"; position: absolute; left: 6px; bottom: 4px; font: 9px var(--font-mono); letter-spacing: .04em; }
 .readout { min-height: 34px; margin: 8px 0 0; font: 12px/1.35 var(--font-mono); color: var(--ink-soft); }
-.empty { font: 600 18px var(--font-hand); color: var(--muted); padding: 10px 2px; }
+.readout .btn { margin-left: 6px; padding: 2px 9px; font-size: 12px; }
+.empty { font: 600 15px var(--font-display); color: var(--muted); padding: 10px 2px; }
 .inside-label { font: 600 10px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
 
 /* Pantry */
@@ -143,15 +156,15 @@ h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
   box-shadow: inset 0 8px 18px rgba(0,0,0,.25); }
 .cab-inside .shelf { background: repeating-linear-gradient(transparent 0 61px, var(--wood-dark) 61px 66px); }
 .cab-doors { position: absolute; inset: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; pointer-events: none; perspective: 1400px; }
-.cab-door { pointer-events: auto; border: 0; border-radius: 4px; cursor: pointer; background:
-  linear-gradient(var(--wood) 0 0) padding-box, var(--wood); box-shadow: inset 0 0 0 10px var(--wood), inset 0 0 0 12px var(--wood-dark), inset 0 0 0 999px rgba(255,255,255,.04);
+.cab-door { pointer-events: auto; border: 0; border-radius: 4px; cursor: pointer; background: var(--wood);
+  box-shadow: inset 0 0 0 10px var(--wood), inset 0 0 0 12px var(--wood-dark), inset 0 0 0 999px rgba(255,255,255,.04);
   position: relative; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
-.cab-door::after { content: ""; position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(var(--chrome-1), var(--chrome-2)); translate: 0 -50%; box-shadow: 0 2px 3px rgba(0,0,0,.35); }
+.cab-door::after { content: ""; position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(#f2f4f5, #8d969c); translate: 0 -50%; box-shadow: 0 2px 3px rgba(0,0,0,.35); }
 .cab-door.l { transform-origin: left center; } .cab-door.l::after { right: 18px; }
 .cab-door.r { transform-origin: right center; } .cab-door.r::after { left: 18px; }
 .cabinet.open .cab-door.l { transform: rotateY(-100deg); }
 .cabinet.open .cab-door.r { transform: rotateY(100deg); }
-.cab-sign { position: absolute; left: 50%; top: 22px; translate: -50% 0; z-index: 3; background: var(--paper); color: var(--ink); padding: 4px 10px; font: 700 18px var(--font-hand); rotate: -2deg; box-shadow: 0 4px 8px -4px rgba(0,0,0,.4); pointer-events: none; transition: opacity .3s; }
+.cab-sign { position: absolute; left: 50%; top: 22px; translate: -50% 0; z-index: 3; background: var(--paper); color: var(--ink); padding: 4px 10px; font: 600 12px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 4px 8px -4px rgba(0,0,0,.4); pointer-events: none; transition: opacity .3s; }
 .cabinet.open .cab-sign { opacity: 0; }
 .counter { margin-top: 14px; background: var(--paper); border-radius: 10px; padding: 12px 12px 10px; box-shadow: var(--shadow); }
 .counter .shelf { background: none; }
@@ -164,16 +177,80 @@ h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
           mask: linear-gradient(#000 0 0) top/100% calc(100% - 8px) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/12px 8px repeat-x; }
 .tape h2, .log h2 { font: 800 18px var(--font-display); margin: 0 0 2px; }
 .tape .row { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-variant-numeric: tabular-nums; border-top: 1px dashed var(--muted); padding-top: 8px; margin-top: 8px; }
-.chart { width: 100%; height: auto; display: block; margin-top: 10px; }
+.chart { width: 100%; height: auto; display: block; margin-top: 10px; overflow: visible; }
 .chart text { font: 10px var(--font-mono); fill: var(--muted); }
-.chart .avg { stroke: var(--tomato); stroke-dasharray: 3 3; }
-.chart .bar { fill: var(--cobalt); } .chart .bar.now { fill: var(--leaf); } .chart .miss { fill: var(--muted); opacity: .35; }
+.chart .grid { stroke: var(--muted); stroke-opacity: .18; }
+.chart .avg { stroke: var(--ink-soft); stroke-dasharray: 3 3; }
+.chart .bar { fill: var(--s-blue); } .chart .bar.now { fill: var(--ink); } .chart .miss { fill: var(--muted); opacity: .35; }
 .log { background: var(--card); padding: 16px; border-radius: 4px; box-shadow: var(--shadow); }
 .log ol { list-style: none; padding: 0; margin: 10px 0 0; display: grid; gap: 8px; }
 .log li { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 8px; font-size: 14px; }
 .log time { font: 12px var(--font-mono); color: var(--muted); padding-top: 2px; }
+
+/* Data explorer: a grocery aisle. A hanging aisle sign, shelf tags to pick a tally, then panels. */
+.aisles { margin-top: 70px; }
+.aisle-sign { position: relative; display: flex; align-items: center; gap: 14px; background: var(--aisle); color: #fff; padding: 12px 18px; border-radius: 10px;
+  box-shadow: 0 14px 24px -14px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.15); max-width: 560px; }
+.aisle-sign::before, .aisle-sign::after { content: ""; position: absolute; top: -40px; width: 2px; height: 40px; background: var(--muted); opacity: .6; }
+.aisle-sign::before { left: 18%; } .aisle-sign::after { right: 18%; }
+.aisle-sign .num { flex: none; width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--aisle); display: grid; place-items: center; font: 800 28px/1 var(--font-display); }
+.aisle-sign b { display: block; font: 800 22px/1.1 var(--font-display); letter-spacing: -.01em; }
+.aisle-sign small { display: block; font: 12px/1.35 var(--font-mono); opacity: .85; margin-top: 2px; }
+.tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px 10px; margin: 22px 0 0; padding: 0 0 14px; position: relative; }
+.tags::after { content: ""; position: absolute; left: -6px; right: -6px; bottom: 0; height: 10px; background: var(--shelf-edge); border-radius: 2px; box-shadow: 0 6px 10px -6px rgba(0,0,0,.4); }
+.stag { position: relative; display: grid; gap: 1px; text-align: left; border: 0; cursor: pointer; background: #fffef8; color: #1c2420; padding: 8px 10px 6px 16px;
+  border-radius: 3px; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 8px 14px -10px rgba(0,0,0,.45); transition: translate .15s; }
+.stag::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--c); border-radius: 3px 0 0 3px; }
+.stag .nm { font: 600 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: #59665f; }
+.stag .pr { font: 800 30px/1.05 var(--font-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stag .pr sup { font-size: 14px; vertical-align: 12px; margin: 0 1px; }
+.stag .un { font: 11px var(--font-mono); color: #59665f; }
+.stag svg { width: 100%; height: 12px; margin-top: 4px; opacity: .8; }
+.stag[aria-pressed="true"] { translate: 0 -4px; box-shadow: 0 0 0 2px #1c2420, 0 14px 20px -12px rgba(0,0,0,.5); }
+.panel { background: var(--card); border-radius: 10px; padding: 16px 16px 14px; box-shadow: var(--shadow); margin: 18px 0 0; min-width: 0; }
+.panel h3 { font: 800 18px var(--font-display); margin: 0; }
+.panel .sub { margin: 2px 0 0; color: var(--muted); font: 12px/1.4 var(--font-mono); }
+.panels2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 18px; }
+@media (max-width: 760px) { .panels2 { grid-template-columns: minmax(0, 1fr); } }
+.viz { width: 100%; height: auto; display: block; margin-top: 12px; overflow: visible; touch-action: pan-y; }
+.viz text { font: 10.5px var(--font-mono); fill: var(--muted); }
+.viz .lbl { fill: var(--ink); font-weight: 600; }
+.viz .grid { stroke: var(--line); }
+.viz .base { stroke: var(--muted); stroke-opacity: .5; }
+.viz .hit { fill: transparent; cursor: crosshair; }
+.viz .hair { stroke: var(--ink); stroke-opacity: 0; pointer-events: none; }
+.viz g.col:hover .hair { stroke-opacity: .35; }
+.viz g.col:hover .dot { r: 6; }
+.aisle-row { display: grid; grid-template-columns: minmax(84px, 1.1fr) minmax(0, 2fr) 56px 34px; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); font-size: 13.5px; }
+.aisle-row:first-of-type { border-top: 0; }
+.aisle-row .t { font: 600 12.5px var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
+.aisle-row .p { font: 11px var(--font-mono); color: var(--muted); text-align: right; }
+.aisle-row svg { width: 100%; height: 26px; display: block; }
+.aisle-row rect { fill: var(--s-blue); }
+.aisle-row rect.hitm { fill: transparent; }
+.aisle-row g:hover rect:not(.hitm) { fill: var(--ink); }
+.months { display: grid; grid-template-columns: minmax(84px, 1.1fr) minmax(0, 2fr) 56px 34px; gap: 10px; font: 10.5px var(--font-mono); color: var(--muted); margin-top: 4px; }
+.months span { display: flex; justify-content: space-around; }
+select.pick { font: 600 14px var(--font-display); color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; margin-top: 10px; max-width: 100%; }
+.readline { font: 12.5px/1.45 var(--font-mono); color: var(--ink-soft); margin: 8px 0 0; }
+.bc-wrap { overflow-x: auto; }
+.bc .lbl { font: 600 12px var(--font-display); fill: var(--ink); }
+.bc rect.b { fill: var(--ink); }
+.bc g:hover rect.b { fill: var(--s-blue); }
+.findings { list-style: none; margin: 18px 0 0; padding: 16px 18px; background: var(--paper); box-shadow: var(--shadow); font: 13px/1.5 var(--font-mono); display: grid; gap: 8px; }
+.findings li { display: grid; grid-template-columns: 22px minmax(0, 1fr); }
+.findings li::before { content: "*"; color: var(--muted); }
+.findings li.h { grid-template-columns: 1fr; color: var(--muted); font-size: 11px; letter-spacing: .12em; }
+.findings li.h::before { content: none; }
+.tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--card); font: 12px/1.35 var(--font-mono); padding: 6px 9px; border-radius: 6px;
+  translate: -50% calc(-100% - 12px); box-shadow: 0 8px 18px -8px rgba(0,0,0,.5); max-width: 240px; }
+.tip b { font-family: var(--font-display); }
+.tip[hidden] { display: none; }
+details.table { margin-top: 10px; font: 12px var(--font-mono); color: var(--muted); }
+details.table table { border-collapse: collapse; margin-top: 6px; width: 100%; color: var(--ink-soft); }
+details.table td, details.table th { padding: 3px 6px; text-align: left; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
 footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
-@media (prefers-reduced-motion: reduce) { .door, .cab-door { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .door, .cab-door, .stag { transition: none; } .magcard { animation: none; } }
 </style>
 <!--BODY-->
 <div class="wrap">
@@ -184,17 +261,6 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
   <main class="kitchen">
     <section aria-label="Fridge">
       <div class="fridge">
-        <div class="comp freezer" id="freezer">
-          <div class="interior" inert>
-            <p class="inside-label">Freezer</p>
-            <div class="shelf" data-loc="freezer"></div>
-            <p class="readout" aria-live="polite"></p>
-          </div>
-          <div class="door" data-for="freezer">
-            <div class="letters" id="letters" aria-hidden="true"></div>
-            <button class="handle" aria-label="Open the freezer" aria-expanded="false"></button>
-          </div>
-        </div>
         <div class="comp main" id="fridgemain">
           <div class="interior" inert>
             <p class="inside-label">Fridge</p>
@@ -203,8 +269,17 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
           </div>
           <div class="door" data-for="fridgemain">
             <div class="magnets" id="magnets"></div>
-            <span class="hint" aria-hidden="true">pull to open</span>
             <button class="handle" aria-label="Open the fridge" aria-expanded="false"></button>
+          </div>
+        </div>
+        <div class="comp freezer" id="freezer">
+          <div class="interior" inert>
+            <p class="inside-label">Freezer</p>
+            <div class="shelf" data-loc="freezer"></div>
+            <p class="readout" aria-live="polite"></p>
+          </div>
+          <div class="door" data-for="freezer">
+            <button class="handle" aria-label="Open the freezer" aria-expanded="false"></button>
           </div>
         </div>
       </div>
@@ -235,6 +310,31 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
     <div class="tape" id="tape"></div>
     <div class="log" id="log"></div>
   </section>
+  <section class="aisles" id="aisles" aria-label="Trends">
+    <div class="aisle-sign"><span class="num" aria-hidden="true">7</span><div><b>Trends and tallies</b><small id="aisle-sub"></small></div></div>
+    <div class="tags" id="tags" role="group" aria-label="Pick a tally"></div>
+    <figure class="panel" style="margin-inline: 0">
+      <h3 id="tally-title"></h3><p class="sub" id="tally-sub"></p>
+      <div id="tally"></div>
+    </figure>
+    <div class="panels2">
+      <figure class="panel" style="margin-inline: 0">
+        <h3>Aisle by aisle</h3><p class="sub" id="aisle-note"></p>
+        <div id="aisle-dir"></div>
+      </figure>
+      <figure class="panel" style="margin-inline: 0">
+        <h3>Price check</h3><p class="sub">What one item cost each time, per unit</p>
+        <select class="pick" id="pick" aria-label="Item"></select>
+        <div id="price"></div>
+        <p class="readline" id="price-line"></p>
+      </figure>
+    </div>
+    <figure class="panel" style="margin-inline: 0">
+      <h3>The staples barcode</h3><p class="sub">Your most bought items. A bar for every trip it came home.</p>
+      <div class="bc-wrap" id="barcode"></div>
+    </figure>
+    <ul class="findings" id="findings" aria-label="Findings"></ul>
+  </section>
   <footer id="foot"></footer>
 </div>
 <script>
@@ -243,35 +343,228 @@ window.FRIDGE_DATA = D;
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const dd = s => new Date(s + "T12:00:00");
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 const fmt = (s, o) => dd(s).toLocaleDateString("en-US", o || {month: "short", day: "numeric"});
 const usd = n => "$" + Number(n).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const usd0 = n => "$" + Math.round(n).toLocaleString("en-US");
+const usdk = n => n >= 1000 ? "$" + (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : usd0(n);
+const plural = (n, [one, many]) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
 const short = m => { const t = m.split(/ with |,/)[0].replace(/^Sheet-pan /i, ""); return t[0].toUpperCase() + t.slice(1); };
+const daysAgo = s => Math.round((dd(D.today) - dd(s)) / 864e5);
+const ago = n => n < 14 ? `${n} days ago` : n < 60 ? `${Math.round(n / 7)} weeks ago` : `${Math.round(n / 30)} months ago`;
+const cadence = n => !n ? "" : n <= 9 ? "about every week" : n <= 17 ? "about every 2 weeks" : n <= 25 ? "about every 3 weeks" : n <= 45 ? "about once a month" : `about every ${Math.round(n / 30)} months`;
 
-// Containers: a tub color and lid color per item, picked from its name.
+// ---------- the ledger and its tallies ----------
+// ledger.rows: [trip index, item, aisle, paid, qty, saved]; ledger.days: the trip dates.
+const LED = D.ledger || { days: [], rows: [] }, DAYS = LED.days, ROWS = LED.rows;
+const SINCE = DAYS.length ? fmt(DAYS[0], {month: "long", day: "numeric"}) : "";
+const TALLIES = [
+  { id: "groceries", name: "Groceries", c: "--s-blue", fg: "#fff", test: r => r[2] !== "Flowers" && r[2] !== "Household", trips: true },
+  { id: "beer", name: "Beer", c: "--s-yellow", fg: "#231a00", test: r => r[1] === "Beer" || r[1] === "NA beer", unit: ["pack", "packs"] },
+  { id: "flowers", name: "Flowers", c: "--s-magenta", fg: "#2a0d18", test: r => r[2] === "Flowers", unit: ["bunch", "bunches"] },
+  { id: "saved", name: "Saved with deals", c: "--s-green", fg: "#fff", test: r => r[5] > 0, val: r => r[5], deals: true },
+  { id: "coke", name: "Diet Coke", c: "--s-violet", fg: "#fff", test: r => r[1] === "Diet Coke", unit: ["12-pack", "12-packs"] },
+  { id: "pizza", name: "Frozen pizza", c: "--s-aqua", fg: "#04261a", test: r => r[1] === "Frozen pizza", unit: ["pizza", "pizzas"] },
+];
+function tally(t) {
+  const per = DAYS.map(d => ({ d, v: 0, n: 0, items: [] }));
+  for (const r of ROWS) if (t.test(r)) {
+    const p = per[r[0]]; p.v += t.val ? t.val(r) : r[3]; p.n += t.deals ? 1 : r[4]; p.items.push(r);
+  }
+  let cum = 0;
+  per.forEach(p => { p.v = Math.round(p.v * 100) / 100; cum += p.v; p.cum = Math.round(cum * 100) / 100; });
+  const hit = per.filter(p => p.v > 0);
+  return { t, per, total: Math.round(cum * 100) / 100, trips: hit.length, count: per.reduce((a, p) => a + p.n, 0), last: hit.length ? hit[hit.length - 1].d : null };
+}
+const T = Object.fromEntries(TALLIES.map(t => [t.id, tally(t)]));
+const tallyLine = x => {
+  const t = x.t;
+  if (t.trips) return `${plural(x.trips, ["trip", "trips"])}, ${usd(x.total / Math.max(1, x.trips))} a trip`;
+  if (t.deals) return `across ${plural(x.count, ["item", "items"])}`;
+  return `${plural(x.count, t.unit)} on ${x.trips} of ${DAYS.length} trips`;
+};
+
+// ---------- tooltips: anything with data-tip ----------
+const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; document.body.append(tip);
+let tipFor = null;
+const placeTip = e => { tip.style.left = Math.max(110, Math.min(innerWidth - 110, e.clientX)) + "px"; tip.style.top = Math.max(60, e.clientY) + "px"; };
+const tipEl = n => n && n.closest ? n.closest("[data-tip]") : null;
+document.addEventListener("pointerover", e => { const el = tipEl(e.target); if (!el) return; tipFor = el; tip.innerHTML = el.dataset.tip; tip.hidden = false; placeTip(e); });
+document.addEventListener("pointermove", e => { if (tipFor && tipEl(e.target) === tipFor) placeTip(e); });
+document.addEventListener("pointerout", e => { if (tipFor && tipEl(e.relatedTarget) !== tipFor) { tip.hidden = true; tipFor = null; } });
+addEventListener("scroll", () => { tip.hidden = true; tipFor = null; }, { passive: true });
+
+// ---------- restock list: kept on this device, filled from the dotted "usually here" items ----------
+const Restock = (() => {
+  const KEY = "fridge.restock";
+  let list = [];
+  try { list = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} magnets(); };
+  return {
+    all: () => list.slice(), has: n => list.includes(n),
+    toggle(n) { list = list.includes(n) ? list.filter(x => x !== n) : list.concat(n); save(); return list.includes(n); },
+    clear() { list = []; save(); },
+  };
+})();
+window.Restock = Restock;
+function ghostNote(it) {
+  const n = it.last ? daysAgo(it.last) : null;
+  return `You usually have ${it.name.toLowerCase()}: bought on ${it.times || "?"} of ${it.trips || DAYS.length} trips${it.every ? `, ${cadence(it.every)}` : ""}.` +
+    (n != null ? ` Last bought ${fmt(it.last)}, ${ago(n)}.` : "");
+}
+window.ghostNote = ghostNote;
+
+// ---------- small SVG helpers ----------
+const nice = m => { const s = Math.pow(10, Math.floor(Math.log10(m || 1))); return [1, 2, 2.5, 5, 10].map(k => k * s).find(k => m / k <= 4.5); };
+const barcodeSVG = seed => {
+  let x = 0, h = 7, out = "";
+  for (const ch of (seed + "0123456789abcdef").slice(0, 26)) { h = (h * 31 + ch.charCodeAt(0)) >>> 0; const w = 1 + (h % 3); out += `<rect x="${x}" width="${w}" height="12"/>`; x += w + 1 + ((h >> 3) % 2); }
+  return `<svg viewBox="0 0 ${x} 12" preserveAspectRatio="none" aria-hidden="true" fill="currentColor">${out}</svg>`;
+};
+const monthTicks = (t0, t1, X, y) => {
+  let g = "";
+  for (let m = new Date(t0.getFullYear(), t0.getMonth() + 1, 1); m <= t1; m.setMonth(m.getMonth() + 1))
+    g += `<text x="${X(iso(m))}" y="${y}" text-anchor="middle">${m.toLocaleDateString("en-US", {month: "short"})}</text>`;
+  return g;
+};
+
+// A running total: a step line from zero, a dot for each trip that added to it. Hover a trip for what it added.
+function tallyChart(x, { W = 640, H = 220, small = false } = {}) {
+  const color = `var(${x.t.c})`, L = small ? 36 : 46, R = small ? 8 : 56, Tp = 12, B = 22;
+  const t0 = dd(DAYS[0]), t1 = dd(D.today), span = Math.max(1, t1 - t0);
+  const X = s => L + (dd(s) - t0) / span * (W - L - R);
+  const step = nice(Math.max(x.total, 1) * 1.08), top = Math.ceil(Math.max(x.total, 1) * 1.08 / step) * step;
+  const Y = v => H - B - v / top * (H - B - Tp);
+  let g = "";
+  for (let v = 0; v <= top + 1e-9; v += step) g += `<line class="grid" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 6}" y="${Y(v) + 3.5}" text-anchor="end">${usd0(v)}</text>`;
+  g += monthTicks(t0, t1, X, H - 6);
+  let d = `M${X(DAYS[0])},${Y(0)}`;
+  for (const p of x.per) if (p.v > 0) d += `H${X(p.d)}V${Y(p.cum)}`;
+  d += `H${X(D.today)}`;
+  const hits = x.per.filter(p => p.v > 0);
+  let cols = "";
+  hits.forEach((p, i) => {
+    const xx = X(p.d), a = i ? (X(hits[i - 1].d) + xx) / 2 : L, b = i < hits.length - 1 ? (xx + X(hits[i + 1].d)) / 2 : W - R;
+    const top3 = p.items.slice().sort((m, n) => (x.t.val ? x.t.val(n) - x.t.val(m) : n[3] - m[3])).slice(0, 3).map(r => esc(r[1])).join(", ");
+    const what = x.t.trips ? "" : x.t.deals ? `<br>${top3}` : `<br>${plural(p.n, x.t.unit)}: ${top3}`;
+    const tipTxt = `<b>${fmt(p.d)}</b><br>+${usd(p.v)} this trip${what}<br>${usd(p.cum)} so far`;
+    cols += `<g class="col" data-tip="${esc(tipTxt)}"><rect class="hit" x="${a}" y="${Tp}" width="${Math.max(1, b - a)}" height="${H - B - Tp}"/>` +
+      `<line class="hair" x1="${xx}" x2="${xx}" y1="${Tp}" y2="${H - B}"/><circle class="dot" cx="${xx}" cy="${Y(p.cum)}" r="${small ? 3.5 : 4.5}" fill="${color}" stroke="var(--card)" stroke-width="2"/></g>`;
+  });
+  const end = small ? "" : `<text class="lbl" x="${X(D.today) + 6}" y="${Y(x.total) + 4}">${usd0(x.total)}</text>`;
+  return `<svg class="viz" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(x.t.name)}: running total since ${SINCE}, now ${usd(x.total)}">
+    ${g}<line class="base" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}"/>
+    <path d="${d}V${Y(0)}Z" fill="${color}" fill-opacity=".12"/><path d="${d}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>${cols}${end}</svg>`;
+}
+
+// ---------- magnets ----------
+// Each magnet's spot on the real fridge, in inches: x across from the left door's outer edge,
+// y up from the fridge floor (the freezer drawer is below 0), w its width. The 3D view uses these.
+const MAGS = {
+  plan:      { x: 1.6,  y: 50.5, w: 8.6, r: -1.2 },
+  rewind:    { x: 1.4,  y: 33.5, w: 9.2, r: 1 },
+  need:      { x: 2.8,  y: 23.5, w: 7.6, r: -.6 },
+  beer:      { x: 20.2, y: 51,   w: 5.4, r: -2 },
+  flowers:   { x: 26.4, y: 51.4, w: 5.4, r: 1.6 },
+  groceries: { x: 20.4, y: 43.6, w: 5.4, r: 1 },
+  streak:    { x: 26.9, y: 44.2, w: 4.6, r: 0 },
+  week:      { x: 21.4, y: 36.2, w: 5.4, r: -1.2 },
+  coke:      { x: 27.4, y: 36.6, w: 5.2, r: 2 },
+  pizza:     { x: 3.6,  y: -7.6, w: 5.4, r: -1.5 },
+};
+window.MAGS = MAGS;
+const magAttrs = (id, extra = "") => { const m = MAGS[id]; return `data-m="${id}" style="--w:${m.w};--r:${m.r}deg;${extra}"`; };
+function tileMag(id) {
+  const x = T[id], t = x.t;
+  return `<button class="mag tile" ${magAttrs(id, `--c:var(${t.c});--fg:${t.fg}`)} aria-label="${esc(t.name)}: ${usd(x.total)} since ${SINCE}">
+    <span class="k">${esc(t.name === "Frozen pizza" ? "Pizza" : t.name)}</span><span class="v">${usdk(x.total)}</span><span class="s">${esc(t.trips ? `since ${fmt(DAYS[0])}` : plural(x.count, t.unit))}</span></button>`;
+}
+function magnets() {
+  const host = $("#magnets"); if (!host) return;
+  const sp = D.spend, st = D.streak, r = D.rewind, need = Restock.all();
+  const pct = sp.avg ? Math.round((sp.this_week - sp.avg) / sp.avg * 100) : 0;
+  const plan = D.plan.slice(0, 4).map(m => `<li class="${m.status === "proposed" ? "maybe" : ""}"><small>${m.slot === "batch main" ? "Sunday prep" : "dinner"}</small>${esc(short(m.meal))}${m.status === "proposed" ? "?" : ""}</li>`).join("");
+  host.innerHTML = `
+    <button class="mag pad" ${magAttrs("plan")} aria-label="This week's plan"><span class="k">This week</span><ul>${plan || "<li>Nothing planned yet</li>"}</ul></button>
+    ${r ? `<button class="mag card" ${magAttrs("rewind")} aria-label="Not made in a while: ${esc(r.meal)}"><span class="k">Not made in a while</span><span class="t">${esc(short(r.meal))}</span><span class="s">${r.weeks_ago} weeks ago</span></button>` : ""}
+    ${need.length ? `<button class="mag need" ${magAttrs("need")} aria-label="Restock list, ${need.length} items"><span class="k">Need</span><ul>${need.slice(0, 6).map(n => `<li>${esc(n)}</li>`).join("")}${need.length > 6 ? `<li>+${need.length - 6} more</li>` : ""}</ul></button>` : ""}
+    ${tileMag("beer")}${tileMag("flowers")}${tileMag("groceries")}
+    <button class="mag round" ${magAttrs("streak")} aria-label="Shopping streak: ${st.current} weeks, best ${st.best}"><span class="k">Streak</span><span class="v">${st.current}</span><span class="s">weeks</span>
+      <span class="dots">${st.recent.map(x => `<i class="${x ? "on" : ""}"></i>`).join("")}</span></button>
+    <button class="mag tile" ${magAttrs("week", "--c:#262b2e;--fg:#f4f2ec")} aria-label="This week's groceries ${usd(sp.this_week)}"><span class="k">This week</span><span class="v">${usd0(sp.this_week)}</span>
+      <span class="s">${sp.this_week ? `${pct >= 0 ? "+" : ""}${pct}% vs avg` : `avg ${usd0(sp.avg)}`}</span></button>
+    ${T.coke.total ? tileMag("coke") : ""}${T.pizza.total ? tileMag("pizza") : ""}`;
+  document.dispatchEvent(new Event("magnets"));
+}
+
+function magDetail(id) {
+  const sp = D.spend, st = D.streak;
+  if (T[id]) {
+    const x = T[id], t = x.t, last = x.last ? ` Last on ${fmt(x.last)}.` : "";
+    const say = { groceries: " Flowers and household things aside.", beer: last, flowers: last, coke: last, pizza: last, saved: "" }[id];
+    return { c: `var(${t.c})`, k: `${t.name} since ${SINCE}`, v: usd(x.total), p: `${tallyLine(x)}.${say}`, body: tallyChart(x, { W: 300, H: 120, small: true }), more: id };
+  }
+  if (id === "plan") return { c: "#2a78d6", k: "This week", v: plural(D.plan.length, ["meal", "meals"]), body: `<ul>${D.plan.map(m => `<li>${esc(m.meal)}${m.status === "proposed" ? " (maybe)" : ""}</li>`).join("")}</ul>` };
+  if (id === "rewind" && D.rewind) return { c: "#d9564a", k: "Not made in a while", v: short(D.rewind.meal), p: `${esc(D.rewind.meal)}. Last made ${fmt(D.rewind.last)}, ${D.rewind.weeks_ago} weeks ago.` };
+  if (id === "streak") return { c: "#1d2521", k: "Shopping streak", v: plural(st.current, ["week", "weeks"]), p: `Weeks in a row with at least one trip. Best run: ${plural(st.best, ["week", "weeks"])}.${st.shopped_this_week ? "" : " Shop this week to keep it going."}` };
+  if (id === "week") {
+    const pct = sp.avg ? Math.round((sp.this_week - sp.avg) / sp.avg * 100) : 0;
+    return { c: "#262b2e", k: "Groceries this week", v: usd(sp.this_week), p: sp.this_week ? `${Math.abs(pct)}% ${pct >= 0 ? "above" : "below"} your average shop week of ${usd(sp.avg)}.` : `No trip yet this week. Your average is ${usd(sp.avg)}.`, more: "groceries" };
+  }
+  if (id === "need") {
+    const list = Restock.all();
+    return { c: "#d9b93a", k: "Restock list", v: plural(list.length, ["item", "items"]), p: "Kept on this device. Tap a dotted item in the fridge to add it.",
+      body: `<ul>${list.map(n => `<li>${esc(n)} <button class="btn" data-unneed="${esc(n)}" style="padding:1px 8px;font-size:12px">remove</button></li>`).join("")}</ul>`, copy: true };
+  }
+  return null;
+}
+function openMag(id, host) {
+  closeMag();
+  const m = magDetail(id); if (!m || !host) return;
+  const el = document.createElement("div"); el.className = "magcard"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", m.k);
+  el.style.setProperty("--c", m.c);
+  el.innerHTML = `<button class="x" aria-label="Close">close</button><header><div class="k">${esc(m.k)}</div><div class="v">${esc(m.v)}</div>${m.p ? `<p>${m.p}</p>` : ""}</header>
+    ${m.body ? `<div class="body">${m.body}</div>` : ""}
+    ${m.more || m.copy ? `<div class="row">${m.more ? `<button class="btn primary" data-more="${m.more}">See the trend</button>` : ""}${m.copy ? `<button class="btn primary" data-copy>Copy list</button><button class="btn" data-clear>Clear</button>` : ""}</div>` : ""}`;
+  host.append(el);
+  el.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.classList.contains("x")) return closeMag();
+    if (b.dataset.more) { closeMag(); pickTally(b.dataset.more); $("#aisles").scrollIntoView({ behavior: "smooth" }); }
+    if (b.dataset.unneed) { Restock.toggle(b.dataset.unneed); Restock.all().length ? openMag("need", host) : closeMag(); }
+    if ("copy" in b.dataset && navigator.clipboard) navigator.clipboard.writeText(Restock.all().join("\n")).then(() => { b.textContent = "Copied"; }, () => {});
+    if ("clear" in b.dataset) { Restock.clear(); closeMag(); }
+  });
+}
+function closeMag() { document.querySelectorAll(".magcard").forEach(n => n.remove()); }
+window.openMag = openMag; window.closeMag = closeMag;
+document.addEventListener("click", e => {
+  const m = e.target.closest(".mag");
+  if (m) { e.stopPropagation(); e.preventDefault(); openMag(m.dataset.m, m.closest(".stage3d, .fridge")); return; }
+  if (!e.target.closest(".magcard")) closeMag();
+}, true);
+
+// ---------- plain view: shelves of tiles ----------
 const TUBS = [["#f3d6c9","#e0533a"],["#d6e4f7","#2d5fcf"],["#f6e7b7","#e9ac2b"],["#dcefdc","#3e9b5f"],["#eadcf2","#8a4fb3"],["#e9ecef","#7d8f89"]];
 const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
-
 function shelf(loc) {
   const el = document.querySelector(`.shelf[data-loc="${loc}"]`);
   const items = D.shelves[loc] || [];
   if (!items.length) { el.outerHTML = `<p class="empty">Nothing here yet.</p>`; return; }
   el.innerHTML = items.map((it, i) => {
     const [tub, lid] = TUBS[hash(it.name) % TUBS.length];
-    const cls = it.ghost ? "ghost" : it.status;
-    return `<button class="item ${cls}" data-i="${i}" style="--tub:${tub};--lid:${lid};--f:${it.fresh}"><span class="n">${esc(it.name)}</span><span class="bar"><i></i></span></button>`;
+    return `<button class="item ${it.ghost ? "ghost" : it.status}" data-i="${i}" style="--tub:${tub};--lid:${lid};--f:${it.fresh}"><span class="n">${esc(it.name)}</span><span class="bar"><i></i></span></button>`;
   }).join("");
   const out = el.parentElement.querySelector(".readout");
-  el.addEventListener("click", e => {
-    const b = e.target.closest(".item"); if (!b) return;
-    const it = items[+b.dataset.i];
+  const show = it => {
     const how = it.source === "receipt" ? "bought" : it.source === "photo" ? "seen in photo" : "noted";
-    out.textContent = it.ghost
-      ? `${it.name}: not here now. Usually is (${it.usual}). Last ${how} ${fmt(it.since)}.`
-      : `${it.name}: ${how} ${fmt(it.since)}${it.status === "low" ? ", probably running low" : ""}. On ${it.usual}.`;
-  });
+    if (!it.ghost) { out.textContent = `${it.name}: ${how} ${fmt(it.since)}${it.status === "low" ? ", probably running low" : ""}. On ${it.usual}.`; return; }
+    out.innerHTML = `${esc(ghostNote(it))} <button class="btn">${Restock.has(it.name) ? "On your list" : "Add to list"}</button>`;
+    out.querySelector("button").onclick = () => { Restock.toggle(it.name); show(it); };
+  };
+  el.addEventListener("click", e => { const b = e.target.closest(".item"); if (b) show(items[+b.dataset.i]); });
   out.textContent = loc === "counter" ? "" : "Tap anything. Dashed ones are usually here but aren't now.";
 }
-
 function hinge(comp, btns) {
   const open = !comp.classList.contains("open");
   comp.classList.toggle("open", open);
@@ -279,43 +572,18 @@ function hinge(comp, btns) {
   btns.forEach(b => { b.setAttribute("aria-expanded", open); b.setAttribute("aria-label", b.getAttribute("aria-label").replace(open ? "Open" : "Close", open ? "Close" : "Open")); });
 }
 
-function magnets() {
-  const p = D.plan.map(m => `<li class="${m.status === "proposed" ? "maybe" : ""}"><span>${m.slot === "batch main" ? "prep" : "dinner"}</span>${esc(short(m.meal))}${m.status === "proposed" ? "?" : ""}</li>`).join("");
-  const st = D.streak, sp = D.spend;
-  const pct = sp.avg ? Math.round((sp.this_week - sp.avg) / sp.avg * 100) : 0;
-  const streakNote = st.shopped_this_week ? (st.current === 1 ? "week shopped" : "weeks in a row") : `in a row. Shop this week for ${st.current + 1}`;
-  const r = D.rewind;
-  $("#magnets").innerHTML = `
-    <div class="mag sticky"><h3>This week</h3><ul>${p || "<li>Nothing planned yet</li>"}</ul></div>
-    <div class="mag streak" title="Best run: ${st.best} weeks"><b>${st.current}</b><small>${streakNote}</small>
-      <div class="dots">${st.recent.map(x => `<i class="${x ? "on" : ""}"></i>`).join("")}</div></div>
-    <div class="mag ticket"><div class="k">This week</div><div class="v">${usd(sp.this_week)}</div>
-      <div class="delta">avg ${usd(sp.avg)}${sp.this_week ? ` · ${pct >= 0 ? "+" : ""}${pct}%` : ""}</div></div>
-    ${r ? `<div class="mag recipe"><div class="k">Haven't made in a while</div><div class="v">${esc(r.meal)}</div>
-      <div class="when">last ${fmt(r.last)} · ${r.weeks_ago} weeks ago</div></div>` : ""}
-    <div class="mag flower"><svg viewBox="0 0 40 40" aria-hidden="true">${[0,72,144,216,288].map(a => `<ellipse cx="20" cy="10" rx="6" ry="9" fill="#f08aa6" transform="rotate(${a} 20 20)"/>`).join("")}<circle cx="20" cy="20" r="6" fill="#e9ac2b"/></svg>
-      <span>${usd(D.spend.flowers_ytd)} on flowers this year</span></div>`;
-}
-
-function letters() {
-  const wd = dd(D.today).getDay();
-  const word = wd === 0 ? "SHOP DAY" : ["SUN","MON","TUES","WED","THURS","FRI","SAT"][wd];
-  const cols = ["var(--tomato)","var(--cobalt)","var(--mustard)","var(--leaf)","var(--plum)"];
-  $("#letters").innerHTML = [...word].map((c, i) => c === " " ? `<span style="width:10px"></span>` :
-    `<span style="--c:${cols[i % cols.length]};--r:${((i * 37) % 13) - 6}deg">${c}</span>`).join("");
-}
-
+// ---------- receipt tape and the cooking log ----------
 function tape() {
   const w = D.spend.weeks, max = Math.max(...w.map(x => x.groceries), D.spend.avg, 1) * 1.1;
   const W = 320, H = 130, L = 30, B = 18, bw = (W - L) / w.length;
   const y = v => H - B - v / max * (H - B - 8);
   const ticks = [0, 50, 100, 150, 200].filter(t => t < max);
   let svg = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly grocery spend, last ${w.length} weeks">`;
-  ticks.forEach(t => svg += `<text x="${L - 4}" y="${y(t) + 3}" text-anchor="end">${t}</text><line x1="${L}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="var(--muted)" stroke-opacity=".2"/>`);
+  ticks.forEach(t => svg += `<text x="${L - 4}" y="${y(t) + 3}" text-anchor="end">${t}</text><line class="grid" x1="${L}" x2="${W}" y1="${y(t)}" y2="${y(t)}"/>`);
   w.forEach((x, i) => {
     const X = L + i * bw + 2, last = i === w.length - 1;
-    svg += x.shopped ? `<rect class="bar${last ? " now" : ""}" x="${X}" y="${y(x.groceries)}" width="${bw - 4}" height="${y(0) - y(x.groceries)}" rx="2"><title>${fmt(x.week)}: ${usd(x.groceries)}</title></rect>`
-                     : `<rect class="miss" x="${X}" y="${y(0) - 2}" width="${bw - 4}" height="2"/>`;
+    svg += x.shopped ? `<rect class="bar${last ? " now" : ""}" x="${X}" y="${y(x.groceries)}" width="${bw - 4}" height="${y(0) - y(x.groceries)}" rx="2" data-tip="${esc(`<b>Week of ${fmt(x.week)}</b><br>${usd(x.groceries)}`)}"/>`
+                     : `<rect class="miss" x="${X}" y="${y(0) - 2}" width="${bw - 4}" height="2" data-tip="${esc(`<b>Week of ${fmt(x.week)}</b><br>no trip`)}"/>`;
     if (dd(x.week).getDate() <= 7) svg += `<text x="${X}" y="${H - 4}">${fmt(x.week, {month: "short"})}</text>`;
   });
   svg += `<line class="avg" x1="${L}" x2="${W}" y1="${y(D.spend.avg)}" y2="${y(D.spend.avg)}"/></svg>`;
@@ -324,15 +592,133 @@ function tape() {
     <div class="row"><span>Average shop week</span><span>${usd(D.spend.avg)}</span></div>
     <div class="row"><span>Best streak</span><span>${D.streak.best} weeks</span></div>`;
 }
-
 function log() {
   $("#log").innerHTML = `<h2>Lately</h2><p class="label">What actually got cooked</p><ol>${D.eaten.map(m =>
     `<li><time datetime="${m.date}">${fmt(m.date)}</time><span>${esc(m.meal)}</span></li>`).join("")}</ol>`;
 }
 
+// ---------- the aisle: trends and tallies ----------
+let picked = "groceries";
+function tags() {
+  $("#tags").innerHTML = TALLIES.map(t => {
+    const x = T[t.id], [d, c] = x.total.toFixed(2).split(".");
+    return `<button class="stag" data-t="${t.id}" aria-pressed="${t.id === picked}" style="--c:var(${t.c})">
+      <span class="nm">${esc(t.name)}</span><span class="pr"><sup>$</sup>${Number(d).toLocaleString("en-US")}<sup>${c}</sup></span>
+      <span class="un">${esc(tallyLine(x))}</span>${barcodeSVG(t.id + x.total)}</button>`;
+  }).join("");
+  $("#tags").onclick = e => { const b = e.target.closest(".stag"); if (b) pickTally(b.dataset.t); };
+}
+function pickTally(id) {
+  picked = id;
+  document.querySelectorAll(".stag").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === id));
+  const x = T[id];
+  $("#tally-title").textContent = `${x.t.name}, running total`;
+  $("#tally-sub").textContent = `${usd(x.total)} since ${SINCE}, ${tallyLine(x)}. Each dot is a trip.`;
+  $("#tally").innerHTML = tallyChart(x) + `<details class="table"><summary>As a table</summary><table><tr><th>Trip</th><th>This trip</th><th>Running total</th></tr>${
+    x.per.filter(p => p.v > 0).map(p => `<tr><td>${fmt(p.d)}</td><td>${usd(p.v)}</td><td>${usd(p.cum)}</td></tr>`).join("")}</table></details>`;
+}
+window.pickTally = pickTally;
+
+function aisleDirectory() {
+  const t0 = dd(DAYS[0]), t1 = dd(D.today), months = [];
+  for (let m = new Date(t0.getFullYear(), t0.getMonth(), 1); m <= t1; m.setMonth(m.getMonth() + 1)) months.push([m.getFullYear(), m.getMonth()]);
+  const mi = s => { const d = dd(s); return months.findIndex(([y, m]) => y === d.getFullYear() && m === d.getMonth()); };
+  const A = {};
+  for (const r of ROWS) { const a = (A[r[2]] ||= { name: r[2], total: 0, m: months.map(() => 0) }); a.total += r[3]; a.m[mi(DAYS[r[0]])] += r[3]; }
+  const list = Object.values(A).sort((a, b) => b.total - a.total), all = list.reduce((s, a) => s + a.total, 0);
+  const top = Math.max(...list.flatMap(a => a.m));
+  const mname = ([y, m]) => new Date(y, m, 1).toLocaleDateString("en-US", { month: "short" });
+  const W = 200, H = 26, bw = W / months.length;
+  $("#aisle-note").textContent = `Spend per month in each aisle, all on one scale. ${mname(months[0])} and ${mname(months[months.length - 1])} are partial months.`;
+  $("#aisle-dir").innerHTML = list.map(a => `<div class="aisle-row"><span>${esc(a.name)}</span>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(a.name)} by month">${a.m.map((v, i) => {
+      const h = v ? Math.max(2, v / top * (H - 2)) : 0;
+      return `<g data-tip="${esc(`<b>${esc(a.name)}, ${mname(months[i])}</b><br>${usd(v)}`)}"><rect class="hitm" x="${i * bw}" y="0" width="${bw}" height="${H}"/>${h ? `<rect x="${i * bw + 3}" y="${H - h}" width="${bw - 6}" height="${h}" rx="2"/>` : ""}</g>`;
+    }).join("")}</svg><span class="t">${usd0(a.total)}</span><span class="p">${Math.round(a.total / all * 100)}%</span></div>`).join("") +
+    `<div class="months" aria-hidden="true"><span></span><span>${months.map(m => `<i style="font-style:normal">${mname(m)}</i>`).join("")}</span><span></span><span></span></div>`;
+}
+
+function priceCheck() {
+  const by = {};
+  for (const r of ROWS) if (r[1] !== "Unclear item") (by[r[1]] ||= []).push(r);
+  const opts = Object.entries(by).filter(([, rs]) => new Set(rs.map(r => r[0])).size >= 4).sort((a, b) => b[1].length - a[1].length).map(([n]) => n);
+  if (!opts.length) { $("#price").textContent = "Not enough repeat buys yet."; return; }
+  const sel = $("#pick");
+  sel.innerHTML = opts.map(n => `<option>${esc(n)}</option>`).join("");
+  sel.value = opts.includes("Almond milk") ? "Almond milk" : opts[0];
+  const draw = () => {
+    const name = sel.value, pts = by[name].map(r => ({ d: DAYS[r[0]], u: r[3] / r[4], r })).sort((a, b) => a.d < b.d ? -1 : 1);
+    const W = 320, H = 150, L = 40, R = 12, Tp = 10, B = 22, t0 = dd(DAYS[0]), t1 = dd(D.today), span = Math.max(1, t1 - t0);
+    const X = s => L + (dd(s) - t0) / span * (W - L - R);
+    const mx = Math.max(...pts.map(p => p.u)) * 1.15, step = nice(mx), top = Math.ceil(mx / step) * step;
+    const Y = v => H - B - v / top * (H - B - Tp);
+    const avg = pts.reduce((s, p) => s + p.u, 0) / pts.length;
+    let g = "";
+    for (let v = 0; v <= top + 1e-9; v += step) g += `<line class="grid" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 6}" y="${Y(v) + 3.5}" text-anchor="end">${v < 10 ? "$" + v.toFixed(2).replace(/\.00$/, "") : usd0(v)}</text>`;
+    g += monthTicks(t0, t1, X, H - 6);
+    const line = pts.map((p, i) => `${i ? "L" : "M"}${X(p.d)},${Y(p.u)}`).join("");
+    const dots = pts.map(p => `<g class="col" data-tip="${esc(`<b>${fmt(p.d)}</b><br>${usd(p.u)}${p.r[4] > 1 ? ` each, ${p.r[4]} for ${usd(p.r[3])}` : ""}${p.r[5] ? `<br>${usd(p.r[5])} off` : ""}`)}">
+      <circle class="hit" cx="${X(p.d)}" cy="${Y(p.u)}" r="12"/><circle class="dot" cx="${X(p.d)}" cy="${Y(p.u)}" r="4.5" fill="var(--s-blue)" stroke="var(--card)" stroke-width="2"/></g>`).join("");
+    $("#price").innerHTML = `<svg class="viz" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(name)} price per unit over time">${g}
+      <line class="base" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}"/><line x1="${L}" x2="${W - R}" y1="${Y(avg)}" y2="${Y(avg)}" stroke="var(--ink-soft)" stroke-dasharray="3 3"/>
+      <text x="${W - R}" y="${Y(avg) - 5}" text-anchor="end">avg ${usd(avg)}</text>
+      <path d="${line}" fill="none" stroke="var(--s-blue)" stroke-width="2" stroke-linejoin="round"/>${dots}</svg>`;
+    const lo = pts.reduce((a, p) => p.u < a.u ? p : a), hi = pts.reduce((a, p) => p.u > a.u ? p : a);
+    const ds = [...new Set(pts.map(p => p.d))];
+    const gaps = ds.slice(1).map((d, i) => (dd(d) - dd(ds[i])) / 864e5).sort((a, b) => a - b);
+    $("#price-line").textContent = (lo.u.toFixed(2) === hi.u.toFixed(2) ? `${usd(lo.u)} every time. ` : `From ${usd(lo.u)} (${fmt(lo.d)}) to ${usd(hi.u)} (${fmt(hi.d)}). `) +
+      `On ${ds.length} of ${DAYS.length} trips${gaps.length ? `, ${cadence(gaps[gaps.length >> 1])}` : ""}.${/chicken|salmon|turkey|potato|cheese|pasta|beer|flowers/i.test(name) ? " Package sizes vary." : ""}`;
+  };
+  sel.onchange = draw; draw();
+}
+
+function barcode() {
+  const by = {};
+  for (const r of ROWS) if (r[1] !== "Unclear item" && r[2] !== "Household") ((by[r[1]] ||= {})[r[0]] ||= []).push(r);
+  const items = Object.entries(by).map(([n, d]) => ({ n, d, k: Object.keys(d).length })).filter(x => x.k >= 3).sort((a, b) => b.k - a.k || a.n.localeCompare(b.n)).slice(0, 14);
+  const L = 128, R = 44, rowH = 22, W = Math.max(520, L + R + DAYS.length * 22), cw = (W - L - R) / DAYS.length, H = items.length * rowH + 28;
+  let s = "";
+  items.forEach((it, i) => {
+    const y = i * rowH;
+    s += `<text class="lbl" x="${L - 10}" y="${y + 15}" text-anchor="end">${esc(it.n)}</text><text x="${W - R + 8}" y="${y + 15}">${it.k}/${DAYS.length}</text>`;
+    DAYS.forEach((d, j) => {
+      const rs = it.d[j]; if (!rs) return;
+      const v = rs.reduce((a, r) => a + r[3], 0), q = rs.reduce((a, r) => a + r[4], 0);
+      const bw = Math.max(2, Math.min(cw * .7, 2 + q * 2.2));
+      s += `<g data-tip="${esc(`<b>${esc(it.n)}</b><br>${fmt(d)}: ${usd(v)}${q > 1 ? `, ${q} of them` : ""}`)}"><rect class="hit" x="${L + j * cw}" y="${y}" width="${cw}" height="${rowH}"/><rect class="b" x="${L + j * cw + (cw - bw) / 2}" y="${y + 3}" width="${bw}" height="${rowH - 5}"/></g>`;
+    });
+  });
+  let lastM = -1;
+  DAYS.forEach((d, j) => { const m = dd(d).getMonth(); if (m !== lastM) { s += `<text x="${L + j * cw + cw / 2}" y="${H - 6}" text-anchor="middle">${fmt(d, {month: "short"})}</text>`; lastM = m; } });
+  $("#barcode").innerHTML = `<svg class="viz bc" viewBox="0 0 ${W} ${H}" style="min-width:${Math.round(W * .8)}px" role="img" aria-label="Which of your ${items.length} most bought items came home on each trip">${s}</svg>
+    <p class="readline">Columns are trips, left to right. A wider bar means more than one came home.</p>`;
+}
+
+function findings() {
+  const out = [], by = {};
+  for (const r of ROWS) (by[r[1]] ||= []).push(r);
+  const trips = n => new Set(by[n].map(r => r[0])).size;
+  const freq = Object.keys(by).filter(n => !/Unclear|Beer/.test(n)).sort((a, b) => trips(b) - trips(a));
+  if (freq[0]) out.push(`${freq[0]} came home on ${trips(freq[0])} of ${DAYS.length} trips${by.Beer && trips("Beer") > trips(freq[0]) ? `. Only beer showed up more, on ${trips("Beer")}` : ", more than anything else"}.`);
+  const tot = DAYS.map(() => 0); ROWS.forEach(r => tot[r[0]] += r[3]);
+  const bi = tot.indexOf(Math.max(...tot));
+  if (bi >= 0) { const tops = ROWS.filter(r => r[0] === bi).sort((a, b) => b[3] - a[3]).slice(0, 2); out.push(`Biggest trip: ${fmt(DAYS[bi])}, ${usd(tot[bi])}. ${tops.map(r => `${r[1]} (${usd(r[3])})`).join(" and ")} led it.`); }
+  const flat = Object.keys(by).filter(n => n !== "Unclear item" && trips(n) >= 4 && new Set(by[n].map(r => (r[3] / r[4]).toFixed(2))).size === 1).sort((a, b) => trips(b) - trips(a))[0];
+  if (flat) out.push(`${flat} cost ${usd(by[flat][0][3] / by[flat][0][4])} all ${trips(flat)} times. The most loyal price in the store.`);
+  const saved = ROWS.filter(r => r[5] > 0).sort((a, b) => b[5] - a[5]);
+  if (saved.length) out.push(`Deals took ${usd(T.saved.total)} off, the biggest on ${saved[0][1].toLowerCase()} (${usd(saved[0][5])}).`);
+  if (T.beer.total && T.flowers.total && T.groceries.total) out.push(`For every ${usd0(100)} of groceries, about ${usd0(T.beer.total / T.groceries.total * 100)} went to beer, and another ${usd0(T.flowers.total / T.groceries.total * 100)} to flowers on top.`);
+  $("#findings").innerHTML = `<li class="h">FOUND IN YOUR RECEIPTS</li>` + out.map(s => `<li>${esc(s)}</li>`).join("");
+}
+
+// ---------- go ----------
 $("#synced").textContent = "Synced " + new Date(D.generated).toLocaleString("en-US", {weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"});
-$("#foot").textContent = "From the Meal Prep Data sheet. Fridge contents are estimated from receipts until a Sunday photo says otherwise.";
-magnets(); letters(); ["freezer", "fridge", "pantry", "counter"].forEach(shelf); tape(); log();
+$("#foot").textContent = "From the Meal Prep Data sheet. Fridge contents are estimated from receipts until a Sunday photo says otherwise. The restock list stays on this device.";
+magnets(); ["freezer", "fridge", "pantry", "counter"].forEach(shelf); tape(); log();
+if (DAYS.length) {
+  $("#aisle-sub").textContent = `Every receipt since ${SINCE}: ${DAYS.length} trips, ${usd(ROWS.reduce((s, r) => s + r[3], 0))}`;
+  tags(); pickTally(picked); aisleDirectory(); priceCheck(); barcode(); findings();
+} else $("#aisles").hidden = true;
 document.querySelectorAll(".door").forEach(d => {
   const comp = document.getElementById(d.dataset.for), h = d.querySelector(".handle");
   d.addEventListener("click", () => hinge(comp, [h]));
@@ -346,8 +732,8 @@ cbs.forEach(b => b.addEventListener("click", () => hinge(cab, cbs)));
 </script>
 <script type="importmap">{"imports": {"three": "./vendor/three.module.min.js"}}</script>
 <script type="module">
-// 3D fridge, pantry and counter. Add ?flat to the address to keep the plain tiles.
-if (/[?&]3d\b/.test(location.search) && !/[?&]flat\b/.test(location.search)) {
+// The 3D fridge, pantry and counter. Add ?flat to the address to keep the plain tiles.
+if (!/[?&]flat\b/.test(location.search)) {
   try {
     const [{ start }, map] = await Promise.all([import("./js/kitchen3d.js"), fetch("./models/map.json").then(r => r.json())]);
     const ok = await start(window.FRIDGE_DATA, map);

@@ -1,6 +1,6 @@
 # The Fridge
 
-A fridge you open in the browser. The door holds magnets for this week's plan, the weekly shopping streak, this week's grocery spend against the average, and a recipe not made in a while. Inside are the fridge, freezer, pantry and counter, with dashed "ghost" items for things that are usually there but aren't now. Below: weekly spend and what actually got cooked.
+A stainless French-door fridge you open in the browser. The doors hold magnets: this week's plan, a recipe not made in a while, running tallies since the first receipt (groceries, beer, flowers, Diet Coke, frozen pizza), the shopping streak and this week's spend. Tap a magnet for its trend. Inside are the fridge, freezer, pantry and counter. Each item keeps its spot; when it's out, a dashed outline stays in its place, and tapping it says how often you usually buy it and offers to add it to a restock list (kept in the browser, per device). The crispers, deli drawer and freezer pull out. Below: weekly spend, what got cooked, and "Aisle 7", a data explorer built from every receipt line: running tallies, spend by aisle per month, a price check per item, a barcode of your staples, and a few findings.
 
 ## How it works
 
@@ -52,6 +52,8 @@ The page draws your fridge, pantry and counter as a low-poly 3D scene with three
 - `site/` is copied next to `index.html` on every build.
 - `site/js/kitchen3d.js` builds the scenes, places items on shelves, prints labels and shows the tap tags.
 - `site/models/map.json` says which model each grocery item uses, at real size in inches. Lookup order: the exact item name, then the first matching rule, then the item's category, then where it's stored. Anything new falls back to a sensible model, never a blank. You can change an item's `tint`, `label`, `count`, `spot` (shelf, crisper, drawer, door, or an exact zone like door-right-2) or size in this file without touching code.
+- The page's data includes a `ledger` of receipt lines (trip date, item, aisle, paid, quantity, saved). It has no store names or notes.
+- Magnet spots on the doors are set in inches in `MAGS` in `template.html`; the 3D view pins each magnet there at true scale.
 - Models starting with `#` (`#box`, `#tub`, `#eggs`, `#butter`) are built in code in the same flat-shaded style.
 
 ### Adding a model
@@ -63,4 +65,4 @@ The page draws your fridge, pantry and counter as a low-poly 3D scene with three
 ## Credits
 
 - Food models: [Food Kit](https://kenney.nl/assets/food-kit) by Kenney, CC0. See `site/models/kenney-food/LICENSE.txt`.
-- [three.js](https://threejs.org) r169, MIT. See `site/vendor/THREE-LICENSE.txt`.
+- [three.js](https://threejs.org) r169 with its GLTFLoader and RoomEnvironment (for the steel reflections), MIT. See `site/vendor/THREE-LICENSE.txt`.

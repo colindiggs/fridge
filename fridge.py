@@ -160,6 +160,8 @@ LOC_BY_CAT = {"produce": "fridge", "protein": "fridge", "dairy": "fridge", "deli
               "bakery": "pantry", "beverage": "pantry"}
 LIFE_BY_CAT = {"produce": 7, "protein": 5, "dairy": 21, "deli": 14, "dairy/frozen": 90,
                "alcohol": 30, "pantry": 30, "bakery": 7, "beverage": 30}
+AISLES = {"produce": "Produce", "protein": "Meat and fish", "dairy": "Dairy", "dairy/frozen": "Frozen", "deli": "Deli",
+          "bakery": "Bakery", "pantry": "Pantry", "beverage": "Drinks", "alcohol": "Beer and wine"}
 IGNORE = r"unclear|coffee small|bag charge"
 BRANDS = r"^(signature( select| farms)?|lucerne|o organics|premio|nellie's|digiorno|near east|sweet baby ray's|kind|reynolds|ziploc)\s+"
 
@@ -298,12 +300,15 @@ def build(data, today):
             status = "in" if fresh > 0.25 else "low" if fresh > 0 else "out"
             since, src = bought, "receipt"
         times = len(it["dates"])
+        ds = sorted(it["dates"])
+        gaps = sorted((b - a).days for a, b in zip(ds, ds[1:]))
+        every = gaps[len(gaps) // 2] if gaps else None
         ghost = status == "out" and (times >= 3 or (obs is not None and times >= 2))
         if status == "out" and not ghost:
             continue
         shelves[it["loc"]].append({"name": it["name"], "status": status, "fresh": round(fresh, 2),
                                    "since": since.isoformat(), "source": src, "ghost": ghost,
-                                   "usual": f"{times} of {trips} trips", "cat": it.get("cat", ""), "spot": it.get("spot"),
+                                   "usual": f"{times} of {trips} trips", "times": times, "trips": trips, "every": every, "cat": it.get("cat", ""), "spot": it.get("spot"),
                                    "last": bought.isoformat() if bought else None,
                                    "cost": round(it["paid"][bought], 2) if bought else None})
     for loc in shelves:
@@ -312,6 +317,21 @@ def build(data, today):
         if len(ghosts) > 8:
             keep = {g["name"] for g in sorted(ghosts, key=lambda g: -int(g["usual"].split()[0]))[:8]}
             shelves[loc] = [x for x in shelves[loc] if not x["ghost"] or x["name"] in keep]
+
+    # The ledger behind the data explorer. Shop days, then one row per line item:
+    # [day index, canonical name, aisle, paid, qty, saved]. No store names, no receipt notes.
+    days = sorted({p["_d"] for p in purchases})
+    di = {d: i for i, d in enumerate(days)}
+    rows = []
+    for p in purchases:
+        t = p.get("type", "").lower()
+        if t == "fee_tax":
+            continue
+        low = p.get("item", "").lower()
+        name = "Unclear item" if "unclear" in low else "Coffee" if "coffee" in low else canon(p.get("item", ""), p.get("category", ""))[0]
+        aisle = "Flowers" if t == "floral" else "Household" if t == "household" else AISLES.get(p.get("category", "").strip().lower(), "Other")
+        rows.append([di[p["_d"]], name, aisle, round(money(p.get("paid")), 2), int(money(p.get("qty")) or 1), round(money(p.get("savings")), 2)])
+    rows.sort(key=lambda r: (r[0], r[2], r[1]))
 
     year = [s for s in series if s["week"][:4] == str(today.year)]
     return {
@@ -326,6 +346,7 @@ def build(data, today):
         "rewind": rewind,
         "eaten": eaten[:8],
         "shelves": {k: shelves.get(k, []) for k in ("fridge", "freezer", "pantry", "counter")},
+        "ledger": {"days": [d.isoformat() for d in days], "rows": rows},
     }
 
 # --- render ------------------------------------------------------------------

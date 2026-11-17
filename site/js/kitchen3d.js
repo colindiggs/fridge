@@ -3,6 +3,7 @@
 // If anything here fails, the page keeps its plain tile view.
 import * as THREE from "three";
 import { GLTFLoader } from "../vendor/loaders/GLTFLoader.js";
+import { RoomEnvironment } from "../vendor/environments/RoomEnvironment.js";
 
 const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
 const hash = s => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
@@ -26,16 +27,29 @@ function kitMaterial(base, tint, low, ghost) {
        diffuseColor.rgb = mix(diffuseColor.rgb, vec3(g * 1.05), uLow);`);
   };
   m.customProgramCacheKey = () => "kit";
-  if (ghost) Object.assign(m, { transparent: true, opacity: .22, depthWrite: false });
+  if (ghost) Object.assign(m, { transparent: true, opacity: .06, depthWrite: false });
   return m;
 }
 function flat(color, { low, ghost, opacity } = {}) {
   const c = new THREE.Color(color);
   if (low) { const g = c.r*.2126 + c.g*.7152 + c.b*.0722; c.lerp(new THREE.Color(g, g, g), .55); }
   const m = new THREE.MeshStandardMaterial({ color: c, roughness: .85, metalness: 0, flatShading: true });
-  if (ghost) Object.assign(m, { transparent: true, opacity: .22, depthWrite: false });
+  if (ghost) Object.assign(m, { transparent: true, opacity: .06, depthWrite: false });
   else if (opacity) Object.assign(m, { transparent: true, opacity, depthWrite: false });
   return m;
+}
+
+// An item that is usually here but is out: a faint shell with a dashed outline in its place.
+const dashMat = new THREE.LineDashedMaterial({ color: 0x4f6470, dashSize: .32, gapSize: .22, transparent: true, opacity: .85 });
+function dashed(g) {
+  const meshes = [];
+  g.traverse(c => { if (c.isMesh) meshes.push(c); });
+  for (const m of meshes) {
+    m.castShadow = false;
+    const line = new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry, 28), dashMat);
+    line.computeLineDistances(); line.userData.edge = true;
+    m.add(line);
+  }
 }
 
 // ---------- labels ----------
@@ -154,7 +168,7 @@ async function makeItem(MAP, it, s, base) {
   let x = 0;
   for (let i = 0; i < n; i++) {
     const m = await make();
-    if (s.label && i === 0) addLabel(m, s.label, o.ghost);
+    if (s.label && i === 0 && !o.ghost) addLabel(m, s.label);
     const sz = new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3());
     if (n > 1 && !s.label) m.rotation.y = (rnd(it.name, i) - .5) * 1.2;
     m.position.set(x + sz.x / 2, 0, (rnd(it.name, i + 9) - .5) * Math.min(sz.z, 2));
@@ -165,7 +179,7 @@ async function makeItem(MAP, it, s, base) {
   const b = new THREE.Box3().setFromObject(g);
   g.children.forEach(c => c.position.x -= (b.min.x + b.max.x) / 2);
   g.userData.item = it;
-  if (o.ghost) g.traverse(c => { if (c.isMesh) c.castShadow = false; });
+  if (o.ghost) dashed(g);
   g.traverse(c => c.userData.owner = g);
   return g;
 }
@@ -175,7 +189,8 @@ async function makeItem(MAP, it, s, base) {
 function pack(groups, zones) {
   const cursors = zones.map(z => z.rows.map(() => z.x0));
   const left = [];
-  groups.sort((a, b) => (a.userData.item.ghost - b.userData.item.ghost) || (b.userData.h - a.userData.h));
+  // ghosts pack like everything else, so an item keeps its spot whether it's in or out
+  groups.sort((a, b) => (b.userData.h - a.userData.h) || a.userData.item.name.localeCompare(b.userData.item.name));
   for (const g of groups) {
     const sz = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3());
     let placed = false;
@@ -232,11 +247,13 @@ function viewer(canvas, opts) {
       const dir = new THREE.Vector3(...from).normalize();
       return { pos: new THREE.Vector3(...look).addScaledVector(dir, d), look: new THREE.Vector3(...look) };
     },
-    pick(ev) {
+    // the first thing under the pointer that is an item or a door; itemsFirst looks past doors and drawer fronts
+    pick(ev, itemsFirst) {
       const r = canvas.getBoundingClientRect();
       const p = new THREE.Vector2(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
-      const ray = new THREE.Raycaster(); ray.setFromCamera(p, camera);
-      const hit = ray.intersectObjects(scene.children, true).find(h => h.object.userData.owner || h.object.userData.door);
+      const ray = new THREE.Raycaster(); ray.params.Line.threshold = .4; ray.setFromCamera(p, camera);
+      const hits = ray.intersectObjects(scene.children, true).filter(h => h.object.userData.owner || h.object.userData.door);
+      const hit = (itemsFirst && hits.find(h => h.object.userData.owner)) || hits[0];
       return hit ? (hit.object.userData.owner || hit.object) : null;
     },
     project(obj) {
@@ -248,6 +265,7 @@ function viewer(canvas, opts) {
   return v;
 }
 
+
 function onTap(el, fn) {
   let d = null;
   el.addEventListener("pointerdown", e => { d = { x: e.clientX, y: e.clientY, t: performance.now() }; });
@@ -258,44 +276,81 @@ function onTap(el, fn) {
 }
 
 function tagHTML(it) {
+  if (it.ghost) {
+    const note = window.ghostNote ? window.ghostNote(it) : `Usually here (${it.usual}).`;
+    const on = window.Restock && window.Restock.has(it.name);
+    return `<b>${esc(it.name)}</b><span>Out right now.</span><span>${esc(note.replace(/^You usually have [^:]+: /, "Usually here: "))}</span>` +
+      (window.Restock ? `<button class="tagbtn" data-need="${esc(it.name)}">${on ? "On your list" : "Add to list"}</button>` : "");
+  }
   const how = it.source === "photo" ? "Seen in a photo" : it.source === "receipt" ? "Bought" : "Noted";
   const lines = [];
-  if (it.ghost) lines.push(`Out right now. Usually here (${esc(it.usual)}).`);
-  else if (it.status === "low") lines.push("Probably running low.");
+  if (it.status === "low") lines.push("Probably running low.");
   if (it.last) lines.push(`Bought ${day(it.last)}${it.cost != null ? ` · $${Number(it.cost).toFixed(2)}` : ""}`);
   else lines.push(`${how} ${day(it.since)}`);
-  if (!it.ghost && !/^0 /.test(it.usual || "")) lines.push(`On ${esc(it.usual)}`);
+  if (!/^0 /.test(it.usual || "")) lines.push(`On ${esc(it.usual)}`);
   return `<b>${esc(it.name)}</b>${lines.map(l => `<span>${l}</span>`).join("")}`;
 }
-function tagText(it) { return tagHTML(it).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); }
+function tagText(it) { return tagHTML(it).replace(/<button.*<\/button>/, "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(); }
+// show an item's tag above it; a ghost's tag carries an "Add to list" button
+function showTag(tag, it, p, box, read) {
+  tag.innerHTML = tagHTML(it); tag.hidden = false; tag.classList.toggle("ghost", !!it.ghost);
+  tag.style.left = Math.max(80, Math.min(box.clientWidth - 80, p.x)) + "px"; tag.style.top = Math.max(70, p.y) + "px";
+  const b = tag.querySelector(".tagbtn");
+  if (b) b.onclick = e => { e.stopPropagation(); const on = window.Restock.toggle(it.name); b.textContent = on ? "On your list" : "Add to list"; };
+  if (read) read.textContent = tagText(it);
+}
+
+// ---------- stainless ----------
+let brushed = null;
+function brushedTexture() {
+  if (brushed || typeof document === "undefined" || !document.createElement("canvas").getContext("2d")?.createLinearGradient) return brushed;
+  const cv = document.createElement("canvas"); cv.width = 512; cv.height = 512;
+  const g = cv.getContext("2d");
+  const grad = g.createLinearGradient(0, 0, 512, 0);
+  grad.addColorStop(0, "#c2c8cc"); grad.addColorStop(.5, "#d6dbde"); grad.addColorStop(1, "#c4cacd");
+  g.fillStyle = grad; g.fillRect(0, 0, 512, 512);
+  for (let i = 0; i < 1400; i++) {
+    const x = (hash("x" + i) % 5120) / 10, a = .03 + (hash("a" + i) % 60) / 1000;
+    g.fillStyle = i % 2 ? `rgba(255,255,255,${a})` : `rgba(60,66,70,${a})`;
+    g.fillRect(x, 0, .6 + (i % 3) * .4, 512);
+  }
+  brushed = new THREE.CanvasTexture(cv); brushed.colorSpace = THREE.SRGBColorSpace; brushed.anisotropy = 8;
+  return brushed;
+}
+function steelMat(env, { rough = .34, color = "#ffffff" } = {}) {
+  const map = brushedTexture();
+  return new THREE.MeshStandardMaterial({ color: map ? color : "#c3c9cd", map, metalness: env ? .82 : .2, roughness: rough, envMap: env, envMapIntensity: 1.05 });
+}
 
 // ---------- scenes ----------
-// Colin's fridge: LG French doors over a freezer drawer. Inside, three glass shelves, two crispers and a
-// full-width drawer; three bins in each door. His pantry is a closet with five shelves.
-const C = { enamel: "#b9d9c8", enamel2: "#a5ccb8", liner: "#eef3f5", liner2: "#e2eaee", glass: "#cfe7ee", trim: "#d7e0e5", bin: "#d6ecf2" };
-const FR = { W: 32, D: 24, H: 52, FH: 16, shelves: [40, 28.5, 17], doorW: 17.5, bins: [[40, 5], [22, 5], [2.5, 6]] };
+// Colin's fridge: a stainless LG with French doors over a freezer drawer. Inside, three glass shelves, two crispers
+// and a full-width deli drawer; three bins in each door. The crispers, the deli drawer and the freezer all pull out.
+// His pantry is a closet with five shelves.
+const C = { liner: "#eef3f5", liner2: "#e2eaee", glass: "#cfe7ee", trim: "#d7e0e5", bin: "#d6ecf2", gasket: "#2a2e31", clear: "#eef6f9" };
+const FR = { W: 32, D: 24, H: 52, FH: 16, shelves: [40, 28.5, 17], doorW: 17.5, bins: [[40, 5], [22, 5], [2.5, 6]], doorZ: 3.0, freezerZ: 2.4 };
 
-function fridgeScene(v) {
+function fridgeScene(v, env = null) {
   const s = v.scene, { W, D, H, FH } = FR;
   const add = (geo, mat, x, y, z, parent = s) => { const m = mesh(geo, mat); m.position.set(x, y, z); parent.add(m); return m; };
-  const liner = flat(C.liner), liner2 = flat(C.liner2), enamel = flat(C.enamel), trim = flat(C.trim);
+  const liner = flat(C.liner), liner2 = flat(C.liner2), trim = flat(C.trim), gasket = flat(C.gasket);
+  const steel = steelMat(env), sideSteel = steelMat(env, { rough: .42 }), bar = steelMat(env, { rough: .18, color: "#eef1f3" });
   const z = (rows, x0, x1, y, maxH, parent) => ({ rows, x0, x1, y, maxH, scene: s, parent });
   const zones = {};
 
-  // cabinet: liner walls inside an enamel frame
+  // cabinet: liner walls inside a stainless shell
   add(BOX(W, H, .5), liner2, W / 2, 0, -D);
   add(BOX(.5, H, D), liner, .25, 0, -D / 2); add(BOX(.5, H, D), liner, W - .25, 0, -D / 2);
   add(BOX(W, .5, D), liner, W / 2, -.5, -D / 2); add(BOX(W, .5, D), liner, W / 2, H, -D / 2);
-  add(BOX(1.5, H + FH + 6, D), enamel, -.75, -FH - 3, -D / 2 + .2); add(BOX(1.5, H + FH + 6, D), enamel, W + .75, -FH - 3, -D / 2 + .2);
-  add(BOX(W + 3, 2.5, D), enamel, W / 2, H + .5, -D / 2 + .2);
-  add(BOX(W + 3, 2.5, D), enamel, W / 2, -3, -D / 2 + .2);
+  add(BOX(1.5, H + FH + 6, D), sideSteel, -.75, -FH - 3, -D / 2 + .2); add(BOX(1.5, H + FH + 6, D), sideSteel, W + .75, -FH - 3, -D / 2 + .2);
+  add(BOX(W + 3, 2.5, D), sideSteel, W / 2, H + .5, -D / 2 + .2);
+  add(BOX(W + 3, 2.5, D), gasket, W / 2, -3, -D / 2 + .2);
   add(BOX(W, FH, .5), liner2, W / 2, -FH - 3, -D);                        // freezer cavity, seen behind the drawer
-  add(BOX(W + 3, 2, D), enamel, W / 2, -FH - 5, -D / 2 + .2);
-  add(BOX(W + 40, .4, D + 50), flat("#d8ccb6"), W / 2, -FH - 5.4, 5).castShadow = false;   // kitchen floor
+  add(BOX(W + 3, 2.2, D - 1), gasket, W / 2, -FH - 5.2, -D / 2 - .3);     // kick plate
+  add(BOX(W + 60, .4, D + 60), flat("#d8ccb6"), W / 2, -FH - 5.6, 6).castShadow = false;   // kitchen floor
   const strip = add(BOX(W * .55, .5, 1.2), new THREE.MeshBasicMaterial({ color: 0xfffbea }), W / 2, H - .5, -D * .55);
   strip.castShadow = false;
 
-  // glass shelves (top, middle, bottom) and the zones on them
+  // glass shelves and the zones on them
   const glass = flat(C.glass, { opacity: .7 });
   FR.shelves.forEach((y, i) => {
     add(BOX(W - 1, .35, D - 1), glass, W / 2, y, -D / 2).receiveShadow = true;
@@ -303,18 +358,27 @@ function fridgeScene(v) {
     const top = i ? FR.shelves[i - 1] : H;
     zones[`shelf-${i + 1}`] = [z([-15, -6], 1, W - 1, y + .35, top - y - 1.2)];
   });
-  // two crispers under the bottom shelf, a full-width drawer under those
-  const clear = flat("#eef6f9", { opacity: .3 });
+
+  // drawers: two crispers on a shelf, a full-width deli drawer under them. Each is a group that slides out on z.
+  const clear = flat(C.clear, { opacity: .32 }), binWall = flat("#e3eef2", { opacity: .55 });
   add(BOX(W - 1, .5, D - 1), liner, W / 2, 7, -D / 2);
-  for (const [x0, x1, side] of [[.8, W / 2 - .4, "left"], [W / 2 + .4, W - .8, "right"]]) {
-    add(BOX(x1 - x0, 6.5, .35), clear, (x0 + x1) / 2, 7.5, -1.4);
-    add(BOX(x1 - x0, .5, .5), trim, (x0 + x1) / 2, 13.6, -1.4);
-    zones[`crisper-${side}`] = [z([-14, -6], x0 + .5, x1 - .5, 7.5, 9)];
-  }
-  add(BOX(.5, 9.5, D - 2), clear, W / 2, 7.5, -D / 2 - .5);
-  add(BOX(W - 1.6, 4.6, .35), clear, W / 2, 0, -1.2);
-  add(BOX(W - 1.6, .5, .5), trim, W / 2, 4.3, -1.2);
-  zones.drawer = [z([-13, -5.5], 1, W - 1, 0, 6.2)];
+  add(BOX(.5, 9.5, D - 2), liner, W / 2, 7.5, -D / 2 - .5);
+  const drawers = {};
+  const mkDrawer = (key, x0, x1, y, h, depth, rows) => {
+    const g = new THREE.Group(); s.add(g); drawers[key] = g;
+    const w = x1 - x0, cx = (x0 + x1) / 2, back = -1.4 - depth;
+    add(BOX(w, .3, depth), flat("#e9f2f5"), cx, y - .3, -1.4 - depth / 2, g);
+    add(BOX(.3, h - .5, depth), binWall, x0 + .15, y, -1.4 - depth / 2, g); add(BOX(.3, h - .5, depth), binWall, x1 - .15, y, -1.4 - depth / 2, g);
+    add(BOX(w, h - .5, .3), binWall, cx, y, back, g);
+    const front = add(BOX(w, h, .4), clear, cx, y, -1.4, g); front.userData.door = key;
+    const lip = add(BOX(w, .7, .7), trim, cx, y + h - .5, -1.2, g); lip.userData.door = key;
+    zones[key] = [z(rows, x0 + .6, x1 - .6, y, h + 2, g)];
+  };
+  mkDrawer("crisper-left", .8, W / 2 - .5, 7.5, 6.5, 20, [-15, -7.5]);
+  mkDrawer("crisper-right", W / 2 + .5, W - .8, 7.5, 6.5, 20, [-15, -7.5]);
+  mkDrawer("drawer", .8, W - .8, 0, 4.8, 20, [-15, -7]);
+  zones["crisper-left"][0].maxH = zones["crisper-right"][0].maxH = 9;
+  zones.drawer[0].maxH = 6.2;
 
   const lamp = new THREE.PointLight(0xfff3d6, 300, 80, 1.5); lamp.position.set(W / 2, H - 3, -6); s.add(lamp);
   const low = new THREE.PointLight(0xfff3d6, 70, 40, 1.6); low.position.set(W / 2, 13, -3); s.add(low);
@@ -326,15 +390,21 @@ function fridgeScene(v) {
     const pivot = new THREE.Group(); pivot.position.set(side === "left" ? -1.5 : W + 1.5, 0, .6); s.add(pivot);
     pivot.userData.sign = sgn;
     const mid = sgn * dw / 2;
-    const panel = add(BOX(dw - .15, H + 3.5, 2.4), enamel, mid, -1.5, 1.2, pivot); panel.userData.door = "fridge";
-    add(BOX(dw - 3, H - 1, .5), liner, mid, 0, -.25, pivot);
-    add(BOX(1, H * .4, 1.2), flat("#e8eef0"), sgn * (dw - 2), H * .35, 2.8, pivot);
+    const panel = add(BOX(dw - .15, H + 3.5, 2.4), steel, mid, -1.5, 1.2, pivot); panel.userData.door = "fridge";
+    add(BOX(dw - .6, H + 3, .4), gasket, mid, -1.25, -.05, pivot);
+    add(BOX(dw - 3, H - 1, .5), liner, mid, 0, -.45, pivot);
+    if (side === "left") add(BOX(.6, H + 3, 2.2), gasket, dw - .2, -1.25, 1.1, pivot);   // the flip seal between the doors rides on the left door
+    // a tall tubular handle on the inner edge, on two standoffs
+    const hx = sgn * (dw - 1.7), hy = 13, hl = 30;
+    const tube = new THREE.CylinderGeometry(.5, .5, hl, 14); tube.translate(0, hl / 2, 0);
+    add(tube, bar, hx, hy, 4.1, pivot).userData.door = "fridge";
+    for (const y of [hy + 2, hy + hl - 2]) add(BOX(.7, .9, 1.4), bar, hx, y, 3.2, pivot).userData.door = "fridge";
     FR.bins.forEach(([by, bh], i) => {
-      add(BOX(dw - 3, .45, 4.6), flat(C.bin), mid, by, -2.7, pivot);
-      add(BOX(dw - 3, bh, .3), flat(C.bin, { opacity: .5 }), mid, by, -5, pivot);
-      add(BOX(dw - 3, .5, .5), flat("#bcdde6"), mid, by + bh - .4, -5, pivot);
+      add(BOX(dw - 3, .45, 4.6), flat(C.bin), mid, by, -2.9, pivot);
+      add(BOX(dw - 3, bh, .3), flat(C.bin, { opacity: .5 }), mid, by, -5.2, pivot);
+      add(BOX(dw - 3, .5, .5), flat("#bcdde6"), mid, by + bh - .4, -5.2, pivot);
       // contents face out of the door (-z in door space): a holder turned half a turn, so its +x runs the other way
-      const holder = new THREE.Group(); holder.rotation.y = Math.PI; holder.position.set(0, 0, -2.7); pivot.add(holder);
+      const holder = new THREE.Group(); holder.rotation.y = Math.PI; holder.position.set(0, 0, -2.9); pivot.add(holder);
       const [a, b] = side === "left" ? [-(dw - 2), -1.8] : [1.8, dw - 2];
       zones[`door-${side}-${i + 1}`] = [{ rows: [0], x0: a, x1: b, y: by + .45, maxH: i ? 13 : 11, parent: holder }];
     });
@@ -342,11 +412,13 @@ function fridgeScene(v) {
   };
   mkDoor("left"); mkDoor("right");
 
-  // freezer drawer: slides out on its own, with the camera looking down into it
-  const drawer = new THREE.Group(); s.add(drawer);
+  // freezer drawer: slides a long way out, with the camera looking down into it
+  const drawer = new THREE.Group(); s.add(drawer); drawers.freezer = drawer;
   const fy = -FH - 2.5;
-  add(BOX(W + 3, FH, 2.4), enamel, W / 2, fy, 1.2, drawer).userData.door = "freezer";
-  add(BOX(W * .6, 1, 1.2), flat("#e8eef0"), W / 2, fy + FH - 3, 2.9, drawer);
+  add(BOX(W + 3, FH, 2.4), steel, W / 2, fy, 1.2, drawer).userData.door = "freezer";
+  const fbar = new THREE.CylinderGeometry(.5, .5, W * .72, 14); fbar.rotateZ(Math.PI / 2);
+  add(fbar, bar, W / 2, fy + FH - 2.4, 3.6, drawer).userData.door = "freezer";
+  for (const x of [W * .16, W * .84]) add(BOX(.9, .7, 1.4), bar, x, fy + FH - 2.75, 2.8, drawer).userData.door = "freezer";
   const fbin = flat("#d5e6ef");
   add(BOX(W - 1, .4, 20), fbin, W / 2, fy + 1, -10, drawer);
   add(BOX(.4, 11, 20), fbin, 1, fy + 1, -10, drawer); add(BOX(.4, 11, 20), fbin, W - 1, fy + 1, -10, drawer);
@@ -357,7 +429,7 @@ function fridgeScene(v) {
   zones.shelf = [zones["shelf-2"][0], zones["shelf-3"][0], zones["shelf-1"][0]];
   zones.crisper = [zones["crisper-left"][0], zones["crisper-right"][0]];
   zones.door = ["right-2", "left-3", "right-3", "right-1", "left-1", "left-2"].map(k => zones["door-" + k][0]);
-  return { doors, drawer, zones };
+  return { doors, drawer, drawers, zones };
 }
 
 function pantryScene(v) {
@@ -388,6 +460,41 @@ function counterScene(v) {
   return { zones: { counter: [{ rows: [-8, -3.5], x0: 1, x1: W - 1, y: 0, maxH: 12, scene: s }] } };
 }
 
+// load one location's items and pack them into their spots
+async function fill(D, MAP, base, loc, zones) {
+  const items = D.shelves[loc] || [];
+  const groups = await Promise.all(items.map(async it => {
+    const s = resolve(MAP, it, loc);
+    const g = await makeItem(MAP, it, s, base);
+    g.userData.spot = [it.spot, s.spot, loc].find(k => k && zones[k]) || Object.keys(zones)[0];
+    g.userData.h = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3()).y;
+    return g;
+  }));
+  const bySpot = {};
+  groups.forEach(g => (bySpot[g.userData.spot] ||= []).push(g));
+  let spill = [];
+  for (const [spot, gs] of Object.entries(bySpot)) spill = spill.concat(pack(gs, zones[spot] || []));
+  if (spill.length) spill = pack(spill, zones.shelf || zones[loc] || []);
+  if (spill.length && typeof console !== "undefined") console.info("fridge3d: no room for", spill.map(g => g.userData.item.name));
+  return { groups, spill };
+}
+
+// Camera, door swing and drawer slides for each state of the fridge. k: doors (0 shut, 1 open); the rest are inches pulled out.
+const PULL = { "crisper-left": 13, "crisper-right": 13, drawer: 14, freezer: 20 };
+function fridgePose(fv, st) {
+  const { W, H, FH } = FR, down = [0, 1.25, .9];
+  const t = { k: 0, "crisper-left": 0, "crisper-right": 0, drawer: 0, freezer: 0 };
+  let p;
+  if (st === "closed") p = fv.fit([-2.5, W + 2.5, -FH - 6.5, H + 3], [W / 2, (H + 3 - FH - 6.5) / 2, 0]);
+  else if (st === "fridge") { t.k = 1; p = fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1]); }
+  else if (st === "crisper-left" || st === "crisper-right") {
+    t.k = 1; t[st] = PULL[st];
+    p = fv.fit([0, 19, -9, 9], [st === "crisper-left" ? W / 4 : W * .75, 9, 1.5], down);
+  } else if (st === "drawer") { t.k = 1; t.drawer = PULL.drawer; p = fv.fit([-1, W + 1, -10, 10], [W / 2, 1.5, 1], down); }
+  else if (st === "freezer") { t.freezer = PULL.freezer; p = fv.fit([-3, W + 3, -10, 10], [W / 2, -14, 12], [0, 1.3, .8]); }
+  return Object.assign(t, p);
+}
+
 // ---------- page wiring ----------
 export async function start(D, MAP, base = "./") {
   const probe = document.createElement("canvas");
@@ -399,143 +506,124 @@ export async function start(D, MAP, base = "./") {
     .has3d .shelf, .has3d .empty { display: none !important; }
     .stage3d { position: relative; width: 100%; touch-action: manipulation; }
     .stage3d canvas { display: block; width: 100%; height: 100%; }
-    .fridge3d { aspect-ratio: 3 / 4; }
+    .fridge3d { aspect-ratio: 3 / 5; max-height: 88svh; }
     .has3d .cab-inside { aspect-ratio: 3 / 5; min-height: 0; padding: 0; }
-    .ov3d { position: absolute; transition: opacity .25s; }
-    .ov3d.off { opacity: 0; pointer-events: none; }
-    .ov3d .magnets { inset: 6% 16% 6% 5%; }
+    .mag3d { position: absolute; inset: 0; pointer-events: none; transition: opacity .25s; }
+    .mag3d.off { opacity: 0; }
+    .mag3d.off .mag { pointer-events: none; }
+    .mag3d .magnets { position: absolute; inset: 0; display: block; }
     .tag3d { position: absolute; z-index: 3; translate: -50% calc(-100% - 10px); background: var(--paper); color: var(--ink);
       font: 12px/1.35 var(--font-mono); padding: 7px 10px; border-radius: 8px; box-shadow: 0 8px 18px -8px rgba(0,0,0,.5);
-      display: grid; gap: 1px; max-width: 220px; pointer-events: none; }
+      display: grid; gap: 1px; max-width: 230px; pointer-events: none; }
+    .tag3d.ghost { pointer-events: auto; }
     .tag3d b { font: 700 14px var(--font-display); }
+    .tag3d .tagbtn { justify-self: start; margin-top: 6px; border: 0; border-radius: 999px; background: var(--ink); color: var(--paper); font: 600 12px var(--font-display); padding: 4px 11px; cursor: pointer; }
     .tag3d::after { content: ""; position: absolute; left: 50%; bottom: -6px; translate: -50% 0; border: 6px solid transparent; border-bottom: 0; border-top-color: var(--paper); }
     .close3d { position: absolute; top: 8px; right: 8px; z-index: 4; border: 0; background: rgba(0,0,0,.55); color: #fff; border-radius: 999px;
       font: 600 11px var(--font-mono); padding: 5px 11px; cursor: pointer; }
     .close3d[hidden] { display: none; }
     .cab-inside .stage3d { position: absolute; inset: 0; border-radius: 4px; overflow: hidden; }
-    .counter .stage3d { aspect-ratio: 3 / 1; border-radius: 8px; overflow: hidden; }
-    .pantry-tagbox { position: absolute; inset: 0; pointer-events: none; z-index: 3; }`;
+    .counter .stage3d { aspect-ratio: 3 / 1; border-radius: 8px; overflow: hidden; }`;
   document.head.appendChild(css);
-
   const views = [];
-  const loadAll = async (loc, V, zones) => {
-    const items = D.shelves[loc] || [];
-    const groups = await Promise.all(items.map(async it => {
-      const s = resolve(MAP, it, loc);
-      const g = await makeItem(MAP, it, s, base);
-      g.userData.spot = [it.spot, s.spot, loc].find(k => k && zones[k]) || Object.keys(zones)[0]; g.userData.h = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3()).y;
-      return g;
-    }));
-    const bySpot = {};
-    groups.forEach(g => (bySpot[g.userData.spot] ||= []).push(g));
-    let spill = [];
-    for (const [spot, gs] of Object.entries(bySpot)) spill = spill.concat(pack(gs, zones[spot] || []));
-    if (spill.length) spill = pack(spill, zones.shelf || zones[loc] || []);
-    if (spill.length) console.info("fridge3d: no room for", spill.map(g => g.userData.item.name));
-  };
 
   // --- fridge ---
   const sec = document.querySelector('section[aria-label="Fridge"]');
   const fstage = document.createElement("div"); fstage.className = "stage3d fridge3d";
-  fstage.innerHTML = `<canvas aria-label="Your fridge. Tap the door to open it, then tap anything inside."></canvas>
-    <div class="ov3d ov-freezer"></div><div class="ov3d ov-main"></div>
-    <button class="close3d" hidden>close</button><div class="tag3d" hidden></div>`;
+  fstage.innerHTML = `<canvas aria-label="Your fridge. Tap a door to open it, then tap anything inside. The crispers, deli drawer and freezer pull out."></canvas>
+    <div class="mag3d"></div><button class="close3d" hidden>close</button><div class="tag3d" hidden></div>`;
   const fread = document.createElement("p"); fread.className = "readout"; fread.setAttribute("aria-live", "polite");
   const fv = viewer(fstage.querySelector("canvas"), { alpha: true, fov: 34, sun: [-25, 90, 80], sunTarget: [15, 25, -12] });
-  const { doors, drawer, zones } = fridgeScene(fv);
-  const { W, H, FH } = FR;
-  await loadAll("fridge", fv, zones);
-  await loadAll("freezer", fv, { freezer: zones.freezer });
-  // all loaded: swap the CSS fridge for the 3D one
-  const mags = document.getElementById("magnets"), letters = document.getElementById("letters");
+  const pm = new THREE.PMREMGenerator(fv.renderer);
+  const env = pm.fromScene(new RoomEnvironment(), .04).texture; pm.dispose();
+  const { doors, drawers, zones } = fridgeScene(fv, env);
+  const { W } = FR;
+  await fill(D, MAP, base, "fridge", zones);
+  await fill(D, MAP, base, "freezer", { freezer: zones.freezer });
+  // all loaded: swap the CSS fridge for the 3D one, and move the magnets onto its doors
+  const mags = document.getElementById("magnets"), layer = fstage.querySelector(".mag3d");
   sec.replaceChildren(fstage, fread);
-  fstage.querySelector(".ov-main").append(mags);
-  fstage.querySelector(".ov-freezer").append(letters);
-  mags.classList.add("magnets");
+  layer.append(mags);
   document.body.classList.add("has3d");
 
-  // three states: closed, fridge open (doors swing), freezer open (drawer slides out, camera looks down)
   let state = "closed", anim = null, cur = null;
   const tag = fstage.querySelector(".tag3d"), closeBtn = fstage.querySelector(".close3d");
   const rad = THREE.MathUtils.degToRad(108);
-  const target = st => {
-    fv.size();
-    const p = st === "fridge" ? fv.fit([-13, W + 13, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2 + 2, -4], [0, .14, 1])
-      : st === "freezer" ? fv.fit([-3, W + 3, -10, 10], [W / 2, -13, 11], [0, 1.3, .8])
-      : fv.fit([-4, W + 4, -FH - 7, H + 4], [W / 2, (H - FH - 3) / 2, 0]);
-    return { pos: p.pos, look: p.look, k: st === "fridge" ? 1 : 0, dz: st === "freezer" ? 17 : 0 };
-  };
+  const target = st => { fv.size(); return fridgePose(fv, st); };
   const apply = t => {
     doors.forEach(d => d.rotation.y = -d.userData.sign * t.k * rad);
-    drawer.position.z = t.dz;
+    for (const [k, g] of Object.entries(drawers)) g.position.z = t[k] || 0;
     fv.camera.position.copy(t.pos); fv.camera.lookAt(t.look);
     fv.render(); cur = t;
   };
-  const placeOverlays = () => {
-    // project the closed door faces onto the canvas to pin the magnets
-    const P = (x, y) => { const p = new THREE.Vector3(x, y, 3.2).project(fv.camera); return [(p.x + 1) / 2 * fstage.clientWidth, (1 - p.y) / 2 * fstage.clientHeight]; };
-    const set = (el, x0, y0, x1, y1) => { const [a, b] = P(x0, y1), [c, d] = P(x1, y0); Object.assign(el.style, { left: a + "px", top: b + "px", width: (c - a) + "px", height: (d - b) + "px" }); };
-    set(fstage.querySelector(".ov-main"), -1.5, -1.5, W + 1.5, H + 2);
-    set(fstage.querySelector(".ov-freezer"), -1.5, -FH - 2.5, W + 1.5, -2.5);
+  // pin each magnet to its spot on the shut doors (see MAGS in the page): x across from the left door's
+  // outer edge, y up from the fridge floor, both in inches; --in carries the scale so magnets keep real size
+  const placeMagnets = () => {
+    const M = window.MAGS || {}, w = fstage.clientWidth, h = fstage.clientHeight;
+    const P = (x, y, z) => { const p = new THREE.Vector3(x, y, z).project(fv.camera); return [(p.x + 1) / 2 * w, (1 - p.y) / 2 * h]; };
+    const a = P(0, 20, FR.doorZ), b = P(10, 20, FR.doorZ);
+    mags.style.setProperty("--in", ((b[0] - a[0]) / 10).toFixed(2) + "px");
+    mags.querySelectorAll(".mag").forEach(el => {
+      const m = M[el.dataset.m]; if (!m) return;
+      const [x, y] = P(-1.5 + m.x, m.y, m.y < 0 ? FR.freezerZ + .02 : FR.doorZ + .02);
+      el.style.left = x + "px"; el.style.top = y + "px";
+    });
   };
-  const say = { closed: "", fridge: "Tap anything. See-through ones are usually here but aren't now. Tap the freezer drawer to pull it out.",
-    freezer: "Tap anything in the freezer. Tap the drawer front to push it back in." };
+  document.addEventListener("magnets", () => { if (state === "closed" && !anim) placeMagnets(); });
+  const say = { closed: "", fridge: "Tap anything. Dashed outlines are things you usually have but are out of. Tap a crisper, the deli drawer or the freezer to pull it out.",
+    "crisper-left": "Left crisper, pulled out. Tap its front to push it in.", "crisper-right": "Right crisper, pulled out. Tap its front to push it in.",
+    drawer: "Deli drawer, pulled out. Tap its front to push it in.", freezer: "Freezer, pulled out. Tap the front to push it in." };
   const go = to => {
     if (anim) cancelAnimationFrame(anim);
-    tag.hidden = true;
+    tag.hidden = true; if (window.closeMag) window.closeMag();
     const from = cur || target(state), end = target(to), t0 = performance.now();
     const dur = matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 900;
-    state = to;
-    fstage.querySelectorAll(".ov3d").forEach(o => o.classList.add("off"));
+    state = to; closeBtn.hidden = true;
+    layer.classList.add("off");
     const stepf = now => {
-      const u = ease(Math.min(1, (now - t0) / dur));
-      apply({ pos: from.pos.clone().lerp(end.pos, u), look: from.look.clone().lerp(end.look, u), k: from.k + (end.k - from.k) * u, dz: from.dz + (end.dz - from.dz) * u });
+      const u = ease(Math.min(1, (now - t0) / dur)), t = { pos: from.pos.clone().lerp(end.pos, u), look: from.look.clone().lerp(end.look, u) };
+      for (const k of ["k", "crisper-left", "crisper-right", "drawer", "freezer"]) t[k] = from[k] + (end[k] - from[k]) * u;
+      apply(t);
       if (now - t0 < dur) anim = requestAnimationFrame(stepf);
-      else { anim = null; closeBtn.hidden = to === "closed"; if (to === "closed") { placeOverlays(); fstage.querySelectorAll(".ov3d").forEach(o => o.classList.remove("off")); } }
+      else {
+        anim = null; closeBtn.hidden = to === "closed"; closeBtn.textContent = to === "fridge" ? "close" : "push in";
+        if (to === "closed") { placeMagnets(); layer.classList.remove("off"); }
+      }
     };
     anim = requestAnimationFrame(stepf);
     fread.textContent = say[to];
   };
+  const back = () => go(state === "fridge" || state === "freezer" ? "closed" : "fridge");
   onTap(fv.canvas, e => {
-    if (anim) return;
-    const hit = fv.pick(e);
-    const door = hit && hit.userData.door;
+    if (anim || document.querySelector(".magcard")) return;
+    const pulled = state !== "closed" && state !== "fridge";
+    const hit = fv.pick(e, pulled), door = hit && hit.userData.door;
     if (state === "closed") return go(door === "freezer" ? "freezer" : "fridge");
-    if (door === "freezer") return go(state === "freezer" ? "closed" : "freezer");
-    if (hit && hit.userData.item) {
-      const it = hit.userData.item, p = fv.project(hit);
-      tag.innerHTML = tagHTML(it); tag.hidden = false;
-      tag.style.left = Math.max(70, Math.min(fstage.clientWidth - 70, p.x)) + "px"; tag.style.top = Math.max(60, p.y) + "px";
-      fread.textContent = tagText(it);
-    } else tag.hidden = true;
+    if (hit && hit.userData.item) return showTag(tag, hit.userData.item, fv.project(hit), fstage, fread);
+    tag.hidden = true;
+    if (door === state) return back();
+    if (door && door !== "fridge") return go(door);
   });
-  fstage.querySelector(".ov-main").addEventListener("click", () => go("fridge"));
-  fstage.querySelector(".ov-freezer").addEventListener("click", () => go("freezer"));
-  closeBtn.addEventListener("click", () => go("closed"));
-  const redrawF = () => { if (anim) return; apply(target(state)); if (state === "closed") placeOverlays(); tag.hidden = true; };
+  closeBtn.addEventListener("click", back);
+  const redrawF = () => { if (anim) return; apply(target(state)); if (state === "closed") placeMagnets(); tag.hidden = true; };
   new ResizeObserver(redrawF).observe(fstage);
   views.push(fv);
 
-  // --- pantry: 3D behind the existing wooden doors ---
+  // --- pantry: 3D behind the wooden doors ---
   const cab = document.querySelector(".cab-inside");
   if (cab) {
     const ps = document.createElement("div"); ps.className = "stage3d";
     ps.innerHTML = `<canvas aria-label="Pantry shelves. Tap anything."></canvas><div class="tag3d" hidden></div>`;
     const pv = viewer(ps.querySelector("canvas"), { bg: "#cfd8dd", fov: 30, sun: [-10, 90, 80], sunTarget: [15, 30, -6] });
     const { zones: pz, W: PW, top: PT } = pantryScene(pv);
-    await loadAll("pantry", pv, pz);
+    await fill(D, MAP, base, "pantry", pz);
     cab.prepend(ps);
     const ptag = ps.querySelector(".tag3d"), pread = cab.querySelector(".readout");
     const draw = () => { if (!pv.size()) return; pv.setPose(pv.fit([-1, PW + 1, -2, PT + 2], [PW / 2, PT / 2 - 1, 0], [0, .08, 1])); pv.render(); ptag.hidden = true; };
     new ResizeObserver(draw).observe(ps);
     onTap(pv.canvas, e => {
-      const hit = pv.pick(e);
-      if (hit && hit.userData.item) {
-        const p = pv.project(hit);
-        ptag.innerHTML = tagHTML(hit.userData.item); ptag.hidden = false;
-        ptag.style.left = Math.max(70, Math.min(ps.clientWidth - 70, p.x)) + "px"; ptag.style.top = Math.max(60, p.y) + "px";
-        if (pread) pread.textContent = tagText(hit.userData.item);
-      } else ptag.hidden = true;
+      const hit = pv.pick(e, true);
+      if (hit && hit.userData.item) showTag(ptag, hit.userData.item, pv.project(hit), ps, pread); else ptag.hidden = true;
     });
     views.push(pv);
   }
@@ -547,19 +635,14 @@ export async function start(D, MAP, base = "./") {
     cs.innerHTML = `<canvas aria-label="Counter. Tap anything."></canvas><div class="tag3d" hidden></div>`;
     const cv = viewer(cs.querySelector("canvas"), { alpha: true, fov: 30, sun: [-10, 60, 50], sunTarget: [22, 0, -6] });
     const { zones: cz } = counterScene(cv);
-    await loadAll("counter", cv, cz);
+    await fill(D, MAP, base, "counter", cz);
     counter.querySelector(".label").after(cs);
     const ctag = cs.querySelector(".tag3d"), cread = counter.querySelector(".readout");
     const draw = () => { if (!cv.size()) return; cv.setPose(cv.fit([-1, 45, -2, 12], [22, 4, -4], [0, .45, 1])); cv.render(); ctag.hidden = true; };
     new ResizeObserver(draw).observe(cs);
     onTap(cv.canvas, e => {
-      const hit = cv.pick(e);
-      if (hit && hit.userData.item) {
-        const p = cv.project(hit);
-        ctag.innerHTML = tagHTML(hit.userData.item); ctag.hidden = false;
-        ctag.style.left = Math.max(70, Math.min(cs.clientWidth - 70, p.x)) + "px"; ctag.style.top = Math.max(60, p.y) + "px";
-        if (cread) cread.textContent = tagText(hit.userData.item);
-      } else ctag.hidden = true;
+      const hit = cv.pick(e, true);
+      if (hit && hit.userData.item) showTag(ctag, hit.userData.item, cv.project(hit), cs, cread); else ctag.hidden = true;
     });
   }
   // models may finish loading textures after the first frame
@@ -567,5 +650,5 @@ export async function start(D, MAP, base = "./") {
   return true;
 }
 
-// for the offline preview script (tools/preview); the page doesn't use this
-export const _internals = { fridgeScene, pantryScene, counterScene, makeItem, resolve, pack, FR };
+// for the offline preview tools (sim/export.mjs); the page doesn't use this
+export const _internals = { fridgeScene, pantryScene, counterScene, makeItem, resolve, pack, fill, fridgePose, PULL, FR };
