@@ -125,14 +125,14 @@ ITEMS = [
     (r"lime", "Limes", "fridge", 21),
     (r"green onion", "Green onions", "fridge", 7),
     (r"cilantro|parsley|dill|herbs", "Fresh herbs", "fridge", 7),
-    (r"red onion", "Red onion", "counter", 30),
-    (r"onion", "Onions", "counter", 30),
-    (r"garlic", "Garlic", "counter", 30),
-    (r"banana", "Bananas", "counter", 5),
-    (r"apple(?! cider)", "Apples", "counter", 14),
-    (r"sweet potato", "Sweet potatoes", "counter", 21),
+    (r"red onion", "Red onion", "pantry", 30),
+    (r"onion", "Onions", "pantry", 30),
+    (r"garlic", "Garlic", "pantry", 30),
+    (r"banana", "Bananas", "pantry", 5),
+    (r"apple(?! cider)", "Apples", "pantry", 14),
+    (r"sweet potato", "Sweet potatoes", "pantry", 21),
     (r"crisscut", "Frozen fries", "freezer", 120),
-    (r"potato", "Potatoes", "counter", 21),
+    (r"potato", "Potatoes", "pantry", 21),
     (r"diet coke", "Diet Coke", "pantry", 30),
     (r"naan", "Naan", "pantry", 10),
     (r"salsa verde", "Salsa verde", "pantry", 120),
@@ -180,6 +180,8 @@ def place(where, default):
     """'fridge: left door, top bin' -> ('fridge', 'door-left-1'). A bare 'fridge' has no spot."""
     loc, _, w = (where or default).partition(":")
     loc, w = loc.strip().lower() or default, w.lower()
+    if loc == "counter":  # no counter on the page; counter things live with the pantry
+        loc = "pantry"
     lvl = 1 if "top" in w else 3 if "bottom" in w else 2 if "middle" in w else None
     side = "right" if "right" in w else "left"
     spot = None
@@ -345,7 +347,7 @@ def build(data, today):
                   "flowers_ytd": round(sum(s["flowers"] for s in year), 2)},
         "rewind": rewind,
         "eaten": eaten[:8],
-        "shelves": {k: shelves.get(k, []) for k in ("fridge", "freezer", "pantry", "counter")},
+        "shelves": {k: shelves.get(k, []) for k in ("fridge", "freezer", "pantry")},
         "ledger": {"days": [d.isoformat() for d in days], "rows": rows},
     }
 

@@ -1,7 +1,7 @@
 <title>The Fridge</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&family=Kalam:wght@400;700&display=swap">
 <style>
 /* A kitchen wall: a stainless French-door fridge beside a pantry, receipt tape and a meal log below,
    then the data explorer, styled as a grocery aisle. */
@@ -16,6 +16,7 @@
   --s-blue: #2a78d6; --s-yellow: #eda100; --s-magenta: #e87ba4; --s-green: #008300; --s-violet: #6250d6; --s-aqua: #1baf7a;
   --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-hand: "Kalam", "Bradley Hand", "Segoe Print", cursive;
   --shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 18px 30px -18px rgba(30,50,45,.45);
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
@@ -58,7 +59,6 @@ h1 { font-size: 30px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
 .synced { margin: 0; color: var(--muted); font: 12px var(--font-mono); }
 .kitchen { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: start; overflow-x: clip; }
 @media (max-width: 720px) { .kitchen { grid-template-columns: minmax(0, 1fr); gap: 34px; } }
-.label { font: 600 11px var(--font-mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 0 0 8px; }
 button { font: inherit; color: inherit; }
 
 /* Plain fridge (shown with ?flat, or when 3D can't run) */
@@ -68,8 +68,8 @@ button { font: inherit; color: inherit; }
 .comp + .comp { margin-top: 8px; }
 .interior { background: radial-gradient(120% 70% at 50% 0%, var(--inside-glow), var(--inside)); border-radius: inherit;
   padding: 14px 12px 12px; box-shadow: inset 0 0 0 5px #d9dfe2, inset 0 10px 24px rgba(0,0,0,.12); }
-.freezer .interior { min-height: 150px; }
-.main .interior { min-height: 560px; }
+.freezer .interior { aspect-ratio: 35 / 16; }
+.main .interior { aspect-ratio: 35 / 55; }
 .door { position: absolute; inset: 0; border-radius: inherit; border: 1px solid var(--steel-3); cursor: pointer; z-index: 2;
   background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 1px, rgba(0,0,0,.025) 1px 3px), linear-gradient(100deg, var(--steel-1), var(--steel-2) 70%, var(--steel-3));
   transform-origin: left center; transition: transform .7s cubic-bezier(.3,.7,.2,1), box-shadow .7s; box-shadow: 0 1px 0 rgba(255,255,255,.4) inset; }
@@ -82,56 +82,105 @@ button { font: inherit; color: inherit; }
 .close { position: absolute; top: 8px; right: 10px; z-index: 1; border: 0; background: rgba(0,0,0,.07); color: #22302b; border-radius: 999px;
   font: 600 11px var(--font-mono); padding: 4px 10px; cursor: pointer; }
 
-/* Magnets. Sizes are in inches (--in is pixels per inch) so they stay true to the fridge.
-   The 3D view pins each one to its spot on the doors; the plain view flows them. */
-.magnets { --in: 15px; position: absolute; inset: 22px 46px 22px 18px; display: flex; flex-wrap: wrap; gap: 14px; align-content: flex-start; align-items: flex-start; pointer-events: none; }
-.mag { position: relative; pointer-events: auto; cursor: pointer; width: calc(var(--in) * var(--w)); border: 0; padding: 0; text-align: left;
-  rotate: var(--r, 0deg); background: none; display: block; -webkit-tap-highlight-color: transparent; }
-.mag3d .mag { position: absolute; transform-origin: 0 0; }
-.mag .k { display: block; font: 600 max(7px, calc(var(--in) * .5)) / 1.15 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
-.mag .v { display: block; font: 800 max(12px, calc(var(--in) * 1.35)) / 1 var(--font-display); letter-spacing: -.02em; margin: calc(var(--in) * .12) 0; font-variant-numeric: tabular-nums; }
-.mag .s { display: block; font: 500 max(7px, calc(var(--in) * .48)) / 1.2 var(--font-mono); opacity: .85; }
-.tile { background: var(--c) linear-gradient(155deg, rgba(255,255,255,.28), rgba(255,255,255,0) 42%, rgba(0,0,0,.08));
-  color: var(--fg, #fff); padding: calc(var(--in) * .42) calc(var(--in) * .45) calc(var(--in) * .4); border-radius: calc(var(--in) * .32);
-  box-shadow: 0 calc(var(--in) * .18) calc(var(--in) * .35) rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -2px 0 rgba(0,0,0,.14); }
-.round { aspect-ratio: 1; border-radius: 50%; background: #f4f0e6 radial-gradient(circle at 32% 26%, rgba(255,255,255,.9), transparent 40%); color: #1d2521;
-  display: grid; place-content: center; text-align: center; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .4) rgba(0,0,0,.3), inset 0 -2px 0 rgba(0,0,0,.1); }
-.round .v { margin: 0; }
-.round .dots { display: flex; gap: max(1.5px, calc(var(--in) * .12)); justify-content: center; margin-top: calc(var(--in) * .2); }
-.round .dots i { width: max(3px, calc(var(--in) * .28)); aspect-ratio: 1; border-radius: 50%; background: #cfc8b8; }
-.round .dots i.on { background: #1d2521; }
-.pad { background: #fdfdfb; color: #1d2521; padding: 0 0 calc(var(--in) * .5); border-radius: 2px;
-  box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
-.pad .k { background: #2a78d6; color: #fff; padding: calc(var(--in) * .35) calc(var(--in) * .5); }
-.pad ul { list-style: none; margin: 0; padding: calc(var(--in) * .3) calc(var(--in) * .5) 0; display: grid; gap: calc(var(--in) * .18);
-  font: 600 max(8.5px, calc(var(--in) * .62)) / 1.2 var(--font-display); }
-.pad li { border-bottom: 1px solid #dbe6ef; padding-bottom: calc(var(--in) * .14); }
-.pad li small { display: block; font: 500 max(6.5px, calc(var(--in) * .4)) var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: #75857f; }
-.pad li.maybe { color: #75857f; }
-.card { background: #fffdf6; color: #1d2521; padding: calc(var(--in) * .4) calc(var(--in) * .5) calc(var(--in) * .5); border-radius: 2px;
-  border-top: max(2px, calc(var(--in) * .18)) solid #d9564a; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
-.card .k { color: #8b5a52; }
-.card .t { display: block; margin: calc(var(--in) * .15) 0; font: 700 max(9px, calc(var(--in) * .8)) / 1.1 var(--font-display); }
-.need { background: #f6e8a8; color: #2a2510; padding: calc(var(--in) * .4) calc(var(--in) * .5); border-radius: 2px; box-shadow: 0 calc(var(--in) * .2) calc(var(--in) * .45) rgba(0,0,0,.28); }
-.need ul { list-style: none; margin: calc(var(--in) * .2) 0 0; padding: 0; font: 600 max(8.5px, calc(var(--in) * .62)) / 1.3 var(--font-display); }
-.need li::before { content: ""; display: inline-block; width: .7em; height: .7em; border: 1.5px solid currentColor; border-radius: 2px; margin-right: .4em; vertical-align: -.05em; }
-.mag:hover { filter: brightness(1.04); }
+/* Magnets: paper and plastic things on the doors, sized in inches (--in is pixels per inch) so they stay true
+   to the fridge. The 3D view and the plain view both pin each one to its spot from MAGS. */
+.magnets { --in: 15px; position: absolute; inset: 0; pointer-events: none; }
+.mag { position: absolute; pointer-events: auto; cursor: pointer; width: calc(var(--in) * var(--w)); border: 0; padding: 0; margin: 0; text-align: left;
+  rotate: var(--r, 0deg); transform-origin: 0 0; background: none; display: block; color: #222; -webkit-tap-highlight-color: transparent;
+  filter: drop-shadow(0 calc(var(--in) * .07) calc(var(--in) * .1) rgba(0,0,0,.28)) drop-shadow(0 calc(var(--in) * .2) calc(var(--in) * .3) rgba(0,0,0,.12)); }
+.mag:hover { filter: drop-shadow(0 calc(var(--in) * .1) calc(var(--in) * .14) rgba(0,0,0,.3)) drop-shadow(0 calc(var(--in) * .35) calc(var(--in) * .45) rgba(0,0,0,.16)); }
+.hand { font-family: var(--font-hand); font-weight: 400; letter-spacing: 0; }
+.mag .paper { display: block; position: relative; }
+/* a round dome magnet holding paper up */
+.pin { position: absolute; z-index: 2; width: calc(var(--in) * .78); aspect-ratio: 1; border-radius: 50%; left: var(--px, 50%); top: calc(var(--in) * -.28); translate: -50% 0;
+  background: radial-gradient(circle at 34% 28%, rgba(255,255,255,.9), rgba(255,255,255,0) 34%), radial-gradient(circle at 62% 72%, rgba(0,0,0,.28), rgba(0,0,0,0) 62%), var(--pc, #c9463d);
+  box-shadow: 0 1px 2px rgba(0,0,0,.4); }
+/* notepad page: lined, a red margin, torn along the top */
+.pad .paper { background: #fffdf5; color: #23366e; padding: calc(var(--in) * .55) calc(var(--in) * .4) calc(var(--in) * .45) calc(var(--in) * 1.05);
+  -webkit-mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top/calc(var(--in) * .32) calc(var(--in) * .16) repeat-x, linear-gradient(#000 0 0) bottom/100% calc(100% - var(--in) * .16) no-repeat;
+          mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top/calc(var(--in) * .32) calc(var(--in) * .16) repeat-x, linear-gradient(#000 0 0) bottom/100% calc(100% - var(--in) * .16) no-repeat; }
+.pad .paper::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(var(--in) * .78); width: 1px; background: #eba3a3; }
+.pad .hd { display: block; font-size: max(11px, calc(var(--in) * .82)); line-height: 1.1; color: #b6362e; margin-bottom: calc(var(--in) * .1); }
+.pad ul { list-style: none; margin: 0; padding: 0; font-size: max(10px, calc(var(--in) * .66)); line-height: 1.5; }
+.pad li { border-bottom: 1px solid #c2d6e8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pad li.maybe { color: #7d8aa8; }
+.pad li.done { text-decoration: line-through; text-decoration-thickness: 1.5px; color: #7d8aa8; }
+/* index card */
+.idx .paper { background: #fffefa repeating-linear-gradient(transparent 0 calc(var(--in) * .5 - 1px), #cfe0ee calc(var(--in) * .5 - 1px) calc(var(--in) * .5)) 0 calc(var(--in) * 1.25) / 100% calc(100% - var(--in) * 1.25) no-repeat;
+  padding: calc(var(--in) * .32) calc(var(--in) * .4) calc(var(--in) * .4); color: #2a2a2a; }
+.idx .paper::before { content: ""; position: absolute; left: 0; right: 0; top: calc(var(--in) * 1.18); height: 1.5px; background: #e59a9a; }
+.idx .t { display: block; font-size: max(12px, calc(var(--in) * .95)); line-height: 1.15; height: calc(var(--in) * .9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.idx .s { display: block; margin-top: calc(var(--in) * .25); font-size: max(9.5px, calc(var(--in) * .58)); line-height: calc(var(--in) * .5); color: #444; }
+/* sticky note */
+.sticky .paper { background: linear-gradient(#efd665, #f7e27c 18%, #f9e68a); color: #2b2a1c; aspect-ratio: 1; padding: calc(var(--in) * .45) calc(var(--in) * .4); }
+.sticky .paper::after { content: ""; position: absolute; right: 0; bottom: 0; width: 38%; height: 18%; background: linear-gradient(160deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.07)); }
+.sticky .hd { display: block; font-size: max(11px, calc(var(--in) * .8)); line-height: 1; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.sticky ul { list-style: none; margin: calc(var(--in) * .2) 0 0; padding: 0; font-size: max(10px, calc(var(--in) * .62)); line-height: 1.32; }
+.sticky li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky li::before { content: ""; display: inline-block; width: .62em; height: .62em; border: 1.3px solid currentColor; border-radius: 1px; margin-right: .35em; vertical-align: -.02em; rotate: -4deg; }
+.sticky li.pencil { color: #6f6a4c; }
+.sticky li.pencil::before { border-style: dotted; }
+/* coupon, clipped along a dashed line */
+.coupon .paper { background: #fbf4d8; color: #1f4d2e; padding: calc(var(--in) * .32) calc(var(--in) * .45); outline: 1.5px dashed #6b6a5d; outline-offset: calc(var(--in) * -.14); }
+.coupon .v { display: block; font: 800 max(15px, calc(var(--in) * 1.25)) / 1 var(--font-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.coupon .s { display: block; font: 600 max(8.5px, calc(var(--in) * .45)) / 1.25 var(--font-display); margin-top: calc(var(--in) * .12); }
+/* dry-erase board */
+.wb .paper { background: linear-gradient(160deg, #ffffff, #f2f5f6); border: calc(var(--in) * .2) solid #d5dade; border-radius: calc(var(--in) * .14);
+  padding: calc(var(--in) * .25) calc(var(--in) * .35) calc(var(--in) * .3); color: #1f3d8a; box-shadow: inset 0 0 0 1px #b9c0c5; }
+.wb .s { display: block; font-size: max(9.5px, calc(var(--in) * .6)); line-height: 1.2; }
+.wb .v { display: block; font: 700 max(17px, calc(var(--in) * 1.5)) / 1.05 var(--font-hand); }
+.wb .d { display: block; font-size: max(9.5px, calc(var(--in) * .58)); color: #c23a2f; line-height: 1.2; }
+.wb .d.ok { color: #1f7a3a; }
+/* bottle cap */
+.cap .paper { aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; color: #3b2a06;
+  background: radial-gradient(circle, #f0c04a 0 55%, #d9a531 56% 60%, rgba(0,0,0,0) 61%), repeating-conic-gradient(#d6a12c 0 6deg, #a8770f 6deg 12deg); }
+.cap .v { display: block; font: 800 max(11px, calc(var(--in) * .7)) / 1 var(--font-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.cap .s { display: block; font-size: max(8.5px, calc(var(--in) * .42)); line-height: 1.1; margin-top: calc(var(--in) * .04); }
+/* masking tape with handwriting */
+.tape-strip { display: block; background: rgba(233,222,186,.92); padding: calc(var(--in) * .12) calc(var(--in) * .3); color: #2c2a24; font-size: max(10px, calc(var(--in) * .58)); line-height: 1.15; white-space: nowrap;
+  clip-path: polygon(0 8%, 4% 0, 10% 6%, 18% 0, 30% 5%, 45% 0, 60% 6%, 75% 0, 88% 5%, 100% 0, 97% 50%, 100% 100%, 85% 94%, 70% 100%, 52% 95%, 35% 100%, 20% 94%, 8% 100%, 0 92%, 3% 50%); }
+.flower svg { display: block; width: 100%; height: auto; }
+.flower .tape-strip { margin: calc(var(--in) * -.25) calc(var(--in) * -.2) 0; rotate: -3deg; text-align: center; }
+.tally .tape-strip { font-size: max(10px, calc(var(--in) * .6)); padding: calc(var(--in) * .16) calc(var(--in) * .35); }
+.tally svg { display: inline-block; height: 1em; width: auto; vertical-align: -.15em; margin-left: .3em; }
+/* receipt held by a binder clip */
+.clip .bind { position: relative; display: block; width: 55%; margin: 0 auto calc(var(--in) * -.45); height: calc(var(--in) * .8); z-index: 2; }
+.clip .bind::before { content: ""; position: absolute; inset: calc(var(--in) * .3) 0 0; background: linear-gradient(#3a7ad8, #2559a8); clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); border-radius: 2px; }
+.clip .bind::after { content: ""; position: absolute; left: 22%; right: 22%; top: 0; height: calc(var(--in) * .55); border: calc(var(--in) * .07) solid #b8bfc4; border-bottom: 0; border-radius: calc(var(--in) * .2) calc(var(--in) * .2) 0 0; }
+.clip .paper { background: #fdfdfb; color: #2b2b2b; font: max(8.5px, calc(var(--in) * .46)) / 1.35 var(--font-mono); padding: calc(var(--in) * .6) calc(var(--in) * .3) calc(var(--in) * .5);
+  -webkit-mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x;
+          mask: linear-gradient(#000 0 0) top/100% calc(100% - var(--in) * .2) no-repeat, conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/calc(var(--in) * .36) calc(var(--in) * .2) repeat-x; }
+.clip .paper b { display: block; font-weight: 600; }
+.clip .paper .tot { display: flex; justify-content: space-between; border-top: 1px dashed #888; margin-top: calc(var(--in) * .15); padding-top: calc(var(--in) * .1); font-weight: 600; }
+.clip .paper .tot span:last-child { font-size: 1.25em; }
+/* stamp card for the shopping streak */
+.punch .paper { background: #fbf6ee; color: #3a2d22; padding: calc(var(--in) * .3) calc(var(--in) * .38) calc(var(--in) * .32); border-radius: calc(var(--in) * .1); }
+.punch .hd { display: block; font-size: max(10px, calc(var(--in) * .62)); line-height: 1.1; }
+.punch .row { display: grid; grid-template-columns: repeat(8, 1fr); gap: calc(var(--in) * .1); margin-top: calc(var(--in) * .18); }
+.punch .row i { aspect-ratio: 1; border-radius: 50%; border: 1px dashed #b7a993; }
+.punch .row i.on { border: 0; background: radial-gradient(circle, rgba(0,0,0,0) 0 38%, #b53a31 40% 58%, rgba(0,0,0,0) 60%), radial-gradient(circle, #b53a31 0 22%, rgba(0,0,0,0) 24%); opacity: .85; rotate: var(--sr, 0deg); }
+.pizza svg { display: block; width: 100%; height: auto; }
+.mag .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* A magnet up close */
-.magcard { position: absolute; z-index: 6; left: 50%; bottom: 14px; translate: -50% 0; width: min(330px, calc(100% - 24px)); background: var(--card); color: var(--ink);
-  border-radius: 14px; box-shadow: 0 24px 50px -18px rgba(0,0,0,.55), 0 0 0 1px var(--line); overflow: hidden; animation: pop .22s ease-out; }
+.magcard { position: absolute; z-index: 6; left: 50%; bottom: 14px; translate: -50% 0; width: min(330px, calc(100% - 24px)); background: #fffdf7; color: #1d2521;
+  border-radius: 3px; box-shadow: 0 24px 50px -18px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.18); overflow: hidden; animation: pop .22s ease-out;
+  --card: #fffdf7; --line: #e6e1d4; --ink: #1d2521; --ink-soft: #4b5a54; --muted: #75857f; }
 @keyframes pop { from { opacity: 0; translate: -50% 12px; } }
-.magcard header { padding: 12px 14px 10px; border-top: 6px solid var(--c, var(--s-blue)); }
-.magcard .k { font: 600 11px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-.magcard .v { font: 800 34px/1.05 var(--font-display); letter-spacing: -.02em; margin-top: 2px; }
-.magcard p { margin: 4px 0 0; font-size: 14px; color: var(--ink-soft); }
+.magcard header { padding: 12px 14px 6px; }
+.magcard h3 { margin: 0; font: 400 20px/1.15 var(--font-hand); color: #23366e; padding-right: 48px; }
+.magcard .v { font: 800 32px/1.05 var(--font-display); letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.magcard p { margin: 4px 0 0; font-size: 14px; color: #4b5a54; }
 .magcard .body { padding: 0 14px 12px; }
 .magcard .body .viz { margin-top: 4px; }
 .magcard ul { margin: 8px 0 0; padding-left: 18px; font-size: 14px; }
-.magcard .row { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line); }
+.magcard ul.need { list-style: none; padding: 0; display: grid; gap: 6px; }
+.magcard ul.need li { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.magcard .row { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid #e6e1d4; }
 .btn { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 12px; font: 600 13px var(--font-display); cursor: pointer; color: var(--ink); }
 .btn.primary { background: var(--ink); color: var(--card); border-color: var(--ink); }
-.magcard .x { position: absolute; top: 10px; right: 10px; border: 0; background: none; font: 600 12px var(--font-mono); color: var(--muted); cursor: pointer; padding: 4px; }
+.btn.sm { padding: 2px 10px; font-size: 12px; }
+.magcard .x { position: absolute; top: 10px; right: 10px; border: 0; background: none; font: 600 12px var(--font-mono); color: #75857f; cursor: pointer; padding: 4px; }
 
 /* Shelves and items (plain view) */
 .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); grid-auto-rows: 66px; gap: 0 6px;
@@ -148,7 +197,6 @@ button { font: inherit; color: inherit; }
 .readout { min-height: 34px; margin: 8px 0 0; font: 12px/1.35 var(--font-mono); color: var(--ink-soft); }
 .readout .btn { margin-left: 6px; padding: 2px 9px; font-size: 12px; }
 .empty { font: 600 15px var(--font-display); color: var(--muted); padding: 10px 2px; }
-.inside-label { font: 600 10px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
 
 /* Pantry */
 .cabinet { position: relative; background: var(--wood-dark); border-radius: 8px; padding: 8px; box-shadow: var(--shadow); }
@@ -164,10 +212,6 @@ button { font: inherit; color: inherit; }
 .cab-door.r { transform-origin: right center; } .cab-door.r::after { left: 18px; }
 .cabinet.open .cab-door.l { transform: rotateY(-100deg); }
 .cabinet.open .cab-door.r { transform: rotateY(100deg); }
-.cab-sign { position: absolute; left: 50%; top: 22px; translate: -50% 0; z-index: 3; background: var(--paper); color: var(--ink); padding: 4px 10px; font: 600 12px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 4px 8px -4px rgba(0,0,0,.4); pointer-events: none; transition: opacity .3s; }
-.cabinet.open .cab-sign { opacity: 0; }
-.counter { margin-top: 14px; background: var(--paper); border-radius: 10px; padding: 12px 12px 10px; box-shadow: var(--shadow); }
-.counter .shelf { background: none; }
 
 /* Board below */
 .board { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; margin-top: 44px; }
@@ -194,22 +238,19 @@ button { font: inherit; color: inherit; }
 .aisle-sign::before, .aisle-sign::after { content: ""; position: absolute; top: -40px; width: 2px; height: 40px; background: var(--muted); opacity: .6; }
 .aisle-sign::before { left: 18%; } .aisle-sign::after { right: 18%; }
 .aisle-sign .num { flex: none; width: 50px; height: 50px; border-radius: 50%; background: #fff; color: var(--aisle); display: grid; place-items: center; font: 800 28px/1 var(--font-display); }
-.aisle-sign b { display: block; font: 800 22px/1.1 var(--font-display); letter-spacing: -.01em; }
-.aisle-sign small { display: block; font: 12px/1.35 var(--font-mono); opacity: .85; margin-top: 2px; }
+.aisle-sign h2 { margin: 0; font: 800 22px/1.1 var(--font-display); letter-spacing: -.01em; }
 .tags { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px 10px; margin: 22px 0 0; padding: 0 0 14px; position: relative; }
 .tags::after { content: ""; position: absolute; left: -6px; right: -6px; bottom: 0; height: 10px; background: var(--shelf-edge); border-radius: 2px; box-shadow: 0 6px 10px -6px rgba(0,0,0,.4); }
-.stag { position: relative; display: grid; gap: 1px; text-align: left; border: 0; cursor: pointer; background: #fffef8; color: #1c2420; padding: 8px 10px 6px 16px;
-  border-radius: 3px; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 8px 14px -10px rgba(0,0,0,.45); transition: translate .15s; }
-.stag::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--c); border-radius: 3px 0 0 3px; }
-.stag .nm { font: 600 10.5px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; color: #59665f; }
+.stag { position: relative; display: grid; gap: 2px; text-align: left; border: 0; cursor: pointer; background: #fffef8; color: #1c2420; padding: 9px 11px 8px;
+  border-radius: 2px; box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 8px 14px -10px rgba(0,0,0,.45); transition: translate .15s; }
+.stag .nm { display: flex; align-items: center; gap: 6px; font: 600 13px var(--font-display); color: #3a4740; }
+.stag .nm i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
 .stag .pr { font: 800 30px/1.05 var(--font-display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .stag .pr sup { font-size: 14px; vertical-align: 12px; margin: 0 1px; }
 .stag .un { font: 11px var(--font-mono); color: #59665f; }
-.stag svg { width: 100%; height: 12px; margin-top: 4px; opacity: .8; }
 .stag[aria-pressed="true"] { translate: 0 -4px; box-shadow: 0 0 0 2px #1c2420, 0 14px 20px -12px rgba(0,0,0,.5); }
 .panel { background: var(--card); border-radius: 10px; padding: 16px 16px 14px; box-shadow: var(--shadow); margin: 18px 0 0; min-width: 0; }
 .panel h3 { font: 800 18px var(--font-display); margin: 0; }
-.panel .sub { margin: 2px 0 0; color: var(--muted); font: 12px/1.4 var(--font-mono); }
 .panels2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 18px; align-items: start; }
 @media (max-width: 760px) { .panels2 { grid-template-columns: minmax(0, 1fr); } }
 .viz { width: 100%; height: auto; display: block; margin-top: 12px; overflow: visible; touch-action: pan-y; }
@@ -232,16 +273,17 @@ button { font: inherit; color: inherit; }
 .months { display: grid; grid-template-columns: minmax(84px, 1.1fr) minmax(0, 2fr) 56px 34px; gap: 10px; font: 10.5px var(--font-mono); color: var(--muted); margin-top: 4px; }
 .months span { display: flex; justify-content: space-around; }
 select.pick { font: 600 14px var(--font-display); color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; margin-top: 10px; max-width: 100%; }
-.readline { font: 12.5px/1.45 var(--font-mono); color: var(--ink-soft); margin: 8px 0 0; }
-.bc-wrap { overflow-x: auto; }
-.bc .lbl { font: 600 12px var(--font-display); fill: var(--ink); }
-.bc rect.b { fill: var(--ink); }
-.bc g:hover rect.b { fill: var(--s-blue); }
-.findings { list-style: none; margin: 18px 0 0; padding: 16px 18px; background: var(--paper); box-shadow: var(--shadow); font: 13px/1.5 var(--font-mono); display: grid; gap: 8px; }
+.staple { display: grid; grid-template-columns: minmax(96px, 1fr) minmax(0, 2.4fr) 64px; align-items: center; gap: 10px; padding: 5px 0; font-size: 14px; }
+.staple .track { position: relative; height: 14px; }
+.staple .track::before { content: ""; position: absolute; inset: 6px 0; background: var(--line); border-radius: 1px; }
+.staple .track i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--s-blue); border-radius: 0 4px 4px 0; }
+.staple:hover .track i { background: var(--ink); }
+.staple .n { font: 12px var(--font-mono); color: var(--ink-soft); text-align: right; font-variant-numeric: tabular-nums; }
+.findings { margin: 18px 0 0; padding: 16px 18px; background: var(--paper); box-shadow: var(--shadow); }
+.findings h3 { font: 800 18px var(--font-display); margin: 0; }
+.findings ul { list-style: none; margin: 10px 0 0; padding: 0; font: 13px/1.5 var(--font-mono); display: grid; gap: 8px; }
 .findings li { display: grid; grid-template-columns: 22px minmax(0, 1fr); }
 .findings li::before { content: "*"; color: var(--muted); }
-.findings li.h { grid-template-columns: 1fr; color: var(--muted); font-size: 11px; letter-spacing: .12em; }
-.findings li.h::before { content: none; }
 .tip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: var(--card); font: 12px/1.35 var(--font-mono); padding: 6px 9px; border-radius: 6px;
   translate: -50% calc(-100% - 12px); box-shadow: 0 8px 18px -8px rgba(0,0,0,.5); max-width: 240px; }
 .tip b { font-family: var(--font-display); }
@@ -263,7 +305,6 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
       <div class="fridge">
         <div class="comp main" id="fridgemain">
           <div class="interior" inert>
-            <p class="inside-label">Fridge</p>
             <div class="shelf" data-loc="fridge"></div>
             <p class="readout" aria-live="polite"></p>
           </div>
@@ -274,11 +315,11 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
         </div>
         <div class="comp freezer" id="freezer">
           <div class="interior" inert>
-            <p class="inside-label">Freezer</p>
             <div class="shelf" data-loc="freezer"></div>
             <p class="readout" aria-live="polite"></p>
           </div>
           <div class="door" data-for="freezer">
+            <div class="magnets" id="magnets-f"></div>
             <button class="handle" aria-label="Open the freezer" aria-expanded="false"></button>
           </div>
         </div>
@@ -288,21 +329,14 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
       <div class="cabinet" id="pantry">
         <div class="cab-inside">
           <div class="inside" inert>
-            <p class="inside-label">Pantry</p>
             <div class="shelf" data-loc="pantry"></div>
             <p class="readout" aria-live="polite"></p>
           </div>
-          <div class="cab-sign" aria-hidden="true">pantry</div>
         </div>
         <div class="cab-doors">
           <button class="cab-door l" aria-label="Open the pantry" aria-expanded="false"></button>
           <button class="cab-door r" aria-label="Open the pantry" aria-expanded="false"></button>
         </div>
-      </div>
-      <div class="counter">
-        <p class="label">On the counter</p>
-        <div class="shelf" data-loc="counter"></div>
-        <p class="readout" aria-live="polite"></p>
       </div>
     </section>
   </main>
@@ -311,29 +345,31 @@ footer { margin-top: 28px; font: 11px var(--font-mono); color: var(--muted); }
     <div class="log" id="log"></div>
   </section>
   <section class="aisles" id="aisles" aria-label="Trends">
-    <div class="aisle-sign"><span class="num" aria-hidden="true">7</span><div><b>Trends and tallies</b><small id="aisle-sub"></small></div></div>
+    <div class="aisle-sign"><span class="num" aria-hidden="true">7</span><h2>Trends and tallies</h2></div>
     <div class="tags" id="tags" role="group" aria-label="Pick a tally"></div>
     <figure class="panel" style="margin-inline: 0">
-      <h3 id="tally-title"></h3><p class="sub" id="tally-sub"></p>
+      <h3 id="tally-title"></h3>
       <div id="tally"></div>
     </figure>
     <div class="panels2">
       <figure class="panel" style="margin-inline: 0">
-        <h3>Aisle by aisle</h3><p class="sub" id="aisle-note"></p>
+        <h3>Spend by aisle, per month</h3>
         <div id="aisle-dir"></div>
       </figure>
       <figure class="panel" style="margin-inline: 0">
-        <h3>Price check</h3><p class="sub">What one item cost each time, per unit</p>
+        <h3>Price check</h3>
         <select class="pick" id="pick" aria-label="Item"></select>
         <div id="price"></div>
-        <p class="readline" id="price-line"></p>
       </figure>
     </div>
     <figure class="panel" style="margin-inline: 0">
-      <h3>The staples barcode</h3><p class="sub">Your most bought items. A bar for every trip it came home.</p>
-      <div class="bc-wrap" id="barcode"></div>
+      <h3>Staples: how many trips each came home on</h3>
+      <div id="staples"></div>
     </figure>
-    <ul class="findings" id="findings" aria-label="Findings"></ul>
+    <figure class="findings">
+      <h3>What stood out</h3>
+      <ul id="findings"></ul>
+    </figure>
   </section>
   <footer id="foot"></footer>
 </div>
@@ -416,11 +452,6 @@ window.ghostNote = ghostNote;
 
 // ---------- small SVG helpers ----------
 const nice = m => { const s = Math.pow(10, Math.floor(Math.log10(m || 1))); return [1, 2, 2.5, 5, 10].map(k => k * s).find(k => m / k <= 4.5); };
-const barcodeSVG = seed => {
-  let x = 0, h = 7, out = "";
-  for (const ch of (seed + "0123456789abcdef").slice(0, 26)) { h = (h * 31 + ch.charCodeAt(0)) >>> 0; const w = 1 + (h % 3); out += `<rect x="${x}" width="${w}" height="12"/>`; x += w + 1 + ((h >> 3) % 2); }
-  return `<svg viewBox="0 0 ${x} 12" preserveAspectRatio="none" aria-hidden="true" fill="currentColor">${out}</svg>`;
-};
 const monthTicks = (t0, t1, X, y) => {
   let g = "";
   for (let m = new Date(t0.getFullYear(), t0.getMonth() + 1, 1); m <= t1; m.setMonth(m.getMonth() + 1))
@@ -458,63 +489,110 @@ function tallyChart(x, { W = 640, H = 200, small = false } = {}) {
 }
 
 // ---------- magnets ----------
-// Each magnet's spot on the real fridge, in inches: x across from the left door's outer edge,
-// y up from the fridge floor (the freezer drawer is below 0), w its width. The 3D view uses these.
+// Each thing's spot on the real fridge, in inches: x across from the left door's outer edge (the doors meet at 17.5),
+// y up from the fridge floor to its top edge (the freezer drawer is below 0), w its width, r its tilt.
+// The handles run up the inner edges from about 13 to 43 inches, so nothing sits there.
 const MAGS = {
-  plan:      { x: 1.6,  y: 50.5, w: 8.6, r: -1.2 },
-  rewind:    { x: 1.4,  y: 33.5, w: 9.2, r: 1 },
-  need:      { x: 2.8,  y: 23.5, w: 7.6, r: -.6 },
-  beer:      { x: 20.2, y: 51,   w: 5.4, r: -2 },
-  flowers:   { x: 26.4, y: 51.4, w: 5.4, r: 1.6 },
-  groceries: { x: 20.4, y: 43.6, w: 5.4, r: 1 },
-  streak:    { x: 26.9, y: 44.2, w: 4.6, r: 0 },
-  week:      { x: 21.4, y: 36.2, w: 5.4, r: -1.2 },
-  coke:      { x: 27.4, y: 36.6, w: 5.2, r: 2 },
-  pizza:     { x: 3.6,  y: -7.6, w: 5.4, r: -1.5 },
+  plan:      { x: 1.6,  y: 51.6, w: 7.4, r: -1.5 },
+  rewind:    { x: 8.3,  y: 49.4, w: 5.9, r: 3.5 },
+  need:      { x: 2.2,  y: 40.6, w: 4.9, r: 2 },
+  saved:     { x: 8.0,  y: 38.6, w: 6.1, r: -3 },
+  week:      { x: 21.0, y: 51.8, w: 6.6, r: 0 },
+  beer:      { x: 28.7, y: 52.0, w: 2.7, r: 8 },
+  flowers:   { x: 29.0, y: 48.2, w: 3.5, r: -6 },
+  groceries: { x: 21.6, y: 46.0, w: 3.9, r: 2 },
+  streak:    { x: 26.3, y: 42.0, w: 6.4, r: -1.5 },
+  coke:      { x: 26.6, y: 37.4, w: 5.6, r: 2.5 },
+  pizza:     { x: 3.8,  y: -6.8, w: 3.6, r: -12 },
 };
 window.MAGS = MAGS;
-const magAttrs = (id, extra = "") => { const m = MAGS[id]; return `data-m="${id}" style="--w:${m.w};--r:${m.r}deg;${extra}"`; };
-function tileMag(id) {
-  const x = T[id], t = x.t;
-  return `<button class="mag tile" ${magAttrs(id, `--c:var(${t.c});--fg:${t.fg}`)} aria-label="${esc(t.name)}: ${usd(x.total)} since ${SINCE}">
-    <span class="k">${esc(t.name === "Frozen pizza" ? "Pizza" : t.name)}</span><span class="v">${usdk(x.total)}</span><span class="s">${esc(t.trips ? `since ${fmt(DAYS[0])}` : plural(x.count, t.unit))}</span></button>`;
-}
+const magAttrs = (id, label) => { const m = MAGS[id]; return `data-m="${id}" style="--w:${m.w};--r:${m.r}deg" aria-label="${esc(label)}"`; };
+const lc = s => s.charAt(0).toLowerCase() + s.slice(1);
+const outNow = () => ["fridge", "freezer", "pantry"].flatMap(l => (D.shelves[l] || []).filter(it => it.ghost).map(it => it.name));
+// cooked since this week's plan started (the Sunday of this week)
+const cookedThisWeek = () => {
+  const t = dd(D.today), sun = new Date(t); sun.setDate(t.getDate() - t.getDay());
+  return D.eaten.filter(m => dd(m.date) >= sun).map(m => short(m.meal).toLowerCase());
+};
+const tallies = n => {   // hand-drawn tally marks, in groups of five
+  let s = "", x = 1;
+  for (let i = 0; i < n; i++) {
+    if (i % 5 === 4) s += `<path d="M${x - 15.5} 11 L${x + 1.5} 2"/>`, x += 7;
+    else s += `<path d="M${x} ${1 + (i % 2) * .6} L${x + (i % 3 - 1) * .4} 12"/>`, x += 3.4;
+  }
+  return `<svg viewBox="0 0 ${x + 2} 13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">${s}</svg>`;
+};
+const FLOWER = `<svg viewBox="0 0 100 100" aria-hidden="true">${[0, 60, 120, 180, 240, 300].map(a =>
+  `<ellipse cx="50" cy="27" rx="15" ry="24" transform="rotate(${a} 50 50)" fill="#ec8db0" stroke="#c45a83" stroke-width="1.5"/>`).join("")}
+  <circle cx="50" cy="50" r="15" fill="#f4c23e" stroke="#c9952a" stroke-width="1.5"/><circle cx="45" cy="45" r="4" fill="#fff" opacity=".5"/></svg>`;
+const PIZZA = v => `<svg viewBox="0 0 100 92" aria-hidden="true"><path d="M8 12 Q50 -2 92 12 L50 90 Z" fill="#f2c45a" stroke="#b9822b" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M8 12 Q50 -2 92 12 L88 20 Q50 7 12 20 Z" fill="#c98a3a"/>${[[34, 30], [62, 34], [48, 56], [30, 46]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="7" fill="#c2412f"/>`).join("")}
+  <text x="58" y="56" font-family="Kalam, cursive" font-weight="700" font-size="17" fill="#3a2410" text-anchor="middle">${v}</text></svg>`;
+
 function magnets() {
   const host = $("#magnets"); if (!host) return;
-  const sp = D.spend, st = D.streak, r = D.rewind, need = Restock.all();
+  const sp = D.spend, st = D.streak, r = D.rewind, need = Restock.all(), out = outNow().filter(n => !need.includes(n));
+  const cooked = cookedThisWeek();
+  const plan = D.plan.slice(0, 5).map(m => {
+    const n = short(m.meal), done = cooked.includes(n.toLowerCase());
+    return `<li class="${done ? "done" : m.status === "proposed" ? "maybe" : ""}">${esc(lc(n))}${m.status === "proposed" && !done ? "?" : ""}</li>`;
+  }).join("");
   const pct = sp.avg ? Math.round((sp.this_week - sp.avg) / sp.avg * 100) : 0;
-  const plan = D.plan.slice(0, 4).map(m => `<li class="${m.status === "proposed" ? "maybe" : ""}"><small>${m.slot === "batch main" ? "Sunday prep" : "dinner"}</small>${esc(short(m.meal))}${m.status === "proposed" ? "?" : ""}</li>`).join("");
+  const list = need.slice(0, 5).map(n => `<li>${esc(lc(n))}</li>`).concat(out.slice(0, Math.max(0, 5 - need.length)).map(n => `<li class="pencil">${esc(lc(n))}?</li>`));
+  const G = T.groceries, B = T.beer, F = T.flowers, S = T.saved, C = T.coke, P = T.pizza;
   host.innerHTML = `
-    <button class="mag pad" ${magAttrs("plan")} aria-label="This week's plan"><span class="k">This week</span><ul>${plan || "<li>Nothing planned yet</li>"}</ul></button>
-    ${r ? `<button class="mag card" ${magAttrs("rewind")} aria-label="Not made in a while: ${esc(r.meal)}"><span class="k">Not made in a while</span><span class="t">${esc(short(r.meal))}</span><span class="s">${r.weeks_ago} weeks ago</span></button>` : ""}
-    ${need.length ? `<button class="mag need" ${magAttrs("need")} aria-label="Restock list, ${need.length} items"><span class="k">Need</span><ul>${need.slice(0, 6).map(n => `<li>${esc(n)}</li>`).join("")}${need.length > 6 ? `<li>+${need.length - 6} more</li>` : ""}</ul></button>` : ""}
-    ${tileMag("beer")}${tileMag("flowers")}${tileMag("groceries")}
-    <button class="mag round" ${magAttrs("streak")} aria-label="Shopping streak: ${st.current} weeks, best ${st.best}"><span class="k">Streak</span><span class="v">${st.current}</span><span class="s">weeks</span>
-      <span class="dots">${st.recent.map(x => `<i class="${x ? "on" : ""}"></i>`).join("")}</span></button>
-    <button class="mag tile" ${magAttrs("week", "--c:#262b2e;--fg:#f4f2ec")} aria-label="This week's groceries ${usd(sp.this_week)}"><span class="k">This week</span><span class="v">${usd0(sp.this_week)}</span>
-      <span class="s">${sp.this_week ? `${pct >= 0 ? "+" : ""}${pct}% vs avg` : `avg ${usd0(sp.avg)}`}</span></button>
-    ${T.coke.total ? tileMag("coke") : ""}${T.pizza.total ? tileMag("pizza") : ""}`;
+    <button class="mag pad" ${magAttrs("plan", "This week's plan")}><span class="paper hand"><span class="hd">this week</span><ul>${plan || "<li>nothing planned yet</li>"}</ul></span><i class="pin" style="--pc:#c9463d;--px:52%"></i></button>
+    ${r ? `<button class="mag idx" ${magAttrs("rewind", `Not made in a while: ${r.meal}`)}><span class="paper hand"><span class="t">${esc(lc(short(r.meal)))}</span><span class="s">haven't made it since ${fmt(r.last)}</span></span><i class="pin" style="--pc:#3c6fc4;--px:82%"></i></button>` : ""}
+    <button class="mag sticky" ${magAttrs("need", `Restock list, ${need.length} items`)}><span class="paper hand"><span class="hd">need</span><ul>${list.join("") || "<li>nothing</li>"}</ul></span></button>
+    ${S.total ? `<button class="mag coupon" ${magAttrs("saved", `Saved with deals: ${usd(S.total)}`)}><span class="paper"><span class="v">${usd0(S.total)} off</span><span class="s">saved with deals since ${fmt(DAYS[0])}</span></span><i class="pin" style="--pc:#2f8a4c;--px:14%"></i></button>` : ""}
+    <button class="mag wb" ${magAttrs("week", `This week's groceries ${usd(sp.this_week)}`)}><span class="paper hand"><span class="s">groceries this week</span><span class="v">${sp.this_week ? usd0(sp.this_week) : "$0"}</span>
+      <span class="d${pct <= 0 ? " ok" : ""}">${sp.this_week ? `${pct >= 0 ? "+" : "−"}${Math.abs(pct)}% vs usual` : `usual is ${usd0(sp.avg)}`}</span></span></button>
+    ${B.total ? `<button class="mag cap" ${magAttrs("beer", `Beer: ${usd(B.total)} since ${SINCE}`)}><span class="paper"><span class="v">${usd0(B.total)}</span><span class="s hand">beer</span></span></button>` : ""}
+    ${F.total ? `<button class="mag flower" ${magAttrs("flowers", `Flowers: ${usd(F.total)} since ${SINCE}`)}>${FLOWER}<span class="tape-strip hand">flowers ${usd0(F.total)}</span></button>` : ""}
+    <button class="mag clip" ${magAttrs("groceries", `Groceries: ${usd(G.total)} since ${SINCE}`)}><span class="bind"></span><span class="paper"><b>groceries</b>since ${fmt(DAYS[0])}<br>${G.trips} trips<span class="tot"><span>total</span><span>${usdk(G.total)}</span></span></span></button>
+    <button class="mag punch" ${magAttrs("streak", `Shopping streak: ${st.current} weeks, best ${st.best}`)}><span class="paper hand"><span class="hd">${st.current} ${st.current === 1 ? "week" : "weeks"} in a row</span>
+      <span class="row">${st.recent.map((x, i) => `<i class="${x ? "on" : ""}" style="--sr:${(hash("s" + i) % 50) - 25}deg"></i>`).join("")}</span></span></button>
+    ${C.count ? `<button class="mag tally" ${magAttrs("coke", `Diet Coke: ${plural(C.count, C.t.unit)}, ${usd(C.total)}`)}><span class="tape-strip hand">diet coke${tallies(C.count)}</span></button>` : ""}
+    ${P.total ? `<button class="mag pizza" ${magAttrs("pizza", `Frozen pizza: ${usd(P.total)} since ${SINCE}`)}>${PIZZA(usd0(P.total))}</button>` : ""}`;
+  placeFlat();
   document.dispatchEvent(new Event("magnets"));
 }
+window.magnets = magnets;
+// the plain view pins magnets the same way, onto its fridge door and freezer front
+function placeFlat() {
+  if (document.body.classList.contains("has3d")) return;
+  const host = $("#magnets"), fz = $("#magnets-f"); if (!host || !fz) return;
+  const w = host.clientWidth; if (!w) return;
+  const inch = w / 35;
+  host.style.setProperty("--in", inch.toFixed(2) + "px"); fz.style.setProperty("--in", inch.toFixed(2) + "px");
+  [...host.querySelectorAll(".mag"), ...fz.querySelectorAll(".mag")].forEach(el => {
+    const m = MAGS[el.dataset.m]; if (!m) return;
+    (m.y < 0 ? fz : host).append(el);
+    el.style.left = m.x * inch + "px"; el.style.top = ((m.y < 0 ? -2.5 : 53.5) - m.y) * inch + "px";
+  });
+}
+if (window.ResizeObserver) new ResizeObserver(() => placeFlat()).observe(document.querySelector(".fridge"));
 
 function magDetail(id) {
   const sp = D.spend, st = D.streak;
   if (T[id]) {
     const x = T[id], t = x.t, last = x.last ? ` Last on ${fmt(x.last)}.` : "";
     const say = { groceries: " Flowers and household things aside.", beer: last, flowers: last, coke: last, pizza: last, saved: "" }[id];
-    return { c: `var(${t.c})`, k: `${t.name} since ${SINCE}`, v: usd(x.total), p: `${tallyLine(x)}.${say}`, body: tallyChart(x, { W: 300, H: 120, small: true }), more: id };
+    return { k: `${lc(t.name)} since ${fmt(DAYS[0])}`, v: usd(x.total), p: `${tallyLine(x)}.${say}`, body: tallyChart(x, { W: 300, H: 120, small: true }), more: id };
   }
-  if (id === "plan") return { c: "#2a78d6", k: "This week", v: plural(D.plan.length, ["meal", "meals"]), body: `<ul>${D.plan.map(m => `<li>${esc(m.meal)}${m.status === "proposed" ? " (maybe)" : ""}</li>`).join("")}</ul>` };
-  if (id === "rewind" && D.rewind) return { c: "#d9564a", k: "Not made in a while", v: short(D.rewind.meal), p: `${esc(D.rewind.meal)}. Last made ${fmt(D.rewind.last)}, ${D.rewind.weeks_ago} weeks ago.` };
-  if (id === "streak") return { c: "#1d2521", k: "Shopping streak", v: plural(st.current, ["week", "weeks"]), p: `Weeks in a row with at least one trip. Best run: ${plural(st.best, ["week", "weeks"])}.${st.shopped_this_week ? "" : " Shop this week to keep it going."}` };
+  if (id === "plan") return { k: "this week", v: plural(D.plan.length, ["meal", "meals"]), body: `<ul>${D.plan.map(m => `<li>${esc(m.meal)}${m.status === "proposed" ? " (maybe)" : ""}</li>`).join("")}</ul>` };
+  if (id === "rewind" && D.rewind) return { k: "not made in a while", v: short(D.rewind.meal), p: `${esc(D.rewind.meal)}. Last made ${fmt(D.rewind.last)}, ${D.rewind.weeks_ago} weeks ago.` };
+  if (id === "streak") return { k: "shopping streak", v: plural(st.current, ["week", "weeks"]), p: `Weeks in a row with at least one trip; each stamp is a week, oldest first. Best run: ${plural(st.best, ["week", "weeks"])}.${st.shopped_this_week ? "" : " Shop this week to keep it going."}` };
   if (id === "week") {
     const pct = sp.avg ? Math.round((sp.this_week - sp.avg) / sp.avg * 100) : 0;
-    return { c: "#262b2e", k: "Groceries this week", v: usd(sp.this_week), p: sp.this_week ? `${Math.abs(pct)}% ${pct >= 0 ? "above" : "below"} your average shop week of ${usd(sp.avg)}.` : `No trip yet this week. Your average is ${usd(sp.avg)}.`, more: "groceries" };
+    return { k: "groceries this week", v: usd(sp.this_week), p: sp.this_week ? `${Math.abs(pct)}% ${pct >= 0 ? "above" : "below"} your average shop week of ${usd(sp.avg)}.` : `No trip yet this week. Your average is ${usd(sp.avg)}.`, more: "groceries" };
   }
   if (id === "need") {
-    const list = Restock.all();
-    return { c: "#d9b93a", k: "Restock list", v: plural(list.length, ["item", "items"]), p: "Kept on this device. Tap a dotted item in the fridge to add it.",
-      body: `<ul>${list.map(n => `<li>${esc(n)} <button class="btn" data-unneed="${esc(n)}" style="padding:1px 8px;font-size:12px">remove</button></li>`).join("")}</ul>`, copy: true };
+    const list = Restock.all(), out = outNow().filter(n => !list.includes(n));
+    const row = (n, on) => `<li><span>${esc(n)}</span><button class="btn sm" data-toggle="${esc(n)}">${on ? "remove" : "add"}</button></li>`;
+    return { k: "need", v: plural(list.length, ["item", "items"]),
+      p: out.length ? "The pencilled ones are out right now, from your receipts. Add what you want to buy. The list stays on this device." : "Kept on this device. Tap a dotted item in the fridge to add it.",
+      body: `<ul class="need">${list.map(n => row(n, true)).join("")}${out.map(n => row(n, false)).join("")}</ul>`, copy: list.length > 0 };
   }
   return null;
 }
@@ -522,8 +600,7 @@ function openMag(id, host) {
   closeMag();
   const m = magDetail(id); if (!m || !host) return;
   const el = document.createElement("div"); el.className = "magcard"; el.setAttribute("role", "dialog"); el.setAttribute("aria-label", m.k);
-  el.style.setProperty("--c", m.c);
-  el.innerHTML = `<button class="x" aria-label="Close">close</button><header><div class="k">${esc(m.k)}</div><div class="v">${esc(m.v)}</div>${m.p ? `<p>${m.p}</p>` : ""}</header>
+  el.innerHTML = `<button class="x" aria-label="Close">close</button><header><h3>${esc(m.k)}</h3><div class="v">${esc(m.v)}</div>${m.p ? `<p>${m.p}</p>` : ""}</header>
     ${m.body ? `<div class="body">${m.body}</div>` : ""}
     ${m.more || m.copy ? `<div class="row">${m.more ? `<button class="btn primary" data-more="${m.more}">See the trend</button>` : ""}${m.copy ? `<button class="btn primary" data-copy>Copy list</button><button class="btn" data-clear>Clear</button>` : ""}</div>` : ""}`;
   host.append(el);
@@ -531,7 +608,7 @@ function openMag(id, host) {
     const b = e.target.closest("button"); if (!b) return;
     if (b.classList.contains("x")) return closeMag();
     if (b.dataset.more) { closeMag(); pickTally(b.dataset.more); $("#aisles").scrollIntoView({ behavior: "smooth" }); }
-    if (b.dataset.unneed) { Restock.toggle(b.dataset.unneed); Restock.all().length ? openMag("need", host) : closeMag(); }
+    if (b.dataset.toggle) { Restock.toggle(b.dataset.toggle); openMag("need", host); }
     if ("copy" in b.dataset && navigator.clipboard) navigator.clipboard.writeText(Restock.all().join("\n")).then(() => { b.textContent = "Copied"; }, () => {});
     if ("clear" in b.dataset) { Restock.clear(); closeMag(); }
   });
@@ -563,7 +640,7 @@ function shelf(loc) {
     out.querySelector("button").onclick = () => { Restock.toggle(it.name); show(it); };
   };
   el.addEventListener("click", e => { const b = e.target.closest(".item"); if (b) show(items[+b.dataset.i]); });
-  out.textContent = loc === "counter" ? "" : "Tap anything. Dashed ones are usually here but aren't now.";
+  out.textContent = "Tap anything. Dashed ones are usually here but aren't now.";
 }
 function hinge(comp, btns) {
   const open = !comp.classList.contains("open");
@@ -586,14 +663,14 @@ function tape() {
                      : `<rect class="miss" x="${X}" y="${y(0) - 2}" width="${bw - 4}" height="2" data-tip="${esc(`<b>Week of ${fmt(x.week)}</b><br>no trip`)}"/>`;
     if (dd(x.week).getDate() <= 7) svg += `<text x="${X}" y="${H - 4}">${fmt(x.week, {month: "short"})}</text>`;
   });
-  svg += `<line class="avg" x1="${L}" x2="${W}" y1="${y(D.spend.avg)}" y2="${y(D.spend.avg)}"/></svg>`;
-  $("#tape").innerHTML = `<h2>Receipt tape</h2><p class="label">Groceries per week, dashed line is your average</p>${svg}
+  svg += `<line class="avg" x1="${L}" x2="${W}" y1="${y(D.spend.avg)}" y2="${y(D.spend.avg)}"/><text x="${W}" y="${y(D.spend.avg) - 4}" text-anchor="end">avg ${usd0(D.spend.avg)}</text></svg>`;
+  $("#tape").innerHTML = `<h2>Groceries per week</h2>${svg}
     <div class="row"><span>This year</span><span>${usd(D.spend.ytd)}</span></div>
     <div class="row"><span>Average shop week</span><span>${usd(D.spend.avg)}</span></div>
     <div class="row"><span>Best streak</span><span>${D.streak.best} weeks</span></div>`;
 }
 function log() {
-  $("#log").innerHTML = `<h2>Lately</h2><p class="label">What actually got cooked</p><ol>${D.eaten.map(m =>
+  $("#log").innerHTML = `<h2>What got cooked</h2><ol>${D.eaten.map(m =>
     `<li><time datetime="${m.date}">${fmt(m.date)}</time><span>${esc(m.meal)}</span></li>`).join("")}</ol>`;
 }
 
@@ -603,8 +680,8 @@ function tags() {
   $("#tags").innerHTML = TALLIES.map(t => {
     const x = T[t.id], [d, c] = x.total.toFixed(2).split(".");
     return `<button class="stag" data-t="${t.id}" aria-pressed="${t.id === picked}" style="--c:var(${t.c})">
-      <span class="nm">${esc(t.name)}</span><span class="pr"><sup>$</sup>${Number(d).toLocaleString("en-US")}<sup>${c}</sup></span>
-      <span class="un">${esc(tallyLine(x))}</span>${barcodeSVG(t.id + x.total)}</button>`;
+      <span class="nm"><i aria-hidden="true"></i>${esc(t.name)}</span><span class="pr"><sup>$</sup>${Number(d).toLocaleString("en-US")}<sup>${c}</sup></span>
+      <span class="un">${esc(tallyLine(x))}</span></button>`;
   }).join("");
   $("#tags").onclick = e => { const b = e.target.closest(".stag"); if (b) pickTally(b.dataset.t); };
 }
@@ -612,8 +689,7 @@ function pickTally(id) {
   picked = id;
   document.querySelectorAll(".stag").forEach(b => b.setAttribute("aria-pressed", b.dataset.t === id));
   const x = T[id];
-  $("#tally-title").textContent = `${x.t.name}, running total`;
-  $("#tally-sub").textContent = `${usd(x.total)} since ${SINCE}, ${tallyLine(x)}. Each dot is a trip.`;
+  $("#tally-title").textContent = `${x.t.name} since ${SINCE}, trip by trip`;
   $("#tally").innerHTML = tallyChart(x) + `<details class="table"><summary>As a table</summary><table><tr><th>Trip</th><th>This trip</th><th>Running total</th></tr>${
     x.per.filter(p => p.v > 0).map(p => `<tr><td>${fmt(p.d)}</td><td>${usd(p.v)}</td><td>${usd(p.cum)}</td></tr>`).join("")}</table></details>`;
 }
@@ -629,7 +705,6 @@ function aisleDirectory() {
   const top = Math.max(...list.flatMap(a => a.m));
   const mname = ([y, m]) => new Date(y, m, 1).toLocaleDateString("en-US", { month: "short" });
   const W = 200, H = 26, bw = W / months.length;
-  $("#aisle-note").textContent = `Spend per month in each aisle, all on one scale. ${mname(months[0])} and ${mname(months[months.length - 1])} are partial months.`;
   $("#aisle-dir").innerHTML = list.map(a => `<div class="aisle-row"><span>${esc(a.name)}</span>
     <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(a.name)} by month">${a.m.map((v, i) => {
       const h = v ? Math.max(2, v / top * (H - 2)) : 0;
@@ -653,6 +728,8 @@ function priceCheck() {
     const mx = Math.max(...pts.map(p => p.u)) * 1.15, step = nice(mx), top = Math.ceil(mx / step) * step;
     const Y = v => H - B - v / top * (H - B - Tp);
     const avg = pts.reduce((s, p) => s + p.u, 0) / pts.length;
+    const lo = pts.reduce((a, p) => p.u < a.u ? p : a), hi = pts.reduce((a, p) => p.u > a.u ? p : a);
+    const note = (p, above) => { const x = Math.max(L + 18, Math.min(W - R - 18, X(p.d))); return `<text class="lbl" x="${x}" y="${Y(p.u) + (above ? -9 : 17)}" text-anchor="middle">${usd(p.u)}</text>`; };
     let g = "";
     for (let v = 0; v <= top + 1e-9; v += step) g += `<line class="grid" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L - 6}" y="${Y(v) + 3.5}" text-anchor="end">${v < 10 ? "$" + v.toFixed(2).replace(/\.00$/, "") : usd0(v)}</text>`;
     g += monthTicks(t0, t1, X, H - 6);
@@ -662,36 +739,21 @@ function priceCheck() {
     $("#price").innerHTML = `<svg class="viz" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(name)} price per unit over time">${g}
       <line class="base" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}"/><line x1="${L}" x2="${W - R}" y1="${Y(avg)}" y2="${Y(avg)}" stroke="var(--ink-soft)" stroke-dasharray="3 3"/>
       <text x="${W - R}" y="${Y(avg) + 14}" text-anchor="end">avg ${usd(avg)}</text>
-      <path d="${line}" fill="none" stroke="var(--s-blue)" stroke-width="2" stroke-linejoin="round"/>${dots}</svg>`;
-    const lo = pts.reduce((a, p) => p.u < a.u ? p : a), hi = pts.reduce((a, p) => p.u > a.u ? p : a);
-    const ds = [...new Set(pts.map(p => p.d))];
-    const gaps = ds.slice(1).map((d, i) => (dd(d) - dd(ds[i])) / 864e5).sort((a, b) => a - b);
-    $("#price-line").textContent = (lo.u.toFixed(2) === hi.u.toFixed(2) ? `${usd(lo.u)} every time. ` : `From ${usd(lo.u)} (${fmt(lo.d)}) to ${usd(hi.u)} (${fmt(hi.d)}). `) +
-      `On ${ds.length} of ${DAYS.length} trips${gaps.length ? `, ${cadence(gaps[gaps.length >> 1])}` : ""}.${/chicken|salmon|turkey|potato|cheese|pasta|beer|flowers/i.test(name) ? " Package sizes vary." : ""}`;
+      <path d="${line}" fill="none" stroke="var(--s-blue)" stroke-width="2" stroke-linejoin="round"/>${dots}${lo.u.toFixed(2) === hi.u.toFixed(2) ? note(hi, true) : note(hi, true) + note(lo, false)}</svg>`;
   };
   sel.onchange = draw; draw();
 }
 
-function barcode() {
+function staples() {
   const by = {};
-  for (const r of ROWS) if (r[1] !== "Unclear item" && r[2] !== "Household") ((by[r[1]] ||= {})[r[0]] ||= []).push(r);
-  const items = Object.entries(by).map(([n, d]) => ({ n, d, k: Object.keys(d).length })).filter(x => x.k >= 3).sort((a, b) => b.k - a.k || a.n.localeCompare(b.n)).slice(0, 14);
-  const L = 128, R = 44, rowH = 22, W = Math.max(520, L + R + DAYS.length * 22), cw = (W - L - R) / DAYS.length, H = items.length * rowH + 28;
-  let s = "";
-  items.forEach((it, i) => {
-    const y = i * rowH;
-    s += `<text class="lbl" x="${L - 10}" y="${y + 15}" text-anchor="end">${esc(it.n)}</text><text x="${W - R + 8}" y="${y + 15}">${it.k}/${DAYS.length}</text>`;
-    DAYS.forEach((d, j) => {
-      const rs = it.d[j]; if (!rs) return;
-      const v = rs.reduce((a, r) => a + r[3], 0), q = rs.reduce((a, r) => a + r[4], 0);
-      const bw = Math.max(2, Math.min(cw * .7, 2 + q * 2.2));
-      s += `<g data-tip="${esc(`<b>${esc(it.n)}</b><br>${fmt(d)}: ${usd(v)}${q > 1 ? `, ${q} of them` : ""}`)}"><rect class="hit" x="${L + j * cw}" y="${y}" width="${cw}" height="${rowH}"/><rect class="b" x="${L + j * cw + (cw - bw) / 2}" y="${y + 3}" width="${bw}" height="${rowH - 5}"/></g>`;
-    });
-  });
-  let lastM = -1;
-  DAYS.forEach((d, j) => { const m = dd(d).getMonth(); if (m !== lastM) { s += `<text x="${L + j * cw + cw / 2}" y="${H - 6}" text-anchor="middle">${fmt(d, {month: "short"})}</text>`; lastM = m; } });
-  $("#barcode").innerHTML = `<svg class="viz bc" viewBox="0 0 ${W} ${H}" style="min-width:${Math.round(W * .8)}px" role="img" aria-label="Which of your ${items.length} most bought items came home on each trip">${s}</svg>
-    <p class="readline">Columns are trips, left to right. A wider bar means more than one came home.</p>`;
+  for (const r of ROWS) if (r[1] !== "Unclear item" && r[2] !== "Household") (by[r[1]] ||= new Set()).add(r[0]);
+  const items = Object.entries(by).map(([n, d]) => ({ n, d: [...d].sort((a, b) => a - b) })).filter(x => x.d.length >= 3)
+    .sort((a, b) => b.d.length - a.d.length || a.n.localeCompare(b.n)).slice(0, 12);
+  $("#staples").innerHTML = items.map(it => {
+    const k = it.d.length, gaps = it.d.slice(1).map((d, i) => (dd(DAYS[d]) - dd(DAYS[it.d[i]])) / 864e5).sort((a, b) => a - b);
+    const tipTxt = `<b>${esc(it.n)}</b><br>${cadence(gaps[gaps.length >> 1]) || "now and then"}<br>last bought ${fmt(DAYS[it.d[k - 1]])}`;
+    return `<div class="staple" data-tip="${esc(tipTxt)}"><span>${esc(it.n)}</span><span class="track"><i style="width:${(k / DAYS.length * 100).toFixed(1)}%"></i></span><span class="n">${k} of ${DAYS.length}</span></div>`;
+  }).join("");
 }
 
 function findings() {
@@ -708,16 +770,15 @@ function findings() {
   const saved = ROWS.filter(r => r[5] > 0).sort((a, b) => b[5] - a[5]);
   if (saved.length) out.push(`Deals took ${usd(T.saved.total)} off, the biggest on ${saved[0][1].toLowerCase()} (${usd(saved[0][5])}).`);
   if (T.beer.total && T.flowers.total && T.groceries.total) out.push(`For every ${usd0(100)} of groceries, about ${usd0(T.beer.total / T.groceries.total * 100)} went to beer, and another ${usd0(T.flowers.total / T.groceries.total * 100)} to flowers on top.`);
-  $("#findings").innerHTML = `<li class="h">FOUND IN YOUR RECEIPTS</li>` + out.map(s => `<li>${esc(s)}</li>`).join("");
+  $("#findings").innerHTML = out.map(s => `<li>${esc(s)}</li>`).join("");
 }
 
 // ---------- go ----------
 $("#synced").textContent = "Synced " + new Date(D.generated).toLocaleString("en-US", {weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"});
 $("#foot").textContent = "From the Meal Prep Data sheet. Fridge contents are estimated from receipts until a Sunday photo says otherwise. The restock list stays on this device.";
-magnets(); ["freezer", "fridge", "pantry", "counter"].forEach(shelf); tape(); log();
+["freezer", "fridge", "pantry"].forEach(shelf); magnets(); tape(); log();
 if (DAYS.length) {
-  $("#aisle-sub").textContent = `Every receipt since ${SINCE}: ${DAYS.length} trips, ${usd(ROWS.reduce((s, r) => s + r[3], 0))}`;
-  tags(); pickTally(picked); aisleDirectory(); priceCheck(); barcode(); findings();
+  tags(); pickTally(picked); aisleDirectory(); priceCheck(); staples(); findings();
 } else $("#aisles").hidden = true;
 document.querySelectorAll(".door").forEach(d => {
   const comp = document.getElementById(d.dataset.for), h = d.querySelector(".handle");

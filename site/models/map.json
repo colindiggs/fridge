@@ -1,5 +1,5 @@
 {
- "_how": "Each grocery item resolves to a model spec: an exact name in items wins, then the first matching rule, then its category, then its location. Specs merge in that order, so items only list what differs. Sizes are real inches: h is height, w is the widest side. tint recolors a kit model, label prints on the front face, count shows several, spot picks where it goes when the Inventory tab doesn't say (shelf, crisper, drawer, door, freezer, pantry, counter, or an exact zone like door-right-2 or shelf-1). Models starting with # are built in code; the rest are GLB files under models/.",
+ "_how": "Each grocery item resolves to a model spec: an exact name in items wins, then the first matching rule, then its category, then its location. Specs merge in that order, so items only list what differs. Sizes are real inches: h is height, w is the widest side. tint recolors a kit model, label prints on the front face, count shows several, spot picks where it goes when the Inventory tab doesn't say (shelf, crisper, drawer, door, freezer, pantry, or an exact zone like door-right-2 or shelf-1). Models starting with # are built in code; the rest are GLB files under models/.",
  "models": {
   "carton": "kenney-food/carton.glb",
   "carton-small": "kenney-food/carton-small.glb",
@@ -977,11 +977,6 @@
    "color": "#c9a06a",
    "spot": "pantry",
    "label": true
-  },
-  "counter": {
-   "model": "apple",
-   "h": 3.2,
-   "spot": "counter"
   }
  }
 }

@@ -1,4 +1,4 @@
-// Low-poly 3D fridge, pantry and counter. Units are inches.
+// Low-poly 3D fridge and pantry. Units are inches.
 // Models: Kenney Food Kit (CC0) GLBs plus a few shapes built here (#box, #tub, #eggs, #butter).
 // If anything here fails, the page keeps its plain tile view.
 import * as THREE from "three";
@@ -184,32 +184,62 @@ async function makeItem(MAP, it, s, base) {
   return g;
 }
 
-// ---------- packing items onto shelves ----------
-// zones: [{rows: [z...], x0, x1, y, maxH, parent}] ; returns items that did not fit
-function pack(groups, zones) {
-  const cursors = zones.map(z => z.rows.map(() => z.x0));
+// ---------- the snap grid ----------
+// Every zone row is a lane of 1-inch cells. An item takes as many cells as it is wide, so items snap
+// into place and never overlap. Where each item sits is kept per device; anything not placed by hand
+// is packed in order, tallest first, so an item keeps its spot whether it's in or out (ghosts pack too).
+const CELL = 1, LAYOUT_KEY = "fridge.layout.v1";
+const store = {
+  get() { try { return JSON.parse(localStorage.getItem(LAYOUT_KEY) || "{}"); } catch (e) { return {}; } },
+  set(o) { try { localStorage.setItem(LAYOUT_KEY, JSON.stringify(o)); } catch (e) {} },
+};
+function makeGrid(zones) {
+  const byZone = new Map(), lanes = [];
+  for (const [key, zs] of Object.entries(zones)) zs.forEach((z, zi) => {
+    if (byZone.has(z)) return;   // shelf, crisper and door are shorthand for zones already listed
+    const ls = z.rows.map((row, ri) => ({ id: `${key}/${zi}/${ri}`, key, z, ri, row, n: Math.max(1, Math.floor((z.x1 - z.x0) / CELL)) }));
+    ls.forEach(l => l.occ = Array(l.n).fill(null));
+    byZone.set(z, ls); lanes.push(...ls);
+  });
+  const byId = new Map(lanes.map(l => [l.id, l]));
+  const span = (g, k = 1) => Math.max(1, Math.ceil((g.userData.w0 * k + .35) / CELL));
+  const scaleIn = (g, l) => g.userData.h0 > l.z.maxH ? (l.z.maxH - .3) / g.userData.h0 : 1;
+  const free = (l, c, n, me) => { if (c < 0 || c + n > l.n) return false; for (let i = c; i < c + n; i++) if (l.occ[i] && l.occ[i] !== me) return false; return true; };
+  // the free run in a lane nearest to column `want`
+  const nearest = (l, want, n, me) => {
+    for (let d = 0; d <= l.n; d++) for (const c of d ? [want - d, want + d] : [want]) if (free(l, c, n, me)) return c;
+    return null;
+  };
+  const lift = g => { const s = g.userData.slot; if (!s) return; for (let i = s.c; i < s.c + s.n; i++) if (s.l.occ[i] === g) s.l.occ[i] = null; g.userData.slot = null; };
+  const put = (g, l, c, k = scaleIn(g, l)) => {
+    lift(g);
+    const n = span(g, k);
+    g.scale.setScalar(k);
+    g.position.set(l.z.x0 + (c + n / 2) * CELL, l.z.y, l.row);
+    (l.z.parent || l.z.scene).add(g);
+    for (let i = c; i < c + n; i++) l.occ[i] = g;
+    g.userData.slot = { l, c, n };
+  };
+  // first fit, back row first; zones too short for the item are tried last, with the item shrunk to fit
+  const auto = (g, zl) => {
+    for (let pass = 0; pass < 2; pass++) for (const z of zl) {
+      if (pass === 0 && g.userData.h0 > z.maxH) continue;
+      for (const l of byZone.get(z) || []) { const k = scaleIn(g, l), c = nearest(l, 0, span(g, k), g); if (c != null) { put(g, l, c, k); return true; } }
+    }
+    return false;
+  };
+  return { lanes, byZone, byId, span, scaleIn, free, nearest, put, lift, auto };
+}
+
+// place a location's items: hand-placed ones first, then the rest in order
+function pack(groups, zl, grid, saved = {}) {
   const left = [];
-  // ghosts pack like everything else, so an item keeps its spot whether it's in or out
   groups.sort((a, b) => (b.userData.h - a.userData.h) || a.userData.item.name.localeCompare(b.userData.item.name));
   for (const g of groups) {
-    const sz = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3());
-    let placed = false;
-    for (let pass = 0; pass < 2 && !placed; pass++) {
-      for (let zi = 0; zi < zones.length && !placed; zi++) {
-        const z = zones[zi];
-        if (pass === 0 && sz.y > z.maxH) continue;
-        for (let ri = 0; ri < z.rows.length && !placed; ri++) {
-          const gap = .7, x = cursors[zi][ri];
-          if (x + sz.x > z.x1) continue;
-          if (sz.y > z.maxH) g.scale.multiplyScalar((z.maxH - .3) / sz.y);
-          const w = sz.x * g.scale.x;
-          g.position.set(x + w / 2, z.y, z.rows[ri]);
-          cursors[zi][ri] = x + w + gap;
-          (z.parent || z.scene).add(g); placed = true;
-        }
-      }
-    }
-    if (!placed) left.push(g);
+    const want = saved[g.userData.key], [id, c] = want ? want.split("@") : [];
+    const l = id && grid.byId.get(id);
+    if (l && g.userData.h0 <= l.z.maxH && grid.free(l, +c, grid.span(g), g)) { grid.put(g, l, +c); continue; }
+    if (!grid.auto(g, zl)) left.push(g);
   }
   return left;
 }
@@ -450,33 +480,145 @@ function pantryScene(v) {
   return { zones, W, top };
 }
 
-function counterScene(v) {
-  const s = v.scene, W = 44;
-  const add = (geo, mat, x, y, z) => { const m = mesh(geo, mat); m.position.set(x, y, z); s.add(m); return m; };
-  add(BOX(W + 10, 1.4, 16), flat("#e9dfcc"), W / 2, -1.4, -6);
-  add(BOX(W + 10, 20, .5), flat("#dfe7ea"), W / 2, -1.4, -14);
-  const bowl = new THREE.CylinderGeometry(7, 4.5, 3, 14, 1, true); bowl.translate(0, 1.5, 0);
-  const b = mesh(bowl, flat("#3f78c9")); b.material.side = THREE.DoubleSide; b.position.set(W * .72, 0, -6); s.add(b);
-  return { zones: { counter: [{ rows: [-8, -3.5], x0: 1, x1: W - 1, y: 0, maxH: 12, scene: s }] } };
-}
-
 // load one location's items and pack them into their spots
-async function fill(D, MAP, base, loc, zones) {
+async function fill(D, MAP, base, loc, zones, grid = makeGrid(zones), saved = store.get()) {
   const items = D.shelves[loc] || [];
   const groups = await Promise.all(items.map(async it => {
     const s = resolve(MAP, it, loc);
     const g = await makeItem(MAP, it, s, base);
     g.userData.spot = [it.spot, s.spot, loc].find(k => k && zones[k]) || Object.keys(zones)[0];
-    g.userData.h = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3()).y;
+    g.userData.key = loc + ":" + it.name;
+    const sz = new THREE.Box3().setFromObject(g).getSize(new THREE.Vector3());
+    g.userData.h = g.userData.h0 = sz.y; g.userData.w0 = sz.x;
     return g;
   }));
+  // hand-placed items go first, wherever they were dropped
+  const mine = groups.filter(g => saved[g.userData.key]), rest = groups.filter(g => !saved[g.userData.key]);
+  let spill = pack(mine, [], grid, saved);
   const bySpot = {};
-  groups.forEach(g => (bySpot[g.userData.spot] ||= []).push(g));
-  let spill = [];
-  for (const [spot, gs] of Object.entries(bySpot)) spill = spill.concat(pack(gs, zones[spot] || []));
-  if (spill.length) spill = pack(spill, zones.shelf || zones[loc] || []);
+  rest.concat(spill).forEach(g => (bySpot[g.userData.spot] ||= []).push(g));
+  spill = [];
+  for (const [spot, gs] of Object.entries(bySpot)) spill = spill.concat(pack(gs, zones[spot] || [], grid));
+  if (spill.length) spill = pack(spill, zones.shelf || zones[loc] || [], grid);
   if (spill.length && typeof console !== "undefined") console.info("fridge3d: no room for", spill.map(g => g.userData.item.name));
-  return { groups, spill };
+  return { groups, spill, grid };
+}
+
+// ---------- drag to rearrange ----------
+// Hold an item (or press and move it, with a mouse) and it lifts; it snaps to the nearest free cells of the
+// shelf, bin or drawer under the pointer, with the grid shown while you drag. Drops are kept on this device.
+function dragger(v, grid, { lanesFor, onChange, onStart }) {
+  const preview = new THREE.Mesh(new THREE.BoxGeometry(1, .12, 1),
+    new THREE.MeshBasicMaterial({ color: 0x2f9e62, transparent: true, opacity: .5, depthTest: false }));
+  preview.renderOrder = 10; preview.visible = false;
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x4f6470, transparent: true, opacity: .45, depthTest: false });
+  const gridLines = new Map();
+  const band = l => { const rs = l.z.rows; return rs.length > 1 ? Math.min(6, Math.abs(rs[1] - rs[0]) * .8) : 4; };
+  const linesFor = l => {
+    if (gridLines.has(l)) return gridLines.get(l);
+    const pts = [], b = band(l) / 2, y = l.z.y + .04, x0 = l.z.x0, x1 = l.z.x0 + l.n * CELL;
+    for (let i = 0; i <= l.n; i += (i + 2 > l.n && i < l.n ? l.n - i : 2)) { const x = x0 + i * CELL; pts.push(x, y, l.row - b, x, y, l.row + b); }
+    pts.push(x0, y, l.row - b, x1, y, l.row - b, x0, y, l.row + b, x1, y, l.row + b);
+    const geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
+    const ln = new THREE.LineSegments(geo, lineMat); ln.renderOrder = 9; ln.visible = false;
+    (l.z.parent || l.z.scene).add(ln); gridLines.set(l, ln); return ln;
+  };
+  const ray = new THREE.Raycaster(), inv = new THREE.Matrix4();
+  // where the pointer lands in a zone's own space: on its floor when seen from above, else on its front
+  const aim = (z, r) => {
+    const par = z.parent || z.scene; par.updateWorldMatrix(true, false); inv.copy(par.matrixWorld).invert();
+    const o = r.origin.clone().applyMatrix4(inv), d = r.direction.clone().transformDirection(inv);
+    const front = Math.max(...z.rows), back = Math.min(...z.rows), inX = x => x > z.x0 - 1.5 && x < z.x1 + 1.5;
+    if (d.y < -.25) {
+      const t = (z.y - o.y) / d.y, p = o.clone().addScaledVector(d, t);
+      if (t > 0 && inX(p.x) && p.z > back - 4 && p.z < front + 4)
+        return { t, x: p.x, ri: z.rows.reduce((bi, rz, i) => Math.abs(rz - p.z) < Math.abs(z.rows[bi] - p.z) ? i : bi, 0) };
+    }
+    if (Math.abs(d.z) > 1e-3) {
+      const t = (front + 2.5 - o.z) / d.z, p = o.clone().addScaledVector(d, t);
+      if (t > 0 && inX(p.x) && p.y > z.y - 1 && p.y < z.y + Math.min(z.maxH, 14)) return { t, x: p.x, ri: z.rows.indexOf(front) };
+    }
+    return null;
+  };
+  let cand = null, drag = null, used = false;
+  const target = ev => {
+    const r = v.canvas.getBoundingClientRect();
+    ray.setFromCamera(new THREE.Vector2(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1), v.camera);
+    let best = null;
+    const zs = new Set(drag.lanes.map(l => l.z));
+    for (const z of zs) { const a = aim(z, ray.ray); if (a && (!best || a.t < best.t)) best = { ...a, z }; }
+    if (!best) return null;
+    const g = drag.g, ok = g.userData.h0 <= best.z.maxH + 2;   // a little squeeze is fine; it shrinks to fit
+    const ls = grid.byZone.get(best.z).filter(l => drag.lanes.includes(l));
+    let pick = null;
+    for (const l of ls) {
+      const k = grid.scaleIn(g, l), n = grid.span(g, k), want = Math.round((best.x - l.z.x0) / CELL - n / 2);
+      const c = grid.nearest(l, Math.max(0, Math.min(l.n - n, want)), n, g);
+      if (c == null) continue;
+      const cost = Math.abs(c - want) + (l.ri === best.ri ? 0 : 3);
+      if (!pick || cost < pick.cost) pick = { l, c, k, n, cost };
+    }
+    return ok ? pick : null;
+  };
+  const show = p => {
+    if (!p) { preview.visible = false; return; }
+    const { l, c, n } = p; (l.z.parent || l.z.scene).add(preview);
+    preview.scale.set(n * CELL - .25, 1, band(l)); preview.position.set(l.z.x0 + (c + n / 2) * CELL, l.z.y + .08, l.row);
+    preview.visible = true;
+  };
+  const begin = () => {
+    const g = cand.g, s = g.userData.slot;
+    drag = { g, from: s && { l: s.l, c: s.c }, lanes: lanesFor(), at: null };
+    used = true; cand = null;
+    if (onStart) onStart(g);
+    drag.lanes.forEach(l => linesFor(l).visible = true);
+    try { v.canvas.setPointerCapture(drag.pid); } catch (e) {}
+    if (navigator.vibrate) navigator.vibrate(8);
+    v.canvas.style.cursor = "grabbing";
+  };
+  const move = ev => {
+    const p = target(ev); drag.at = p; show(p);
+    const g = drag.g;
+    if (p) { const par = p.l.z.parent || p.l.z.scene; par.add(g); g.scale.setScalar(p.k); g.position.set(p.l.z.x0 + (p.c + p.n / 2) * CELL, p.l.z.y + .9, p.l.row); }
+    v.render();
+  };
+  const end = commit => {
+    const { g, at, from } = drag;
+    if (commit && at) grid.put(g, at.l, at.c, at.k);
+    else if (from) grid.put(g, from.l, from.c);
+    gridLines.forEach(ln => ln.visible = false); preview.visible = false;
+    v.canvas.style.cursor = "";
+    drag = null; v.render();
+    if (commit && at) {
+      const o = store.get(); o[g.userData.key] = `${at.l.id}@${at.c}`; store.set(o);
+      if (onChange) onChange(g);
+    }
+  };
+  const c = v.canvas;
+  c.addEventListener("contextmenu", e => { if (cand || drag) e.preventDefault(); });
+  c.addEventListener("touchmove", e => { if (drag) e.preventDefault(); }, { passive: false });
+  c.addEventListener("pointerdown", e => {
+    used = false;
+    if (drag || !lanesFor()) return;
+    const hit = v.pick(e, true);
+    if (!hit || !hit.userData.item) return;
+    cand = { g: hit, x: e.clientX, y: e.clientY };
+    drag = null;
+    const pid = e.pointerId;
+    if (e.pointerType !== "mouse") cand.timer = setTimeout(() => { if (cand) { begin(); drag.pid = pid; try { c.setPointerCapture(pid); } catch (er) {} } }, 300);
+    cand.pid = pid;
+  });
+  c.addEventListener("pointermove", e => {
+    if (drag) return move(e);
+    if (!cand) return;
+    const far = Math.hypot(e.clientX - cand.x, e.clientY - cand.y);
+    if (e.pointerType === "mouse" && far > 5) { const pid = cand.pid; begin(); drag.pid = pid; try { c.setPointerCapture(pid); } catch (er) {} move(e); }
+    else if (e.pointerType !== "mouse" && far > 9) { clearTimeout(cand.timer); cand = null; }   // a scroll, not a hold
+  });
+  const up = commit => e => { if (cand) { clearTimeout(cand.timer); cand = null; } if (drag) end(commit); };
+  c.addEventListener("pointerup", up(true));
+  c.addEventListener("pointercancel", up(false));
+  return { used: () => used, busy: () => !!drag, reset() { gridLines.forEach(ln => ln.visible = false); } };
 }
 
 // Camera, door swing and drawer slides for each state of the fridge. k: doors (0 shut, 1 open); the rest are inches pulled out.
@@ -523,7 +665,10 @@ export async function start(D, MAP, base = "./") {
       font: 600 11px var(--font-mono); padding: 5px 11px; cursor: pointer; }
     .close3d[hidden] { display: none; }
     .cab-inside .stage3d { position: absolute; inset: 0; border-radius: 4px; overflow: hidden; }
-    .counter .stage3d { aspect-ratio: 3 / 1; border-radius: 8px; overflow: hidden; }`;
+    .stage3d canvas { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+    .reset3d { position: absolute; left: 8px; bottom: 8px; z-index: 4; border: 0; background: rgba(0,0,0,.55); color: #fff; border-radius: 999px;
+      font: 600 11px var(--font-mono); padding: 5px 11px; cursor: pointer; }
+    .reset3d[hidden] { display: none; }`;
   document.head.appendChild(css);
   const views = [];
 
@@ -531,20 +676,21 @@ export async function start(D, MAP, base = "./") {
   const sec = document.querySelector('section[aria-label="Fridge"]');
   const fstage = document.createElement("div"); fstage.className = "stage3d fridge3d";
   fstage.innerHTML = `<canvas aria-label="Your fridge. Tap a door to open it, then tap anything inside. The crispers, deli drawer and freezer pull out."></canvas>
-    <div class="mag3d"></div><button class="close3d" hidden>close</button><div class="tag3d" hidden></div>`;
+    <div class="mag3d"></div><button class="close3d" hidden>close</button><button class="reset3d" hidden>undo moves</button><div class="tag3d" hidden></div>`;
   const fread = document.createElement("p"); fread.className = "readout"; fread.setAttribute("aria-live", "polite");
   const fv = viewer(fstage.querySelector("canvas"), { alpha: true, fov: 34, sun: [-25, 90, 80], sunTarget: [15, 25, -12] });
   const pm = new THREE.PMREMGenerator(fv.renderer);
   const env = pm.fromScene(new RoomEnvironment(), .04).texture; pm.dispose();
   const { doors, drawers, zones } = fridgeScene(fv, env);
-  const { W } = FR;
-  await fill(D, MAP, base, "fridge", zones);
-  await fill(D, MAP, base, "freezer", { freezer: zones.freezer });
+  const fgrid = makeGrid(zones);
+  await fill(D, MAP, base, "fridge", zones, fgrid);
+  await fill(D, MAP, base, "freezer", { freezer: zones.freezer }, fgrid);
   // all loaded: swap the CSS fridge for the 3D one, and move the magnets onto its doors
   const mags = document.getElementById("magnets"), layer = fstage.querySelector(".mag3d");
   sec.replaceChildren(fstage, fread);
   layer.append(mags);
   document.body.classList.add("has3d");
+  if (window.magnets) window.magnets();   // re-render the magnets into the 3D layer
 
   let state = "closed", anim = null, cur = null;
   const tag = fstage.querySelector(".tag3d"), closeBtn = fstage.querySelector(".close3d");
@@ -570,7 +716,7 @@ export async function start(D, MAP, base = "./") {
     });
   };
   document.addEventListener("magnets", () => { if (state === "closed" && !anim) placeMagnets(); });
-  const say = { closed: "", fridge: "Tap anything. Dashed outlines are things you usually have but are out of. Tap a crisper, the deli drawer or the freezer to pull it out.",
+  const say = { closed: "", fridge: "Tap anything, or hold it to move it; it snaps into place. Dashed outlines are things you're out of. Tap a crisper, the deli drawer or the freezer to pull it out.",
     "crisper-left": "Left crisper, pulled out. Tap its front to push it in.", "crisper-right": "Right crisper, pulled out. Tap its front to push it in.",
     drawer: "Deli drawer, pulled out. Tap its front to push it in.", freezer: "Freezer, pulled out. Tap the front to push it in." };
   const go = to => {
@@ -594,8 +740,24 @@ export async function start(D, MAP, base = "./") {
     fread.textContent = say[to];
   };
   const back = () => go(state === "fridge" || state === "freezer" ? "closed" : "fridge");
+  // drag to rearrange: in the open fridge, everything but the freezer; in a pulled drawer, just that drawer
+  const resetBtn = fstage.querySelector(".reset3d");
+  const hasMoves = loc => Object.keys(store.get()).some(k => k.startsWith(loc + ":"));
+  const fdrag = dragger(fv, fgrid, {
+    lanesFor: () => {
+      if (anim || state === "closed") return null;
+      return fgrid.lanes.filter(l => state === "fridge" ? l.key !== "freezer" : l.key === state);
+    },
+    onStart: () => { tag.hidden = true; },
+    onChange: () => { resetBtn.hidden = false; fread.textContent = "Moved. It stays there on this device."; },
+  });
+  resetBtn.hidden = !(hasMoves("fridge") || hasMoves("freezer"));
+  resetBtn.addEventListener("click", () => {
+    const o = store.get(); for (const k of Object.keys(o)) if (/^(fridge|freezer):/.test(k)) delete o[k];
+    store.set(o); location.reload();
+  });
   onTap(fv.canvas, e => {
-    if (anim || document.querySelector(".magcard")) return;
+    if (anim || fdrag.used() || document.querySelector(".magcard")) return;
     const pulled = state !== "closed" && state !== "fridge";
     const hit = fv.pick(e, pulled), door = hit && hit.userData.door;
     if (state === "closed") return go(door === "freezer" ? "freezer" : "fridge");
@@ -616,39 +778,26 @@ export async function start(D, MAP, base = "./") {
     ps.innerHTML = `<canvas aria-label="Pantry shelves. Tap anything."></canvas><div class="tag3d" hidden></div>`;
     const pv = viewer(ps.querySelector("canvas"), { bg: "#cfd8dd", fov: 30, sun: [-10, 90, 80], sunTarget: [15, 30, -6] });
     const { zones: pz, W: PW, top: PT } = pantryScene(pv);
-    await fill(D, MAP, base, "pantry", pz);
+    const pgrid = makeGrid(pz);
+    await fill(D, MAP, base, "pantry", pz, pgrid);
     cab.prepend(ps);
     const ptag = ps.querySelector(".tag3d"), pread = cab.querySelector(".readout");
     const draw = () => { if (!pv.size()) return; pv.setPose(pv.fit([-1, PW + 1, -2, PT + 2], [PW / 2, PT / 2 - 1, 0], [0, .08, 1])); pv.render(); ptag.hidden = true; };
     new ResizeObserver(draw).observe(ps);
+    const pdrag = dragger(pv, pgrid, { lanesFor: () => pgrid.lanes, onStart: () => { ptag.hidden = true; },
+      onChange: () => { if (pread) pread.textContent = "Moved. It stays there on this device."; } });
     onTap(pv.canvas, e => {
+      if (pdrag.used()) return;
       const hit = pv.pick(e, true);
       if (hit && hit.userData.item) showTag(ptag, hit.userData.item, pv.project(hit), ps, pread); else ptag.hidden = true;
     });
     views.push(pv);
   }
 
-  // --- counter ---
-  const counter = document.querySelector(".counter");
-  if (counter && (D.shelves.counter || []).length) {
-    const cs = document.createElement("div"); cs.className = "stage3d";
-    cs.innerHTML = `<canvas aria-label="Counter. Tap anything."></canvas><div class="tag3d" hidden></div>`;
-    const cv = viewer(cs.querySelector("canvas"), { alpha: true, fov: 30, sun: [-10, 60, 50], sunTarget: [22, 0, -6] });
-    const { zones: cz } = counterScene(cv);
-    await fill(D, MAP, base, "counter", cz);
-    counter.querySelector(".label").after(cs);
-    const ctag = cs.querySelector(".tag3d"), cread = counter.querySelector(".readout");
-    const draw = () => { if (!cv.size()) return; cv.setPose(cv.fit([-1, 45, -2, 12], [22, 4, -4], [0, .45, 1])); cv.render(); ctag.hidden = true; };
-    new ResizeObserver(draw).observe(cs);
-    onTap(cv.canvas, e => {
-      const hit = cv.pick(e, true);
-      if (hit && hit.userData.item) showTag(ctag, hit.userData.item, cv.project(hit), cs, cread); else ctag.hidden = true;
-    });
-  }
   // models may finish loading textures after the first frame
   setTimeout(() => { redrawF(); views.forEach(v => { v.size(); v.render(); }); }, 600);
   return true;
 }
 
 // for the offline preview tools (sim/export.mjs); the page doesn't use this
-export const _internals = { fridgeScene, pantryScene, counterScene, makeItem, resolve, pack, fill, fridgePose, PULL, FR };
+export const _internals = { fridgeScene, pantryScene, makeItem, resolve, pack, fill, makeGrid, dragger, fridgePose, PULL, FR, CELL };

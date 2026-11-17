@@ -1,6 +1,6 @@
 # The Fridge
 
-A stainless French-door fridge you open in the browser. The doors hold magnets: this week's plan, a recipe not made in a while, running tallies since the first receipt (groceries, beer, flowers, Diet Coke, frozen pizza), the shopping streak and this week's spend. Tap a magnet for its trend. Inside are the fridge, freezer, pantry and counter. Each item keeps its spot; when it's out, a dashed outline stays in its place, and tapping it says how often you usually buy it and offers to add it to a restock list (kept in the browser, per device). The crispers, deli drawer and freezer pull out. Below: weekly spend, what got cooked, and "Aisle 7", a data explorer built from every receipt line: running tallies, spend by aisle per month, a price check per item, a barcode of your staples, and a few findings.
+A stainless French-door fridge you open in the browser, next to the pantry. The doors hold paper and magnets, sized to the real fridge: the week's plan on a notepad page, a recipe card for something not made in a while, a sticky note of what you need, a deals coupon, a dry-erase board with this week's spend, a bottle cap (beer), a flower (flowers), a clipped receipt (groceries), a stamp card for the shopping streak, Diet Coke tally marks on tape and a pizza slice on the freezer. Tap any of them for its trend. Each item inside keeps its spot; when it's out, a dashed outline stays in its place, and tapping it says how often you usually buy it and offers to add it to a restock list. Hold an item (or drag it with a mouse) to move it: it snaps to a 1-inch grid on the shelf, bin or drawer under your finger. Moves and the restock list are kept in the browser, per device. The crispers, deli drawer and freezer pull out. Below: weekly spend, what got cooked, and "Trends and tallies", built from every receipt line: running tallies, spend by aisle per month, a price check per item, your staples and a few findings.
 
 ## How it works
 
@@ -21,7 +21,7 @@ One row per observation, newest wins. Anything without a recent row is estimated
 | 2026-11-22 | Eggs | fridge | low | photo | |
 | 2026-11-22 | Almond milk | fridge | out | colin | |
 
-- location: fridge, freezer, pantry or counter, optionally with where after a colon, which the 3D view uses:
+- location: fridge, freezer or pantry (counter is read as pantry), optionally with where after a colon, which the 3D view uses:
   - fridge: top shelf, middle shelf, bottom shelf, left crisper, right crisper, drawer, left door top bin, right door middle bin, and so on
   - pantry: top shelf, shelf 2, shelf 3, shelf 4, bottom shelf
   - a bare "fridge" or "pantry" works too; the item then goes where map.json says
@@ -45,9 +45,9 @@ To change what counts as one item (for example, so "Signature Chicken Thighs" an
 
 `.github/workflows/pages.yml` builds the page hourly (and on every push to main) and deploys it to GitHub Pages. It needs two repository secrets: `GCP_SA_KEY` (the full service-account JSON) and `SHEET_ID`. Each run checks the output with `.github/guard.sh`, which fails the build on a store number or street address, and commits `data/snapshot.json` (the page's data, no store names or notes) only when it changed, so the hourly schedule never goes dormant.
 
-## 3D fridge, pantry and counter
+## 3D fridge and pantry
 
-The page draws your fridge, pantry and counter as a low-poly 3D scene with three.js. If a browser can't do WebGL, or something fails to load, it keeps the plain tile view. Add `?flat` to the address to force the tiles. The layout follows the real kitchen: French doors with three bins each, three glass shelves, two crispers, a full-width drawer and a freezer drawer; a five-shelf pantry.
+The page draws your fridge and pantry as a low-poly 3D scene with three.js. If a browser can't do WebGL, or something fails to load, it keeps the plain tile view. Add `?flat` to the address to force the tiles. The layout follows the real kitchen: French doors with three bins each, three glass shelves, two crispers, a full-width drawer and a freezer drawer; a five-shelf pantry.
 
 - `site/` is copied next to `index.html` on every build.
 - `site/js/kitchen3d.js` builds the scenes, places items on shelves, prints labels and shows the tap tags.
