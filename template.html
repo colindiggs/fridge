@@ -84,7 +84,7 @@ button { font: inherit; color: inherit; }
 
 /* Magnets. Sizes are in inches (--in is pixels per inch) so they stay true to the fridge.
    The 3D view pins each one to its spot on the doors; the plain view flows them. */
-.magnets { --in: 15px; position: absolute; inset: 22px 46px 22px 18px; display: flex; flex-wrap: wrap; gap: 14px; align-content: flex-start; pointer-events: none; }
+.magnets { --in: 15px; position: absolute; inset: 22px 46px 22px 18px; display: flex; flex-wrap: wrap; gap: 14px; align-content: flex-start; align-items: flex-start; pointer-events: none; }
 .mag { position: relative; pointer-events: auto; cursor: pointer; width: calc(var(--in) * var(--w)); border: 0; padding: 0; text-align: left;
   rotate: var(--r, 0deg); background: none; display: block; -webkit-tap-highlight-color: transparent; }
 .mag3d .mag { position: absolute; transform-origin: 0 0; }
@@ -210,7 +210,7 @@ button { font: inherit; color: inherit; }
 .panel { background: var(--card); border-radius: 10px; padding: 16px 16px 14px; box-shadow: var(--shadow); margin: 18px 0 0; min-width: 0; }
 .panel h3 { font: 800 18px var(--font-display); margin: 0; }
 .panel .sub { margin: 2px 0 0; color: var(--muted); font: 12px/1.4 var(--font-mono); }
-.panels2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 18px; }
+.panels2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 18px; align-items: start; }
 @media (max-width: 760px) { .panels2 { grid-template-columns: minmax(0, 1fr); } }
 .viz { width: 100%; height: auto; display: block; margin-top: 12px; overflow: visible; touch-action: pan-y; }
 .viz text { font: 10.5px var(--font-mono); fill: var(--muted); }
@@ -429,7 +429,7 @@ const monthTicks = (t0, t1, X, y) => {
 };
 
 // A running total: a step line from zero, a dot for each trip that added to it. Hover a trip for what it added.
-function tallyChart(x, { W = 640, H = 220, small = false } = {}) {
+function tallyChart(x, { W = 640, H = 200, small = false } = {}) {
   const color = `var(${x.t.c})`, L = small ? 36 : 46, R = small ? 8 : 56, Tp = 12, B = 22;
   const t0 = dd(DAYS[0]), t1 = dd(D.today), span = Math.max(1, t1 - t0);
   const X = s => L + (dd(s) - t0) / span * (W - L - R);
@@ -661,7 +661,7 @@ function priceCheck() {
       <circle class="hit" cx="${X(p.d)}" cy="${Y(p.u)}" r="12"/><circle class="dot" cx="${X(p.d)}" cy="${Y(p.u)}" r="4.5" fill="var(--s-blue)" stroke="var(--card)" stroke-width="2"/></g>`).join("");
     $("#price").innerHTML = `<svg class="viz" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(name)} price per unit over time">${g}
       <line class="base" x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}"/><line x1="${L}" x2="${W - R}" y1="${Y(avg)}" y2="${Y(avg)}" stroke="var(--ink-soft)" stroke-dasharray="3 3"/>
-      <text x="${W - R}" y="${Y(avg) - 5}" text-anchor="end">avg ${usd(avg)}</text>
+      <text x="${W - R}" y="${Y(avg) + 14}" text-anchor="end">avg ${usd(avg)}</text>
       <path d="${line}" fill="none" stroke="var(--s-blue)" stroke-width="2" stroke-linejoin="round"/>${dots}</svg>`;
     const lo = pts.reduce((a, p) => p.u < a.u ? p : a), hi = pts.reduce((a, p) => p.u > a.u ? p : a);
     const ds = [...new Set(pts.map(p => p.d))];
@@ -702,7 +702,7 @@ function findings() {
   if (freq[0]) out.push(`${freq[0]} came home on ${trips(freq[0])} of ${DAYS.length} trips${by.Beer && trips("Beer") > trips(freq[0]) ? `. Only beer showed up more, on ${trips("Beer")}` : ", more than anything else"}.`);
   const tot = DAYS.map(() => 0); ROWS.forEach(r => tot[r[0]] += r[3]);
   const bi = tot.indexOf(Math.max(...tot));
-  if (bi >= 0) { const tops = ROWS.filter(r => r[0] === bi).sort((a, b) => b[3] - a[3]).slice(0, 2); out.push(`Biggest trip: ${fmt(DAYS[bi])}, ${usd(tot[bi])}. ${tops.map(r => `${r[1]} (${usd(r[3])})`).join(" and ")} led it.`); }
+  if (bi >= 0) { const tops = ROWS.filter(r => r[0] === bi).sort((a, b) => b[3] - a[3]).slice(0, 2); out.push(`Biggest haul: ${fmt(DAYS[bi])}, ${usd(tot[bi])} of groceries. ${tops.map(r => `${r[1]} (${usd(r[3])})`).join(" and ")} led it.`); }
   const flat = Object.keys(by).filter(n => n !== "Unclear item" && trips(n) >= 4 && new Set(by[n].map(r => (r[3] / r[4]).toFixed(2))).size === 1).sort((a, b) => trips(b) - trips(a))[0];
   if (flat) out.push(`${flat} cost ${usd(by[flat][0][3] / by[flat][0][4])} all ${trips(flat)} times. The most loyal price in the store.`);
   const saved = ROWS.filter(r => r[5] > 0).sort((a, b) => b[5] - a[5]);
