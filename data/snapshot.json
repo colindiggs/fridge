@@ -2594,72 +2594,6 @@
   "weeks_ago": 24
  },
  "shelves": {
-  "counter": [
-   {
-    "cat": "produce",
-    "cost": 1.45,
-    "every": 21,
-    "fresh": 0.93,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Onions",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "times": 9,
-    "trips": 15,
-    "usual": "9 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 2.9,
-    "every": 77,
-    "fresh": 0.36,
-    "ghost": false,
-    "last": "2026-11-08",
-    "name": "Apples",
-    "since": "2026-11-08",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 0.49,
-    "every": 21,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-11-08",
-    "name": "Bananas",
-    "since": "2026-11-08",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 6,
-    "trips": 15,
-    "usual": "6 of 15 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 1.37,
-    "every": 49,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-09-13",
-    "name": "Red onion",
-    "since": "2026-09-13",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
-   }
-  ],
   "freezer": [
    {
     "cat": "dairy/frozen",
@@ -3802,6 +3736,22 @@
     "usual": "1 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 1.45,
+    "every": 21,
+    "fresh": 0.93,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Onions",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 9,
+    "trips": 15,
+    "usual": "9 of 15 trips"
+   },
+   {
     "cat": "pantry",
     "cost": 2.79,
     "every": 21,
@@ -3818,6 +3768,22 @@
     "usual": "6 of 15 trips"
    },
    {
+    "cat": "produce",
+    "cost": 2.9,
+    "every": 77,
+    "fresh": 0.36,
+    "ghost": false,
+    "last": "2026-11-08",
+    "name": "Apples",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 3,
+    "trips": 15,
+    "usual": "3 of 15 trips"
+   },
+   {
     "cat": "pantry",
     "cost": 3.49,
     "every": 63,
@@ -3832,6 +3798,22 @@
     "times": 2,
     "trips": 15,
     "usual": "2 of 15 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 0.49,
+    "every": 21,
+    "fresh": 0.0,
+    "ghost": true,
+    "last": "2026-11-08",
+    "name": "Bananas",
+    "since": "2026-11-08",
+    "source": "receipt",
+    "spot": null,
+    "status": "out",
+    "times": 6,
+    "trips": 15,
+    "usual": "6 of 15 trips"
    },
    {
     "cat": "pantry",
@@ -3858,6 +3840,22 @@
     "last": "2026-10-11",
     "name": "Naan",
     "since": "2026-10-11",
+    "source": "receipt",
+    "spot": null,
+    "status": "out",
+    "times": 3,
+    "trips": 15,
+    "usual": "3 of 15 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 1.37,
+    "every": 49,
+    "fresh": 0.0,
+    "ghost": true,
+    "last": "2026-09-13",
+    "name": "Red onion",
+    "since": "2026-09-13",
     "source": "receipt",
     "spot": null,
     "status": "out",
