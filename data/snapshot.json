@@ -33,6 +33,2539 @@
    "meal": "Yogurt-marinated chicken over hummus with roasted vegetables"
   }
  ],
+ "ledger": {
+  "days": [
+   "2026-06-21",
+   "2026-06-28",
+   "2026-07-04",
+   "2026-07-12",
+   "2026-07-26",
+   "2026-08-09",
+   "2026-08-16",
+   "2026-08-30",
+   "2026-09-13",
+   "2026-09-20",
+   "2026-10-04",
+   "2026-10-11",
+   "2026-10-18",
+   "2026-11-08",
+   "2026-11-15"
+  ],
+  "rows": [
+   [
+    0,
+    "Beer",
+    "Beer and wine",
+    21.99,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Almond milk",
+    "Dairy",
+    4.29,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Creamer",
+    "Dairy",
+    3.59,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Vanilla almond milk",
+    "Dairy",
+    5.59,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Diet Coke",
+    "Drinks",
+    11.49,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Tru fru strawberry",
+    "Frozen",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Chicken thighs",
+    "Meat and fish",
+    11.89,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Salmon",
+    "Meat and fish",
+    7.59,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Sausage",
+    "Meat and fish",
+    8.39,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Flour tortillas",
+    "Pantry",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Organic evaporated milk",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Pasta",
+    "Pantry",
+    2.29,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Soy sauce",
+    "Pantry",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Tortilla chips",
+    "Pantry",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Brussels sprouts",
+    "Produce",
+    4.67,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Carrots",
+    "Produce",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Green onions",
+    "Produce",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Lemons",
+    "Produce",
+    0.69,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Onions",
+    "Produce",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    0,
+    "Potatoes",
+    "Produce",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Bread",
+    "Bakery",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Beer",
+    "Beer and wine",
+    11.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Butter",
+    "Dairy",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Cheese",
+    "Dairy",
+    2.0,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Eggs",
+    "Dairy",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Hydrangea white",
+    "Flowers",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Peonies 3 stems",
+    "Flowers",
+    13.98,
+    2,
+    0.0
+   ],
+   [
+    1,
+    "Canned beans",
+    "Frozen",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Frozen pizza",
+    "Frozen",
+    9.98,
+    2,
+    0.0
+   ],
+   [
+    1,
+    "Bleach low splash",
+    "Household",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Cascade actionpacs",
+    "Household",
+    16.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Scotch brite dishwand",
+    "Household",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Scotch brite multi",
+    "Household",
+    4.79,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Chicken thighs",
+    "Meat and fish",
+    11.57,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Ground turkey",
+    "Meat and fish",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Chips and pretzels",
+    "Pantry",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Flour tortillas",
+    "Pantry",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Gnocchi",
+    "Pantry",
+    3.29,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Pasta",
+    "Pantry",
+    2.29,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Peanut butter",
+    "Pantry",
+    14.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Rice",
+    "Pantry",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Salsa verde",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Bell peppers",
+    "Produce",
+    1.98,
+    2,
+    0.0
+   ],
+   [
+    1,
+    "Cucumbers",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Fresh herbs",
+    "Produce",
+    1.49,
+    1,
+    0.0
+   ],
+   [
+    1,
+    "Spinach",
+    "Produce",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Beer",
+    "Beer and wine",
+    22.99,
+    1,
+    1.0
+   ],
+   [
+    2,
+    "Prosecco",
+    "Beer and wine",
+    29.98,
+    2,
+    12.86
+   ],
+   [
+    2,
+    "Almond milk",
+    "Dairy",
+    4.29,
+    1,
+    0.7
+   ],
+   [
+    2,
+    "Cheese",
+    "Dairy",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Feta",
+    "Deli",
+    6.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Diet Coke",
+    "Drinks",
+    11.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "San pellegrino",
+    "Drinks",
+    3.19,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Vegetable peeler",
+    "Household",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Chicken breast",
+    "Meat and fish",
+    8.94,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Salmon",
+    "Meat and fish",
+    11.39,
+    1,
+    2.28
+   ],
+   [
+    2,
+    "Cereal",
+    "Pantry",
+    5.99,
+    1,
+    0.3
+   ],
+   [
+    2,
+    "Chips and pretzels",
+    "Pantry",
+    5.99,
+    1,
+    1.3
+   ],
+   [
+    2,
+    "Flour tortillas",
+    "Pantry",
+    3.99,
+    1,
+    0.3
+   ],
+   [
+    2,
+    "Olive oil",
+    "Pantry",
+    19.99,
+    1,
+    3.0
+   ],
+   [
+    2,
+    "Olives",
+    "Pantry",
+    2.19,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Pasta",
+    "Pantry",
+    1.34,
+    1,
+    0.95
+   ],
+   [
+    2,
+    "Snack bars",
+    "Pantry",
+    13.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Triscuits",
+    "Pantry",
+    3.99,
+    1,
+    1.0
+   ],
+   [
+    2,
+    "Bananas",
+    "Produce",
+    0.77,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Bell peppers",
+    "Produce",
+    3.98,
+    2,
+    0.0
+   ],
+   [
+    2,
+    "Fresh herbs",
+    "Produce",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Grape tomatoes",
+    "Produce",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Lemons",
+    "Produce",
+    1.76,
+    2,
+    0.0
+   ],
+   [
+    2,
+    "Limes",
+    "Produce",
+    2.76,
+    4,
+    0.0
+   ],
+   [
+    2,
+    "Organic blueberries 6oz",
+    "Produce",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Red onion",
+    "Produce",
+    1.33,
+    1,
+    0.0
+   ],
+   [
+    2,
+    "Strawberries 1lb",
+    "Produce",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Garlic",
+    "Bakery",
+    4.29,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Beer",
+    "Beer and wine",
+    21.99,
+    1,
+    1.0
+   ],
+   [
+    3,
+    "Cheese",
+    "Dairy",
+    1.99,
+    1,
+    1.0
+   ],
+   [
+    3,
+    "Cheese",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    3,
+    "Creamer",
+    "Dairy",
+    5.59,
+    1,
+    0.1
+   ],
+   [
+    3,
+    "Yogurt",
+    "Dairy",
+    5.29,
+    1,
+    0.3
+   ],
+   [
+    3,
+    "Hummus",
+    "Deli",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Poms",
+    "Flowers",
+    5.0,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "White roses 12 stem",
+    "Flowers",
+    12.99,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Chicken breast",
+    "Meat and fish",
+    7.94,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Turkey sausage",
+    "Meat and fish",
+    5.99,
+    1,
+    1.0
+   ],
+   [
+    3,
+    "Cereal",
+    "Pantry",
+    5.99,
+    1,
+    1.0
+   ],
+   [
+    3,
+    "Couscous",
+    "Pantry",
+    1.99,
+    1,
+    1.5
+   ],
+   [
+    3,
+    "Flour tortillas",
+    "Pantry",
+    3.99,
+    1,
+    0.3
+   ],
+   [
+    3,
+    "Olive oil",
+    "Pantry",
+    7.58,
+    2,
+    2.4
+   ],
+   [
+    3,
+    "Pasta",
+    "Pantry",
+    2.79,
+    1,
+    1.0
+   ],
+   [
+    3,
+    "Salsa verde",
+    "Pantry",
+    4.69,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Bananas",
+    "Produce",
+    0.72,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Broccoli",
+    "Produce",
+    3.07,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Lemons",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Onions",
+    "Produce",
+    1.21,
+    1,
+    0.0
+   ],
+   [
+    3,
+    "Potatoes",
+    "Produce",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Bread",
+    "Bakery",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Naan",
+    "Bakery",
+    3.89,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Beer",
+    "Beer and wine",
+    13.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Cheese",
+    "Dairy",
+    2.5,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Chicken breast",
+    "Meat and fish",
+    6.42,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Smithfield honey ham",
+    "Meat and fish",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Smithfield salami",
+    "Meat and fish",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Turkey breast",
+    "Meat and fish",
+    10.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Chips and pretzels",
+    "Pantry",
+    7.49,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Couscous",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Olives",
+    "Pantry",
+    3.79,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Snack bars",
+    "Pantry",
+    13.49,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Triscuits",
+    "Pantry",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Apples",
+    "Produce",
+    2.47,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Lemons",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    4,
+    "Red onion",
+    "Produce",
+    1.69,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Beer",
+    "Beer and wine",
+    21.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Vanilla almond milk",
+    "Dairy",
+    5.79,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Feta",
+    "Deli",
+    11.98,
+    2,
+    0.0
+   ],
+   [
+    5,
+    "Diet Coke",
+    "Drinks",
+    11.49,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Gts synergy kombucha",
+    "Drinks",
+    9.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Gypsophilla",
+    "Flowers",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Hydrangea white",
+    "Flowers",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Rose white 12 stem",
+    "Flowers",
+    12.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Frozen fries",
+    "Frozen",
+    3.79,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Frozen pizza",
+    "Frozen",
+    19.98,
+    2,
+    0.0
+   ],
+   [
+    5,
+    "Chicken breast",
+    "Meat and fish",
+    6.58,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Chicken nuggets",
+    "Meat and fish",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Ground turkey",
+    "Meat and fish",
+    8.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Salmon",
+    "Meat and fish",
+    7.09,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Pasta",
+    "Pantry",
+    1.34,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Worcestershire sauce",
+    "Pantry",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Asparagus green",
+    "Produce",
+    5.14,
+    1,
+    0.0
+   ],
+   [
+    5,
+    "Lemons",
+    "Produce",
+    1.98,
+    2,
+    0.0
+   ],
+   [
+    5,
+    "Onions",
+    "Produce",
+    2.43,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Bread",
+    "Bakery",
+    3.79,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Naan",
+    "Bakery",
+    5.29,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Almond milk",
+    "Dairy",
+    4.29,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Hot sopressata",
+    "Deli",
+    9.99,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Hummus",
+    "Deli",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Mozzarella",
+    "Deli",
+    11.98,
+    2,
+    0.0
+   ],
+   [
+    6,
+    "Frozen pizza",
+    "Frozen",
+    19.98,
+    2,
+    0.0
+   ],
+   [
+    6,
+    "Ground turkey",
+    "Meat and fish",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Flour tortillas",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Kosher salt",
+    "Pantry",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Olives",
+    "Pantry",
+    4.78,
+    2,
+    0.0
+   ],
+   [
+    6,
+    "Pasta",
+    "Pantry",
+    1.34,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Snack bars",
+    "Pantry",
+    11.99,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Steak house dressing",
+    "Pantry",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Triscuits",
+    "Pantry",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Bell peppers",
+    "Produce",
+    3.99,
+    3,
+    0.0
+   ],
+   [
+    6,
+    "Carrots",
+    "Produce",
+    1.0,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Iceberg lettuce",
+    "Produce",
+    2.0,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Onions",
+    "Produce",
+    1.32,
+    1,
+    0.0
+   ],
+   [
+    6,
+    "Snacking tomatoes",
+    "Produce",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Beer",
+    "Beer and wine",
+    14.99,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Almond milk",
+    "Dairy",
+    3.5,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Chicken thighs",
+    "Meat and fish",
+    11.85,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Sausage",
+    "Meat and fish",
+    6.49,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Flour tortillas",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Gnocchi",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Salsa verde",
+    "Pantry",
+    2.5,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Tortilla chips",
+    "Pantry",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Bananas",
+    "Produce",
+    0.71,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Bell peppers",
+    "Produce",
+    5.97,
+    3,
+    0.0
+   ],
+   [
+    7,
+    "Garlic",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    7,
+    "Limes",
+    "Produce",
+    1.58,
+    2,
+    0.0
+   ],
+   [
+    8,
+    "Beer",
+    "Beer and wine",
+    11.99,
+    1,
+    2.0
+   ],
+   [
+    8,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Oat milk extra creamy",
+    "Dairy",
+    3.5,
+    1,
+    0.99
+   ],
+   [
+    8,
+    "Feta",
+    "Deli",
+    10.99,
+    1,
+    2.0
+   ],
+   [
+    8,
+    "Soppressata",
+    "Deli",
+    7.99,
+    1,
+    1.0
+   ],
+   [
+    8,
+    "Majestic rose",
+    "Flowers",
+    14.99,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Poms",
+    "Flowers",
+    5.0,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Frozen pizza",
+    "Frozen",
+    11.98,
+    2,
+    8.0
+   ],
+   [
+    8,
+    "Chicken breast",
+    "Meat and fish",
+    5.94,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Crushed tomatoes",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Olives",
+    "Pantry",
+    4.78,
+    2,
+    1.2
+   ],
+   [
+    8,
+    "Pasta",
+    "Pantry",
+    3.29,
+    1,
+    0.5
+   ],
+   [
+    8,
+    "Bananas",
+    "Produce",
+    0.62,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Broccoli",
+    "Produce",
+    2.54,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Cucumbers",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Fresh herbs",
+    "Produce",
+    1.49,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Lemons",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    8,
+    "Red onion",
+    "Produce",
+    1.37,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Bread",
+    "Bakery",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Olives",
+    "Bakery",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Butter",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Creamer",
+    "Dairy",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Fresh herbs",
+    "Dairy",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Goat cheese log",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Halloumi",
+    "Dairy",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Heavy cream",
+    "Dairy",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Yogurt",
+    "Dairy",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Yogurt",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Gourd assortment",
+    "Flowers",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Mini pumpkin",
+    "Flowers",
+    1.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Mini pumpkin orange",
+    "Flowers",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Fat orange cat baby kitty",
+    "Household",
+    9.99,
+    4,
+    0.01
+   ],
+   [
+    9,
+    "Vanilla pumpkin candle",
+    "Household",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Boneless pork tenderloin",
+    "Meat and fish",
+    6.11,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Chicken meatballs",
+    "Meat and fish",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Ground turkey",
+    "Meat and fish",
+    4.79,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Sausage",
+    "Meat and fish",
+    6.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Bread",
+    "Pantry",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Cereal",
+    "Pantry",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Chips and pretzels",
+    "Pantry",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Pasta",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Lemons",
+    "Produce",
+    0.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Onions",
+    "Produce",
+    1.19,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Portabella mushrooms",
+    "Produce",
+    3.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Spinach",
+    "Produce",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    9,
+    "Sweet corn on the cob 4pk",
+    "Produce",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Bread",
+    "Bakery",
+    2.99,
+    1,
+    2.3
+   ],
+   [
+    10,
+    "Beer",
+    "Beer and wine",
+    14.99,
+    1,
+    1.0
+   ],
+   [
+    10,
+    "Diet Coke",
+    "Drinks",
+    11.49,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "White hydrangea",
+    "Flowers",
+    15.98,
+    2,
+    0.0
+   ],
+   [
+    10,
+    "Chicken breast",
+    "Meat and fish",
+    12.04,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Chicken breast",
+    "Meat and fish",
+    7.88,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Salmon",
+    "Meat and fish",
+    7.28,
+    1,
+    2.43
+   ],
+   [
+    10,
+    "Canned beans",
+    "Pantry",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Canned beans",
+    "Pantry",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Olives",
+    "Pantry",
+    2.79,
+    1,
+    0.5
+   ],
+   [
+    10,
+    "Salsa verde",
+    "Pantry",
+    2.99,
+    1,
+    1.5
+   ],
+   [
+    10,
+    "Tortilla chips",
+    "Pantry",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Bananas",
+    "Produce",
+    0.52,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Bell peppers",
+    "Produce",
+    5.97,
+    3,
+    0.0
+   ],
+   [
+    10,
+    "Broccoli",
+    "Produce",
+    1.77,
+    1,
+    0.89
+   ],
+   [
+    10,
+    "Canned beans",
+    "Produce",
+    3.0,
+    1,
+    0.49
+   ],
+   [
+    10,
+    "Limes",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Onions",
+    "Produce",
+    1.58,
+    1,
+    0.0
+   ],
+   [
+    10,
+    "Potatoes",
+    "Produce",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Apples",
+    "Bakery",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Naan",
+    "Bakery",
+    7.98,
+    2,
+    0.0
+   ],
+   [
+    11,
+    "Beer",
+    "Beer and wine",
+    21.99,
+    1,
+    1.0
+   ],
+   [
+    11,
+    "Almond milk",
+    "Dairy",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Butter",
+    "Dairy",
+    3.49,
+    1,
+    0.5
+   ],
+   [
+    11,
+    "Cheese",
+    "Dairy",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Heavy cream",
+    "Dairy",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Yogurt",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    11,
+    "Yogurt",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    11,
+    "Yogurt",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    11,
+    "Bloom sparkling",
+    "Drinks",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Olipop prebiotic soda",
+    "Drinks",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    11,
+    "Frozen broccoli",
+    "Frozen",
+    3.49,
+    1,
+    0.8
+   ],
+   [
+    11,
+    "Frozen pizza",
+    "Frozen",
+    19.98,
+    2,
+    0.0
+   ],
+   [
+    11,
+    "Unclear item",
+    "Frozen",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Chicken breast",
+    "Meat and fish",
+    13.04,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Cereal",
+    "Pantry",
+    1.99,
+    1,
+    4.5
+   ],
+   [
+    11,
+    "Crushed tomatoes",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Ginger marinade",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Rice",
+    "Pantry",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Apples",
+    "Produce",
+    2.69,
+    1,
+    0.9
+   ],
+   [
+    11,
+    "Kale",
+    "Produce",
+    1.5,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Onions",
+    "Produce",
+    1.31,
+    1,
+    0.0
+   ],
+   [
+    11,
+    "Sweet potatoes",
+    "Produce",
+    3.19,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Pumpkin fry cakes 4pk",
+    "Bakery",
+    5.5,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Beer",
+    "Beer and wine",
+    13.49,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Gouda 18 month",
+    "Dairy",
+    7.03,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Mozzarella",
+    "Dairy",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Yogurt",
+    "Dairy",
+    4.29,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Yogurt",
+    "Dairy",
+    5.79,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Unclear item",
+    "Deli",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Coffee",
+    "Drinks",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Campanula",
+    "Flowers",
+    8.0,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Ranunculus",
+    "Flowers",
+    24.0,
+    2,
+    0.0
+   ],
+   [
+    12,
+    "Chicken thighs",
+    "Meat and fish",
+    6.23,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Baking soda",
+    "Pantry",
+    1.49,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Drizzilicious cinnamon",
+    "Pantry",
+    3.79,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Flour tortillas",
+    "Pantry",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Pasta",
+    "Pantry",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Pasta",
+    "Pantry",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Broccoli",
+    "Produce",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Lemons",
+    "Produce",
+    0.69,
+    1,
+    0.0
+   ],
+   [
+    12,
+    "Organic broccoletti",
+    "Produce",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Beer",
+    "Beer and wine",
+    13.99,
+    1,
+    1.0
+   ],
+   [
+    13,
+    "Heavy cream",
+    "Dairy",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Sour cream",
+    "Dairy",
+    3.79,
+    1,
+    0.2
+   ],
+   [
+    13,
+    "Grower box",
+    "Flowers",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Poms",
+    "Flowers",
+    10.0,
+    2,
+    0.0
+   ],
+   [
+    13,
+    "Bacon",
+    "Meat and fish",
+    10.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Chicken breast",
+    "Meat and fish",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Ground turkey",
+    "Meat and fish",
+    8.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Pasta",
+    "Pantry",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Apples",
+    "Produce",
+    2.9,
+    1,
+    0.97
+   ],
+   [
+    13,
+    "Bananas",
+    "Produce",
+    0.49,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Collard greens",
+    "Produce",
+    1.2,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Lemons",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Onions",
+    "Produce",
+    1.38,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Potatoes",
+    "Produce",
+    2.22,
+    1,
+    0.0
+   ],
+   [
+    13,
+    "Spinach",
+    "Produce",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Bread",
+    "Bakery",
+    5.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Eggs",
+    "Dairy",
+    5.49,
+    1,
+    2.0
+   ],
+   [
+    14,
+    "Chips and pretzels",
+    "Deli",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Hummus",
+    "Deli",
+    4.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Diet Coke",
+    "Drinks",
+    11.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Frozen pizza",
+    "Frozen",
+    9.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Foil",
+    "Household",
+    10.99,
+    1,
+    3.0
+   ],
+   [
+    14,
+    "Storage gallon",
+    "Household",
+    6.99,
+    1,
+    1.5
+   ],
+   [
+    14,
+    "Storage quart",
+    "Household",
+    6.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Chicken thighs",
+    "Meat and fish",
+    14.52,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Salmon",
+    "Meat and fish",
+    8.15,
+    1,
+    4.08
+   ],
+   [
+    14,
+    "Sausage",
+    "Meat and fish",
+    3.99,
+    1,
+    2.0
+   ],
+   [
+    14,
+    "Apple cider vinegar",
+    "Pantry",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "BBQ sauce",
+    "Pantry",
+    4.29,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Cereal",
+    "Pantry",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Chicken bouillon",
+    "Pantry",
+    8.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Couscous",
+    "Pantry",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Snack bars",
+    "Pantry",
+    7.49,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Broccoli",
+    "Produce",
+    3.62,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Brussels sprouts",
+    "Produce",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Carrots",
+    "Produce",
+    1.79,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Fresh herbs",
+    "Produce",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Lemons",
+    "Produce",
+    0.99,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Onions",
+    "Produce",
+    1.45,
+    1,
+    0.0
+   ],
+   [
+    14,
+    "Potatoes",
+    "Produce",
+    6.99,
+    1,
+    0.0
+   ]
+  ]
+ },
  "plan": [
   {
    "meal": "Sheet-pan lemongrass chicken thighs with baby potatoes, carrots, broccoli, Brussels sprouts",
@@ -65,7 +2598,8 @@
    {
     "cat": "produce",
     "cost": 1.45,
-    "fresh": 0.97,
+    "every": 21,
+    "fresh": 0.93,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Onions",
@@ -73,12 +2607,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 9,
+    "trips": 15,
     "usual": "9 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 2.9,
-    "fresh": 0.43,
+    "every": 77,
+    "fresh": 0.36,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Apples",
@@ -86,11 +2623,14 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 0.49,
+    "every": 21,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-11-08",
@@ -99,11 +2639,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 6,
+    "trips": 15,
     "usual": "6 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 1.37,
+    "every": 49,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-09-13",
@@ -112,6 +2655,8 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    }
   ],
@@ -119,7 +2664,8 @@
    {
     "cat": "dairy/frozen",
     "cost": 9.99,
-    "fresh": 0.99,
+    "every": 28,
+    "fresh": 0.98,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Frozen pizza",
@@ -127,12 +2673,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 6,
+    "trips": 15,
     "usual": "6 of 15 trips"
    },
    {
     "cat": "dairy/frozen",
     "cost": 3.49,
-    "fresh": 0.7,
+    "every": null,
+    "fresh": 0.69,
     "ghost": false,
     "last": "2026-10-11",
     "name": "Frozen broccoli",
@@ -140,12 +2689,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "dairy/frozen",
     "cost": 3.79,
-    "fresh": 0.18,
+    "every": null,
+    "fresh": 0.17,
     "ghost": false,
     "last": "2026-08-09",
     "name": "Frozen fries",
@@ -153,6 +2705,8 @@
     "source": "receipt",
     "spot": null,
     "status": "low",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    }
   ],
@@ -160,6 +2714,7 @@
    {
     "cat": "dairy",
     "cost": 4.99,
+    "every": 42,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-11",
@@ -168,11 +2723,14 @@
     "source": "photo",
     "spot": "door-left-3",
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "alcohol",
     "cost": 13.99,
+    "every": 14,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-08",
@@ -181,11 +2739,14 @@
     "source": "photo",
     "spot": "door-left-1",
     "status": "in",
+    "times": 12,
+    "trips": 15,
     "usual": "12 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 3.49,
+    "every": 84,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-11",
@@ -194,11 +2755,14 @@
     "source": "photo",
     "spot": "door-right-2",
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -207,11 +2771,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 1.79,
+    "every": 91,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -220,11 +2787,14 @@
     "source": "photo",
     "spot": "crisper-right",
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 2.99,
+    "every": 14,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -233,11 +2803,14 @@
     "source": "photo",
     "spot": "crisper-left",
     "status": "in",
+    "times": 9,
+    "trips": 15,
     "usual": "9 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -246,11 +2819,14 @@
     "source": "photo",
     "spot": "door-right-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -259,11 +2835,14 @@
     "source": "photo",
     "spot": "door-right-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -272,11 +2851,14 @@
     "source": "photo",
     "spot": "door-left-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -285,11 +2867,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -298,11 +2883,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 1.99,
+    "every": 70,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-09-20",
@@ -311,11 +2899,14 @@
     "source": "photo",
     "spot": "door-left-3",
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "beverage",
     "cost": 11.49,
+    "every": 42,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -324,11 +2915,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 5.49,
+    "every": 140,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -337,11 +2931,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -350,11 +2947,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -363,11 +2963,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -376,11 +2979,14 @@
     "source": "photo",
     "spot": "door-right-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "deli",
     "cost": 4.49,
+    "every": 91,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -389,11 +2995,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -402,11 +3011,14 @@
     "source": "photo",
     "spot": "door-right-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -415,11 +3027,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -428,11 +3043,14 @@
     "source": "photo",
     "spot": "door-right-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -441,11 +3059,14 @@
     "source": "photo",
     "spot": "door-left-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -454,11 +3075,14 @@
     "source": "photo",
     "spot": "door-left-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -467,11 +3091,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -480,11 +3107,14 @@
     "source": "photo",
     "spot": "door-right-1",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -493,11 +3123,14 @@
     "source": "photo",
     "spot": "door-right-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 2.99,
+    "every": 35,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-04",
@@ -506,11 +3139,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 4,
+    "trips": 15,
     "usual": "4 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -519,11 +3155,14 @@
     "source": "photo",
     "spot": "door-right-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 4.49,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-06-21",
@@ -532,11 +3171,14 @@
     "source": "photo",
     "spot": "door-right-3",
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -545,11 +3187,14 @@
     "source": "photo",
     "spot": "door-left-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -558,11 +3203,14 @@
     "source": "photo",
     "spot": "door-right-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 10.08,
+    "every": 21,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-18",
@@ -571,12 +3219,15 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 4,
+    "trips": 15,
     "usual": "4 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 0.99,
-    "fresh": 0.95,
+    "every": 14,
+    "fresh": 0.9,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Lemons",
@@ -584,12 +3235,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 10,
+    "trips": 15,
     "usual": "10 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 3.62,
-    "fresh": 0.86,
+    "every": 28,
+    "fresh": 0.71,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Broccoli",
@@ -597,12 +3251,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 5.99,
-    "fresh": 0.86,
+    "every": 147,
+    "fresh": 0.71,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Brussels sprouts",
@@ -610,12 +3267,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 2.99,
-    "fresh": 0.86,
+    "every": 56,
+    "fresh": 0.71,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Fresh herbs",
@@ -623,12 +3283,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "protein",
     "cost": 3.99,
-    "fresh": 0.86,
+    "every": 56,
+    "fresh": 0.71,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Sausage",
@@ -636,12 +3299,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 4,
+    "trips": 15,
     "usual": "4 of 15 trips"
    },
    {
     "cat": "protein",
     "cost": 14.52,
-    "fresh": 0.8,
+    "every": 49,
+    "fresh": 0.6,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Chicken thighs",
@@ -649,25 +3315,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
-    "usual": "5 of 15 trips"
-   },
-   {
-    "cat": "protein",
-    "cost": 8.15,
-    "fresh": 0.67,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Salmon",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 3.79,
-    "fresh": 0.62,
+    "every": null,
+    "fresh": 0.57,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Sour cream",
@@ -675,12 +3331,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "dairy",
     "cost": 3.99,
-    "fresh": 0.43,
+    "every": 28,
+    "fresh": 0.36,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Heavy cream",
@@ -688,12 +3347,31 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "protein",
+    "cost": 8.15,
+    "every": 42,
+    "fresh": 0.33,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Salmon",
+    "since": "2026-11-15",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 5,
+    "trips": 15,
+    "usual": "5 of 15 trips"
+   },
+   {
+    "cat": "protein",
     "cost": 10.99,
-    "fresh": 0.2,
+    "every": null,
+    "fresh": 0.1,
     "ghost": false,
     "last": "2026-11-08",
     "name": "Bacon",
@@ -701,11 +3379,14 @@
     "source": "receipt",
     "spot": null,
     "status": "low",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 5.97,
+    "every": 35,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-10-04",
@@ -714,11 +3395,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "protein",
     "cost": 6.99,
+    "every": 14,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-11-08",
@@ -727,11 +3411,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 8,
+    "trips": 15,
     "usual": "8 of 15 trips"
    },
    {
     "cat": "deli",
     "cost": 10.99,
+    "every": 36,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-09-13",
@@ -740,11 +3427,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "protein",
     "cost": 8.99,
+    "every": 42,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-11-08",
@@ -753,11 +3443,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 0.99,
+    "every": 57,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-10-04",
@@ -766,11 +3459,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 2.99,
+    "every": 84,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-11-08",
@@ -779,6 +3475,8 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    }
   ],
@@ -786,6 +3484,7 @@
    {
     "cat": "bakery",
     "cost": 5.49,
+    "every": 28,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -794,11 +3493,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 6,
+    "trips": 15,
     "usual": "6 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -807,11 +3509,14 @@
     "source": "photo",
     "spot": "shelf-4",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 5.58,
+    "every": 98,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-04",
@@ -820,11 +3525,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 5.99,
+    "every": 35,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -833,11 +3541,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "deli",
     "cost": 5.99,
+    "every": 56,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -846,11 +3557,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -859,11 +3573,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 2.99,
+    "every": 112,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -872,11 +3589,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -885,11 +3605,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 1.99,
+    "every": 28,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-11",
@@ -898,11 +3621,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -911,11 +3637,14 @@
     "source": "photo",
     "spot": "shelf-4",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 7.58,
+    "every": 8,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-07-12",
@@ -924,11 +3653,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 1.29,
+    "every": 8,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-08",
@@ -937,11 +3669,14 @@
     "source": "photo",
     "spot": "shelf-3",
     "status": "in",
+    "times": 10,
+    "trips": 15,
     "usual": "10 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 14.99,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-06-28",
@@ -950,11 +3685,14 @@
     "source": "photo",
     "spot": "shelf-4",
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "produce",
     "cost": 6.99,
+    "every": 35,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -963,11 +3701,14 @@
     "source": "photo",
     "spot": "shelf-4",
     "status": "in",
+    "times": 5,
+    "trips": 15,
     "usual": "5 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 4.99,
+    "every": 105,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-10-11",
@@ -976,11 +3717,14 @@
     "source": "photo",
     "spot": "shelf-4",
     "status": "in",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 7.49,
+    "every": 22,
     "fresh": 1.0,
     "ghost": false,
     "last": "2026-11-15",
@@ -989,11 +3733,14 @@
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
+    "times": 4,
+    "trips": 15,
     "usual": "4 of 15 trips"
    },
    {
     "cat": "",
     "cost": null,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
     "last": null,
@@ -1002,11 +3749,14 @@
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
+    "times": 0,
+    "trips": 15,
     "usual": "0 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 4.29,
+    "every": null,
     "fresh": 0.99,
     "ghost": false,
     "last": "2026-11-15",
@@ -1015,12 +3765,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 2.49,
-    "fresh": 0.97,
+    "every": null,
+    "fresh": 0.93,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Apple cider vinegar",
@@ -1028,12 +3781,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 8.49,
-    "fresh": 0.97,
+    "every": null,
+    "fresh": 0.93,
     "ghost": false,
     "last": "2026-11-15",
     "name": "Chicken bouillon",
@@ -1041,11 +3797,14 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 1,
+    "trips": 15,
     "usual": "1 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 2.79,
+    "every": 21,
     "fresh": 0.76,
     "ghost": false,
     "last": "2026-10-04",
@@ -1054,12 +3813,15 @@
     "source": "receipt",
     "spot": null,
     "status": "in",
+    "times": 6,
+    "trips": 15,
     "usual": "6 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 3.49,
-    "fresh": 0.13,
+    "every": 63,
+    "fresh": 0.12,
     "ghost": false,
     "last": "2026-08-30",
     "name": "Gnocchi",
@@ -1067,37 +3829,14 @@
     "source": "receipt",
     "spot": null,
     "status": "low",
+    "times": 2,
+    "trips": 15,
     "usual": "2 of 15 trips"
    },
    {
     "cat": "pantry",
-    "cost": 1.49,
-    "fresh": 0.03,
-    "ghost": false,
-    "last": "2026-10-18",
-    "name": "Baking soda",
-    "since": "2026-10-18",
-    "source": "receipt",
-    "spot": null,
-    "status": "low",
-    "usual": "1 of 15 trips"
-   },
-   {
-    "cat": "pantry",
-    "cost": 3.79,
-    "fresh": 0.03,
-    "ghost": false,
-    "last": "2026-10-18",
-    "name": "Drizzilicious cinnamon",
-    "since": "2026-10-18",
-    "source": "receipt",
-    "spot": null,
-    "status": "low",
-    "usual": "1 of 15 trips"
-   },
-   {
-    "cat": "pantry",
     "cost": 3.99,
+    "every": 14,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-10-18",
@@ -1106,11 +3845,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 7,
+    "trips": 15,
     "usual": "7 of 15 trips"
    },
    {
     "cat": "bakery",
     "cost": 7.98,
+    "every": 56,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-10-11",
@@ -1119,11 +3861,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 5.49,
+    "every": 70,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-10-04",
@@ -1132,11 +3877,14 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    },
    {
     "cat": "pantry",
     "cost": 5.49,
+    "every": 22,
     "fresh": 0.0,
     "ghost": true,
     "last": "2026-08-16",
@@ -1145,6 +3893,8 @@
     "source": "receipt",
     "spot": null,
     "status": "out",
+    "times": 3,
+    "trips": 15,
     "usual": "3 of 15 trips"
    }
   ]
@@ -1268,5 +4018,5 @@
   ],
   "shopped_this_week": true
  },
- "today": "2026-11-16"
+ "today": "2026-11-17"
 }
