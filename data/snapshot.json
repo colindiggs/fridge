@@ -49,7 +49,8 @@
    "2026-10-11",
    "2026-10-18",
    "2026-11-08",
-   "2026-11-15"
+   "2026-11-15",
+   "2026-11-21"
   ],
   "rows": [
    [
@@ -2563,6 +2564,94 @@
     6.99,
     1,
     0.0
+   ],
+   [
+    15,
+    "Cheese",
+    "Dairy",
+    4.99,
+    1,
+    1.0
+   ],
+   [
+    15,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Evaporated milk",
+    "Dairy",
+    1.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Heavy cream",
+    "Dairy",
+    3.79,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Mozzarella",
+    "Dairy",
+    7.49,
+    1,
+    1.5
+   ],
+   [
+    15,
+    "Foil pan with lid",
+    "Household",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Pantene shampoo",
+    "Household",
+    12.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Dijon mustard",
+    "Pantry",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Organic paprika",
+    "Pantry",
+    4.99,
+    1,
+    0.0
+   ],
+   [
+    15,
+    "Pasta",
+    "Pantry",
+    2.5,
+    1,
+    0.99
+   ],
+   [
+    15,
+    "Green onions",
+    "Produce",
+    2.5,
+    1,
+    0.0
    ]
   ]
  },
@@ -2608,8 +2697,8 @@
     "spot": null,
     "status": "in",
     "times": 6,
-    "trips": 15,
-    "usual": "6 of 15 trips"
+    "trips": 16,
+    "usual": "6 of 16 trips"
    },
    {
     "cat": "dairy/frozen",
@@ -2624,8 +2713,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "dairy/frozen",
@@ -2640,8 +2729,8 @@
     "spot": null,
     "status": "low",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    }
   ],
   "fridge": [
@@ -2658,8 +2747,8 @@
     "spot": "door-left-3",
     "status": "in",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "alcohol",
@@ -2674,8 +2763,8 @@
     "spot": "door-left-1",
     "status": "in",
     "times": 12,
-    "trips": 15,
-    "usual": "12 of 15 trips"
+    "trips": 16,
+    "usual": "12 of 16 trips"
    },
    {
     "cat": "dairy",
@@ -2690,8 +2779,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "",
@@ -2706,8 +2795,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "produce",
@@ -2722,24 +2811,24 @@
     "spot": "crisper-right",
     "status": "in",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "dairy",
-    "cost": 2.99,
+    "cost": 7.98,
     "every": 14,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-11-15",
+    "last": "2026-11-21",
     "name": "Cheese",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-21",
+    "source": "receipt",
     "spot": "crisper-left",
     "status": "in",
-    "times": 9,
-    "trips": 15,
-    "usual": "9 of 15 trips"
+    "times": 10,
+    "trips": 16,
+    "usual": "10 of 16 trips"
    },
    {
     "cat": "",
@@ -2754,8 +2843,8 @@
     "spot": "door-right-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2770,8 +2859,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2786,8 +2875,8 @@
     "spot": "door-left-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2802,8 +2891,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2818,8 +2907,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "dairy",
@@ -2834,8 +2923,8 @@
     "spot": "door-left-3",
     "status": "in",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "beverage",
@@ -2850,8 +2939,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "dairy",
@@ -2866,8 +2955,24 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
+   },
+   {
+    "cat": "dairy",
+    "cost": 1.99,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
+    "name": "Evaporated milk",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "",
@@ -2882,8 +2987,24 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 2.5,
+    "every": 153,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
+    "name": "Green onions",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 2,
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "",
@@ -2898,8 +3019,24 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
+   },
+   {
+    "cat": "dairy",
+    "cost": 3.79,
+    "every": 21,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
+    "name": "Heavy cream",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 4,
+    "trips": 16,
+    "usual": "4 of 16 trips"
    },
    {
     "cat": "",
@@ -2914,8 +3051,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "deli",
@@ -2930,8 +3067,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "",
@@ -2946,8 +3083,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2962,8 +3099,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -2978,8 +3115,24 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
+   },
+   {
+    "cat": "dairy",
+    "cost": 7.49,
+    "every": 63,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
+    "name": "Mozzarella",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 3,
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "",
@@ -2994,8 +3147,8 @@
     "spot": "door-left-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -3010,8 +3163,8 @@
     "spot": "door-left-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -3026,8 +3179,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -3042,8 +3195,8 @@
     "spot": "door-right-1",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -3058,8 +3211,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3074,8 +3227,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 4,
-    "trips": 15,
-    "usual": "4 of 15 trips"
+    "trips": 16,
+    "usual": "4 of 16 trips"
    },
    {
     "cat": "",
@@ -3090,8 +3243,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3106,8 +3259,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "",
@@ -3122,8 +3275,8 @@
     "spot": "door-left-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "",
@@ -3138,8 +3291,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "dairy",
@@ -3154,8 +3307,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 4,
-    "trips": 15,
-    "usual": "4 of 15 trips"
+    "trips": 16,
+    "usual": "4 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3170,8 +3323,8 @@
     "spot": null,
     "status": "in",
     "times": 10,
-    "trips": 15,
-    "usual": "10 of 15 trips"
+    "trips": 16,
+    "usual": "10 of 16 trips"
    },
    {
     "cat": "dairy",
@@ -3186,8 +3339,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3202,8 +3355,8 @@
     "spot": null,
     "status": "low",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3218,8 +3371,8 @@
     "spot": null,
     "status": "low",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3234,8 +3387,8 @@
     "spot": null,
     "status": "low",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "protein",
@@ -3250,24 +3403,8 @@
     "spot": null,
     "status": "low",
     "times": 4,
-    "trips": 15,
-    "usual": "4 of 15 trips"
-   },
-   {
-    "cat": "dairy",
-    "cost": 3.99,
-    "every": 28,
-    "fresh": 0.07,
-    "ghost": false,
-    "last": "2026-11-08",
-    "name": "Heavy cream",
-    "since": "2026-11-08",
-    "source": "receipt",
-    "spot": null,
-    "status": "low",
-    "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "4 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3282,8 +3419,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "protein",
@@ -3298,8 +3435,8 @@
     "spot": null,
     "status": "out",
     "times": 8,
-    "trips": 15,
-    "usual": "8 of 15 trips"
+    "trips": 16,
+    "usual": "8 of 16 trips"
    },
    {
     "cat": "protein",
@@ -3314,8 +3451,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "deli",
@@ -3330,8 +3467,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "protein",
@@ -3346,8 +3483,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3362,8 +3499,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "protein",
@@ -3378,8 +3515,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3394,8 +3531,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    }
   ],
   "pantry": [
@@ -3412,8 +3549,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 6,
-    "trips": 15,
-    "usual": "6 of 15 trips"
+    "trips": 16,
+    "usual": "6 of 16 trips"
    },
    {
     "cat": "",
@@ -3428,8 +3565,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3444,8 +3581,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3460,8 +3597,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "deli",
@@ -3476,8 +3613,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "",
@@ -3492,8 +3629,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3508,8 +3645,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "",
@@ -3524,8 +3661,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3540,8 +3677,24 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 5.99,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
+    "name": "Dijon mustard",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "",
@@ -3556,8 +3709,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3572,24 +3725,40 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "pantry",
-    "cost": 1.29,
-    "every": 8,
+    "cost": 4.99,
+    "every": null,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-11-08",
+    "last": "2026-11-21",
+    "name": "Organic paprika",
+    "since": "2026-11-21",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 16,
+    "usual": "1 of 16 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 2.5,
+    "every": 13,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-21",
     "name": "Pasta",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-21",
+    "source": "receipt",
     "spot": "shelf-3",
     "status": "in",
-    "times": 10,
-    "trips": 15,
-    "usual": "10 of 15 trips"
+    "times": 11,
+    "trips": 16,
+    "usual": "11 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3604,8 +3773,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3620,8 +3789,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 5,
-    "trips": 15,
-    "usual": "5 of 15 trips"
+    "trips": 16,
+    "usual": "5 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3636,8 +3805,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3652,8 +3821,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 4,
-    "trips": 15,
-    "usual": "4 of 15 trips"
+    "trips": 16,
+    "usual": "4 of 16 trips"
    },
    {
     "cat": "",
@@ -3668,8 +3837,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 15,
-    "usual": "0 of 15 trips"
+    "trips": 16,
+    "usual": "0 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3684,8 +3853,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3700,8 +3869,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3716,8 +3885,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 15,
-    "usual": "1 of 15 trips"
+    "trips": 16,
+    "usual": "1 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3732,8 +3901,8 @@
     "spot": null,
     "status": "in",
     "times": 9,
-    "trips": 15,
-    "usual": "9 of 15 trips"
+    "trips": 16,
+    "usual": "9 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3748,8 +3917,8 @@
     "spot": null,
     "status": "in",
     "times": 6,
-    "trips": 15,
-    "usual": "6 of 15 trips"
+    "trips": 16,
+    "usual": "6 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3764,8 +3933,8 @@
     "spot": null,
     "status": "low",
     "times": 2,
-    "trips": 15,
-    "usual": "2 of 15 trips"
+    "trips": 16,
+    "usual": "2 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3780,8 +3949,8 @@
     "spot": null,
     "status": "low",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3796,8 +3965,8 @@
     "spot": null,
     "status": "out",
     "times": 6,
-    "trips": 15,
-    "usual": "6 of 15 trips"
+    "trips": 16,
+    "usual": "6 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3812,8 +3981,8 @@
     "spot": null,
     "status": "out",
     "times": 7,
-    "trips": 15,
-    "usual": "7 of 15 trips"
+    "trips": 16,
+    "usual": "7 of 16 trips"
    },
    {
     "cat": "bakery",
@@ -3828,8 +3997,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "produce",
@@ -3844,8 +4013,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3860,8 +4029,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    },
    {
     "cat": "pantry",
@@ -3876,15 +4045,15 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 15,
-    "usual": "3 of 15 trips"
+    "trips": 16,
+    "usual": "3 of 16 trips"
    }
   ]
  },
  "spend": {
   "avg": 109.1,
   "flowers_ytd": 157.36,
-  "this_week": 128.15,
+  "this_week": 165.38,
   "weeks": [
    {
     "flowers": 0,
@@ -3978,12 +4147,12 @@
    },
    {
     "flowers": 0.0,
-    "groceries": 128.15,
+    "groceries": 165.38,
     "shopped": true,
     "week": "2026-11-15"
    }
   ],
-  "ytd": 1546.46
+  "ytd": 1583.69
  },
  "streak": {
   "best": 3,
