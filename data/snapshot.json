@@ -1,6 +1,26 @@
 {
  "eaten": [
   {
+   "date": "2026-11-21",
+   "meal": "Tini Younger's mac and cheese"
+  },
+  {
+   "date": "2026-11-15",
+   "meal": "Sheet-pan chicken thighs with baby potatoes, carrots, broccoli, Brussels sprouts, sliced into bowls"
+  },
+  {
+   "date": "2026-11-15",
+   "meal": "Salmon with rice and broccoli"
+  },
+  {
+   "date": "2026-11-15",
+   "meal": "Fettuccine carbonara with leftover eggs and bacon"
+  },
+  {
+   "date": "2026-11-15",
+   "meal": "Frozen pizza"
+  },
+  {
    "date": "2026-11-14",
    "meal": "Quesadillas"
   },
@@ -11,26 +31,6 @@
   {
    "date": "2026-11-08",
    "meal": "Southern collard greens"
-  },
-  {
-   "date": "2026-11-01",
-   "meal": "Chicken tikka masala"
-  },
-  {
-   "date": "2026-09-24",
-   "meal": "Turkey burgers with seared portobello caps and corn"
-  },
-  {
-   "date": "2026-09-22",
-   "meal": "Pork tenderloin with seared halloumi"
-  },
-  {
-   "date": "2026-07-31",
-   "meal": "Impossible burgers"
-  },
-  {
-   "date": "2026-07-23",
-   "meal": "Yogurt-marinated chicken over hummus with roasted vegetables"
   }
  ],
  "ledger": {
@@ -50,7 +50,8 @@
    "2026-10-18",
    "2026-11-08",
    "2026-11-15",
-   "2026-11-21"
+   "2026-11-21",
+   "2026-11-22"
   ],
   "rows": [
    [
@@ -2652,34 +2653,314 @@
     2.5,
     1,
     0.0
+   ],
+   [
+    16,
+    "Bread",
+    "Bakery",
+    3.99,
+    1,
+    1.3
+   ],
+   [
+    16,
+    "Beer",
+    "Beer and wine",
+    11.99,
+    1,
+    1.0
+   ],
+   [
+    16,
+    "Beer",
+    "Beer and wine",
+    14.99,
+    1,
+    1.0
+   ],
+   [
+    16,
+    "Cheese",
+    "Dairy",
+    2.99,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Cheese",
+    "Dairy",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Coffee",
+    "Dairy",
+    4.5,
+    1,
+    2.49
+   ],
+   [
+    16,
+    "Vanilla almond milk",
+    "Dairy",
+    5.99,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Yogurt",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    16,
+    "Yogurt",
+    "Dairy",
+    6.99,
+    1,
+    1.0
+   ],
+   [
+    16,
+    "Yogurt",
+    "Dairy",
+    1.99,
+    1,
+    0.5
+   ],
+   [
+    16,
+    "Coffee",
+    "Drinks",
+    7.99,
+    1,
+    2.0
+   ],
+   [
+    16,
+    "Coffee",
+    "Drinks",
+    7.99,
+    1,
+    2.0
+   ],
+   [
+    16,
+    "Mini hydrangea green",
+    "Flowers",
+    7.99,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Poms",
+    "Flowers",
+    5.0,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Chicken breast",
+    "Meat and fish",
+    11.26,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Canned beans",
+    "Pantry",
+    1.29,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Fettuccine",
+    "Pantry",
+    1.25,
+    1,
+    0.04
+   ],
+   [
+    16,
+    "Flour tortillas",
+    "Pantry",
+    3.49,
+    1,
+    0.8
+   ],
+   [
+    16,
+    "Lee kum kee sauce",
+    "Pantry",
+    3.99,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Salsa verde",
+    "Pantry",
+    3.99,
+    1,
+    0.8
+   ],
+   [
+    16,
+    "Tomato soup",
+    "Pantry",
+    2.49,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Bell peppers",
+    "Produce",
+    5.97,
+    3,
+    0.0
+   ],
+   [
+    16,
+    "Limes",
+    "Produce",
+    1.98,
+    2,
+    0.0
+   ],
+   [
+    16,
+    "Potatoes",
+    "Produce",
+    6.99,
+    1,
+    0.0
+   ],
+   [
+    16,
+    "Spinach",
+    "Produce",
+    2.99,
+    1,
+    0.0
    ]
   ]
  },
  "plan": [
   {
-   "meal": "Sheet-pan lemongrass chicken thighs with baby potatoes, carrots, broccoli, Brussels sprouts",
+   "meal": "Turkey and sweet potato chili with black beans",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Turkey shepherd's pie with carrots, peas, mashed potato top",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Honey-soy chicken with farro, spinach, roasted carrots",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Yogurt-marinated chicken over hummus with roasted potatoes, carrots, Brussels sprouts",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Chicken shawarma bowls with roasted potatoes and cucumber yogurt sauce",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Turkey meatballs in marinara with roasted baby potatoes and broccoli",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Smoked turkey sausage, white bean and kale skillet with roasted potatoes",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Chicken pot pie bake with biscuit top",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Buffalo chicken mac",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Cajun chicken, potato and corn hash",
+   "slot": "batch main",
+   "status": "proposed"
+  },
+  {
+   "meal": "Mexican chicken bowls with rice, chicken, peppers, black beans",
    "slot": "batch main",
    "status": "planned"
   },
   {
-   "meal": "BBQ chicken thighs with corn and slaw",
+   "meal": "Skillet gnocchi with spinach and fresh mozzarella",
    "slot": "dinner",
-   "status": "planned"
+   "status": "proposed"
   },
   {
-   "meal": "Salmon with rice and broccoli",
+   "meal": "Turkey burgers with portobello caps and corn",
    "slot": "dinner",
-   "status": "planned"
+   "status": "proposed"
+  },
+  {
+   "meal": "Shakshuka with crusty bread",
+   "slot": "dinner",
+   "status": "proposed"
+  },
+  {
+   "meal": "Grilled cheese and tomato soup",
+   "slot": "dinner",
+   "status": "proposed"
+  },
+  {
+   "meal": "Caprese chicken with pearled couscous",
+   "slot": "dinner",
+   "status": "proposed"
   },
   {
    "meal": "Red beans and rice with smoked turkey sausage",
    "slot": "dinner",
    "status": "proposed"
+  },
+  {
+   "meal": "Butternut squash risotto",
+   "slot": "dinner",
+   "status": "proposed"
+  },
+  {
+   "meal": "Tomato soup and grilled cheese",
+   "slot": "dinner",
+   "status": "planned"
+  },
+  {
+   "meal": "Improvised",
+   "slot": "dinner",
+   "status": "planned"
   }
  ],
  "rewind": {
   "last": "2026-05-31",
-  "meal": "Stir-fry",
+  "meal": "Loaded quesadillas",
   "weeks_ago": 25
  },
  "shelves": {
@@ -2697,8 +2978,8 @@
     "spot": null,
     "status": "in",
     "times": 6,
-    "trips": 16,
-    "usual": "6 of 16 trips"
+    "trips": 17,
+    "usual": "6 of 17 trips"
    },
    {
     "cat": "dairy/frozen",
@@ -2713,8 +2994,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "dairy/frozen",
@@ -2729,8 +3010,8 @@
     "spot": null,
     "status": "low",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    }
   ],
   "fridge": [
@@ -2742,29 +3023,61 @@
     "ghost": false,
     "last": "2026-10-11",
     "name": "Almond milk",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-left-3",
+    "spot": "door-left-2",
     "status": "in",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 4.29,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "BBQ sauce",
+    "since": "2026-11-22",
+    "source": "photo",
+    "spot": "door-right-2",
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "alcohol",
-    "cost": 13.99,
+    "cost": 26.98,
     "every": 14,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-11-08",
+    "last": "2026-11-22",
     "name": "Beer",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-left-1",
+    "spot": "door-left-2",
     "status": "in",
-    "times": 12,
-    "trips": 16,
-    "usual": "12 of 16 trips"
+    "times": 13,
+    "trips": 17,
+    "usual": "13 of 17 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 5.97,
+    "every": 35,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Bell peppers",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 6,
+    "trips": 17,
+    "usual": "6 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -2779,8 +3092,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "",
@@ -2790,13 +3103,13 @@
     "ghost": false,
     "last": null,
     "name": "Canned cocktails",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "produce",
@@ -2811,8 +3124,40 @@
     "spot": "crisper-right",
     "status": "in",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
+   },
+   {
+    "cat": "dairy",
+    "cost": 5.48,
+    "every": 14,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Cheese",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": "crisper-left",
+    "status": "in",
+    "times": 11,
+    "trips": 17,
+    "usual": "11 of 17 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Cheeses",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
+    "times": 0,
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2827,8 +3172,40 @@
     "spot": "door-right-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 11.26,
+    "every": 14,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Chicken breast",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 9,
+    "trips": 17,
+    "usual": "9 of 17 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 14.52,
+    "every": 49,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Chicken thighs",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
+    "times": 5,
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "",
@@ -2843,8 +3220,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2854,13 +3231,13 @@
     "ghost": false,
     "last": null,
     "name": "Coconut water",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-left-3",
+    "spot": "door-left-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2875,8 +3252,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2891,24 +3268,24 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "dairy",
-    "cost": 1.99,
-    "every": 70,
+    "cost": 4.5,
+    "every": 63,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-09-20",
+    "last": "2026-11-22",
     "name": "Creamer",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-left-3",
+    "spot": "door-left-2",
     "status": "in",
-    "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "times": 4,
+    "trips": 17,
+    "usual": "4 of 17 trips"
    },
    {
     "cat": "beverage",
@@ -2918,13 +3295,13 @@
     "ghost": false,
     "last": "2026-11-15",
     "name": "Diet Coke",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "shelf-3",
+    "spot": "shelf-2",
     "status": "in",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -2934,13 +3311,29 @@
     "ghost": false,
     "last": "2026-11-15",
     "name": "Eggs",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 3.49,
+    "every": 14,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Flour tortillas",
+    "since": "2026-11-22",
+    "source": "photo",
+    "spot": "drawer",
+    "status": "in",
+    "times": 8,
+    "trips": 17,
+    "usual": "8 of 17 trips"
    },
    {
     "cat": "",
@@ -2950,13 +3343,13 @@
     "ghost": false,
     "last": null,
     "name": "Gatorade",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2971,8 +3364,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -2987,8 +3380,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "deli",
@@ -2998,13 +3391,29 @@
     "ghost": false,
     "last": "2026-11-15",
     "name": "Hummus",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
     "spot": "shelf-1",
     "status": "in",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Ketchup",
+    "since": "2026-11-22",
+    "source": "photo",
+    "spot": "door-right-2",
+    "status": "in",
+    "times": 0,
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3019,8 +3428,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3035,8 +3444,24 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 1.98,
+    "every": 49,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Limes",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 4,
+    "trips": 17,
+    "usual": "4 of 17 trips"
    },
    {
     "cat": "",
@@ -3051,8 +3476,8 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3067,8 +3492,8 @@
     "spot": "door-left-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3083,8 +3508,8 @@
     "spot": "door-left-3",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3094,13 +3519,13 @@
     "ghost": false,
     "last": null,
     "name": "Olipop",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "shelf-3",
+    "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3115,8 +3540,8 @@
     "spot": "door-right-1",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3131,24 +3556,56 @@
     "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "pantry",
-    "cost": 2.99,
-    "every": 35,
+    "cost": 3.99,
+    "every": 49,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-10-04",
+    "last": "2026-11-22",
     "name": "Salsa verde",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-22",
+    "source": "receipt",
     "spot": "shelf-2",
     "status": "in",
+    "times": 5,
+    "trips": 17,
+    "usual": "5 of 17 trips"
+   },
+   {
+    "cat": "protein",
+    "cost": 3.99,
+    "every": 56,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Sausage",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
     "times": 4,
-    "trips": 16,
-    "usual": "4 of 16 trips"
+    "trips": 17,
+    "usual": "4 of 17 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Scallions",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
+    "times": 0,
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "",
@@ -3163,8 +3620,8 @@
     "spot": "door-right-3",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3174,13 +3631,13 @@
     "ghost": false,
     "last": "2026-06-21",
     "name": "Soy sauce",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-right-3",
+    "spot": "door-right-2",
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "",
@@ -3195,8 +3652,40 @@
     "spot": "door-left-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "",
+    "cost": null,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": null,
+    "name": "Sparkling water",
+    "since": "2026-11-22",
+    "source": "photo",
+    "spot": "door-left-2",
+    "status": "in",
+    "times": 0,
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 2.99,
+    "every": 49,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Spinach",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 4,
+    "trips": 17,
+    "usual": "4 of 17 trips"
    },
    {
     "cat": "",
@@ -3206,45 +3695,45 @@
     "ghost": false,
     "last": null,
     "name": "Sriracha",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
-    "spot": "door-right-3",
+    "spot": "door-right-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "dairy",
-    "cost": 10.08,
-    "every": 21,
+    "cost": 5.99,
+    "every": 105,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-10-18",
+    "last": "2026-11-22",
+    "name": "Vanilla almond milk",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 3,
+    "trips": 17,
+    "usual": "3 of 17 trips"
+   },
+   {
+    "cat": "dairy",
+    "cost": 10.97,
+    "every": 35,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
     "name": "Yogurt",
-    "since": "2026-11-15",
+    "since": "2026-11-22",
     "source": "photo",
     "spot": "shelf-2",
     "status": "in",
-    "times": 4,
-    "trips": 16,
-    "usual": "4 of 16 trips"
-   },
-   {
-    "cat": "dairy",
-    "cost": 7.98,
-    "every": 14,
-    "fresh": 0.97,
-    "ghost": false,
-    "last": "2026-11-21",
-    "name": "Cheese",
-    "since": "2026-11-21",
-    "source": "receipt",
-    "spot": "crisper-left",
-    "status": "in",
-    "times": 10,
-    "trips": 16,
-    "usual": "10 of 16 trips"
+    "times": 5,
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -3259,8 +3748,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -3275,8 +3764,8 @@
     "spot": null,
     "status": "in",
     "times": 4,
-    "trips": 16,
-    "usual": "4 of 16 trips"
+    "trips": 17,
+    "usual": "4 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -3291,8 +3780,8 @@
     "spot": null,
     "status": "in",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3307,8 +3796,8 @@
     "spot": null,
     "status": "in",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3323,8 +3812,8 @@
     "spot": null,
     "status": "in",
     "times": 10,
-    "trips": 16,
-    "usual": "10 of 16 trips"
+    "trips": 17,
+    "usual": "10 of 17 trips"
    },
    {
     "cat": "dairy",
@@ -3339,24 +3828,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 5.97,
-    "every": 35,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-10-04",
-    "name": "Bell peppers",
-    "since": "2026-10-04",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3371,40 +3844,24 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
-    "cat": "protein",
-    "cost": 6.99,
-    "every": 14,
+    "cat": "deli",
+    "cost": 10.99,
+    "every": 36,
     "fresh": 0.0,
     "ghost": true,
-    "last": "2026-11-08",
-    "name": "Chicken breast",
-    "since": "2026-11-08",
+    "last": "2026-09-13",
+    "name": "Feta",
+    "since": "2026-09-13",
     "source": "receipt",
     "spot": null,
     "status": "out",
-    "times": 8,
-    "trips": 16,
-    "usual": "8 of 16 trips"
-   },
-   {
-    "cat": "protein",
-    "cost": 14.52,
-    "every": 49,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-11-15",
-    "name": "Chicken thighs",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "times": 3,
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3419,8 +3876,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "protein",
@@ -3435,8 +3892,8 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "protein",
@@ -3451,42 +3908,26 @@
     "spot": null,
     "status": "out",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
-   },
-   {
-    "cat": "protein",
-    "cost": 3.99,
-    "every": 56,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-11-15",
-    "name": "Sausage",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 4,
-    "trips": 16,
-    "usual": "4 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    }
   ],
   "pantry": [
    {
     "cat": "bakery",
-    "cost": 5.49,
+    "cost": 3.99,
     "every": 28,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-11-15",
+    "last": "2026-11-22",
     "name": "Bread",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-22",
+    "source": "receipt",
     "spot": "shelf-3",
     "status": "in",
-    "times": 6,
-    "trips": 16,
-    "usual": "6 of 16 trips"
+    "times": 7,
+    "trips": 17,
+    "usual": "7 of 17 trips"
    },
    {
     "cat": "",
@@ -3501,24 +3942,24 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
-    "cat": "produce",
-    "cost": 5.58,
+    "cat": "pantry",
+    "cost": 1.29,
     "every": 98,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-10-04",
+    "last": "2026-11-22",
     "name": "Canned beans",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-22",
+    "source": "receipt",
     "spot": "shelf-3",
     "status": "in",
-    "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "times": 3,
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3533,8 +3974,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "deli",
@@ -3549,8 +3990,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "trips": 17,
+    "usual": "5 of 17 trips"
    },
    {
     "cat": "",
@@ -3565,8 +4006,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3581,8 +4022,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "",
@@ -3597,8 +4038,8 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3613,8 +4054,24 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 1.25,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Fettuccine",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "",
@@ -3629,8 +4086,40 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 0.99,
+    "every": 49,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-08-30",
+    "name": "Garlic",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
+    "times": 2,
+    "trips": 17,
+    "usual": "2 of 17 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 3.99,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Lee kum kee sauce",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3645,8 +4134,24 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
+   },
+   {
+    "cat": "produce",
+    "cost": 1.45,
+    "every": 21,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-15",
+    "name": "Onions",
+    "since": "2026-11-22",
+    "source": "colin, chat",
+    "spot": null,
+    "status": "in",
+    "times": 9,
+    "trips": 17,
+    "usual": "9 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3661,8 +4166,8 @@
     "spot": "shelf-3",
     "status": "in",
     "times": 11,
-    "trips": 16,
-    "usual": "11 of 16 trips"
+    "trips": 17,
+    "usual": "11 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3677,24 +4182,56 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
+   },
+   {
+    "cat": "beverage",
+    "cost": 7.99,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Peet's crema scura coffee pods",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
+   },
+   {
+    "cat": "beverage",
+    "cost": 7.99,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Peet's ricchezza coffee pods",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "produce",
     "cost": 6.99,
-    "every": 35,
+    "every": 21,
     "fresh": 1.0,
     "ghost": false,
-    "last": "2026-11-15",
+    "last": "2026-11-22",
     "name": "Potatoes",
-    "since": "2026-11-15",
-    "source": "photo",
+    "since": "2026-11-22",
+    "source": "receipt",
     "spot": "shelf-4",
     "status": "in",
-    "times": 5,
-    "trips": 16,
-    "usual": "5 of 16 trips"
+    "times": 6,
+    "trips": 17,
+    "usual": "6 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3709,8 +4246,8 @@
     "spot": "shelf-4",
     "status": "in",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3725,8 +4262,8 @@
     "spot": "shelf-1",
     "status": "in",
     "times": 4,
-    "trips": 16,
-    "usual": "4 of 16 trips"
+    "trips": 17,
+    "usual": "4 of 17 trips"
    },
    {
     "cat": "",
@@ -3741,8 +4278,24 @@
     "spot": "shelf-2",
     "status": "in",
     "times": 0,
-    "trips": 16,
-    "usual": "0 of 16 trips"
+    "trips": 17,
+    "usual": "0 of 17 trips"
+   },
+   {
+    "cat": "pantry",
+    "cost": 2.49,
+    "every": null,
+    "fresh": 1.0,
+    "ghost": false,
+    "last": "2026-11-22",
+    "name": "Tomato soup",
+    "since": "2026-11-22",
+    "source": "receipt",
+    "spot": null,
+    "status": "in",
+    "times": 1,
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3757,8 +4310,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3773,24 +4326,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
-   },
-   {
-    "cat": "pantry",
-    "cost": 4.29,
-    "every": null,
-    "fresh": 0.96,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "BBQ sauce",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3805,8 +4342,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3821,24 +4358,8 @@
     "spot": null,
     "status": "in",
     "times": 1,
-    "trips": 16,
-    "usual": "1 of 16 trips"
-   },
-   {
-    "cat": "produce",
-    "cost": 1.45,
-    "every": 21,
-    "fresh": 0.77,
-    "ghost": false,
-    "last": "2026-11-15",
-    "name": "Onions",
-    "since": "2026-11-15",
-    "source": "receipt",
-    "spot": null,
-    "status": "in",
-    "times": 9,
-    "trips": 16,
-    "usual": "9 of 16 trips"
+    "trips": 17,
+    "usual": "1 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3853,8 +4374,8 @@
     "spot": null,
     "status": "in",
     "times": 6,
-    "trips": 16,
-    "usual": "6 of 16 trips"
+    "trips": 17,
+    "usual": "6 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3869,8 +4390,8 @@
     "spot": null,
     "status": "low",
     "times": 2,
-    "trips": 16,
-    "usual": "2 of 16 trips"
+    "trips": 17,
+    "usual": "2 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3885,8 +4406,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3901,24 +4422,8 @@
     "spot": null,
     "status": "out",
     "times": 6,
-    "trips": 16,
-    "usual": "6 of 16 trips"
-   },
-   {
-    "cat": "pantry",
-    "cost": 3.99,
-    "every": 14,
-    "fresh": 0.0,
-    "ghost": true,
-    "last": "2026-10-18",
-    "name": "Flour tortillas",
-    "since": "2026-10-18",
-    "source": "receipt",
-    "spot": null,
-    "status": "out",
-    "times": 7,
-    "trips": 16,
-    "usual": "7 of 16 trips"
+    "trips": 17,
+    "usual": "6 of 17 trips"
    },
    {
     "cat": "bakery",
@@ -3933,8 +4438,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "produce",
@@ -3949,8 +4454,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3965,8 +4470,8 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    },
    {
     "cat": "pantry",
@@ -3981,15 +4486,15 @@
     "spot": null,
     "status": "out",
     "times": 3,
-    "trips": 16,
-    "usual": "3 of 16 trips"
+    "trips": 17,
+    "usual": "3 of 17 trips"
    }
   ]
  },
  "spend": {
   "avg": 113.12,
-  "flowers_ytd": 157.36,
-  "this_week": 0,
+  "flowers_ytd": 170.35,
+  "this_week": 119.58,
   "weeks": [
    {
     "flowers": 27.97,
@@ -4082,17 +4587,17 @@
     "week": "2026-11-15"
    },
    {
-    "flowers": 0,
-    "groceries": 0,
-    "shopped": false,
+    "flowers": 12.99,
+    "groceries": 119.58,
+    "shopped": true,
     "week": "2026-11-22"
    }
   ],
-  "ytd": 1583.69
+  "ytd": 1703.27
  },
  "streak": {
   "best": 3,
-  "current": 2,
+  "current": 3,
   "recent": [
    true,
    true,
@@ -4101,9 +4606,9 @@
    false,
    true,
    true,
-   false
+   true
   ],
-  "shopped_this_week": false
+  "shopped_this_week": true
  },
  "today": "2026-11-22"
 }
